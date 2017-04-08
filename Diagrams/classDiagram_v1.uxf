@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>280</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>CheckInSystem
+--
+generatedCodes: HasMap&lt;String, Code&gt;
+--
+generateCode(Int): Code
+validateCode(): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>30</y>
+      <w>260</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Application
+--
+sessions: List &lt;UserSession&gt;
+checkInSystem: CheckInSystem
+--
+startPresence(): void
+addPresence(): void
+stopPresence(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>140</y>
+      <w>30</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>40</y>
+      <w>220</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>UserSession
+--
+username: String
+emali: String
+logged: boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>70</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..n*</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>620</x>
+      <y>520</y>
+      <w>240</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Tabelă în baza de date
+PK: username Prof - cod Generat
+Sau hashMap
+--
+Listă in aplicatie pentru studentii
+ce au dat check-in, in DB sau fisier.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>360</y>
+      <w>130</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;create&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;110.0;110.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>460</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Code
+--
+value: String
+numberOfUses: Int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
