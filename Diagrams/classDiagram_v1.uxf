@@ -11,10 +11,10 @@
     </coordinates>
     <panel_attributes>CheckInSystem
 --
-generatedCodes: HasMap&lt;String, Code&gt;
+generatedCodes: HashMap&lt;String, Code&gt;
 --
 generateCode(Int): Code
-validateCode(): boolean
+validateCode(Code): boolean
 
 </panel_attributes>
     <additional_attributes/>
@@ -25,12 +25,13 @@ validateCode(): boolean
       <x>380</x>
       <y>30</y>
       <w>260</w>
-      <h>120</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Application
 --
 sessions: List &lt;UserSession&gt;
 checkInSystem: CheckInSystem
+HashMap &lt;Code, List&lt;UserSession&gt;&gt;
 --
 startPresence(): void
 addPresence(): void
@@ -42,14 +43,14 @@ stopPresence(): void
     <id>Relation</id>
     <coordinates>
       <x>520</x>
-      <y>140</y>
+      <y>160</y>
       <w>30</w>
-      <h>160</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -81,8 +82,8 @@ m2=0..n*</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>620</x>
-      <y>520</y>
+      <x>650</x>
+      <y>540</y>
       <w>240</w>
       <h>90</h>
     </coordinates>
