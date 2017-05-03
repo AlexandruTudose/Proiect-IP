@@ -1,0 +1,19 @@
+03.05.2017
+
+Ce a fost bine? 
+-Crearea bazei de date
+
+Ce a fost rau?
+-totul se face pe ultima suta de metri
+-conexiunea la baza de date si proiectul nu au mers (cel putin la unii)
+-organizarea
+-comunicarea
+-lipsa de implicare
+
+Ce poate fi îmbunătățit? 
+-sa invete fiecare membru sa foloseasca git
+-organizarea timpului astfel incat membrii echipei sa fie disponibili
+
+Starea fiecăruia in iteratie: sad, happy, neutral, etc.
+-Ovidiu: sad -> mad
+-Andrei Rusu: :smiley:
