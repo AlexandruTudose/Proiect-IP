@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>300</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>CheckInSystem
+--
+generatedCodes: ArrayList&lt;Code&gt;
+--
+generateCode(Int): Code
+validateCode(Code): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>50</y>
+      <w>350</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Application
+--
+sessions: List &lt;UserSession&gt;
+checkInSystem: CheckInSystem
+presentStudents: HashMap &lt;Code, List&lt;UserSession&gt;&gt;
+--
+startPresence(): void
+addPresence(Code): void
+stopPresence(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>180</y>
+      <w>30</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>60</y>
+      <w>220</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>UserSession
+--
+username: String
+emali: String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>90</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..n*</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>380</y>
+      <w>130</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;create&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;110.0;110.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>480</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Code
+--
+value: String
+numberOfUses: Int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>700</x>
+      <y>510</y>
+      <w>210</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Code
+
+Primele 4 litere/cifre
+reprezintă sala în care
+se ține cursul/etc..
+Alte 4 random.
+
+Ex: C11294j2</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
