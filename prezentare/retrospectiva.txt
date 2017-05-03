@@ -17,3 +17,5 @@ Ce poate fi îmbunătățit?
 Starea fiecăruia in iteratie: sad, happy, neutral, etc.
 -Ovidiu: sad -> mad
 -Andrei Rusu: :smiley:
+-Andrei Daneliuc: :facepalm:
+-Eduard Clatinici: 50% frustrare, 50% debusoalare
