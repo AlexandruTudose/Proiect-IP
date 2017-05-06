@@ -1,0 +1,28 @@
+Note
+Scopul modulului este de a facilita vizualizarea
+notelor, respectiv scrierea/modificarea lor intr-un mediu
+virtual
+
+Limite: Utilizatorii cu drept de vizualizare (studentii)
+pot sa vizualizeze notele fiecarui student din facultate
+	Utilizatorii cu drept de modificare (profesorii)
+pot vizualiza notele tuturor studentilor si le pot modifica
+
+Scenarii de utilizare:
+Scenariul 1.(student): Vizitator -> login -> vizualizare note
+Scenariul 2.(profesor): Vizitator -> login -> vizualizare note -> alegerea unei note -> modificarea notei
+
+Teme
+Scopul modulului este de a permite stocarea temelor
+in mediul online.
+
+Limite: Studentii au acces doar la propriile teme.
+Acestia pot incarca temele ca arhive zip si le pot 
+descarca la orice moment - atata timp cat sunt logati.
+	Profesorii au acces la toate temele si pot
+verifica plagiatul folosind serviciul MOSS.
+
+Scenarii de utilizare:
+Scenariul 1.(student): Vizitator -> login -> selectarea unei arhive zip din calculator -> upload
+Scenariul 2.(student): Vizitator -> login -> selectarea unei arhive incarcate -> download
+Scenariul 3.(profesor): Vizitator -> login -> descarcarea tuturor arhivelor -> utilizarea moss
