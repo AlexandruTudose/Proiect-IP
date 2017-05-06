@@ -1,34 +1,28 @@
 package com.fiivirtualcatalog.modules.admin.controllers;
 
-import com.fiivirtualcatalog.modules.DTOs.AdminDto;
-import com.fiivirtualcatalog.modules.admin.models.Admin;
+import com.fiivirtualcatalog.modules.DTOs.UserDTO;
 import com.fiivirtualcatalog.modules.admin.services.AdminService;
-import com.fiivirtualcatalog.modules.checkin.models.CheckIn;
-import com.fiivirtualcatalog.modules.transformers.AdminTransformer;
 import com.fiivirtualcatalog.modules.transformers.Transformer;
+import com.fiivirtualcatalog.modules.transformers.UserTransformer;
 import com.fiivirtualcatalog.modules.user.models.User;
 import com.fiivirtualcatalog.modules.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/v1/admins")
 
 public class AdminController {
-
     @Autowired
-    UserService userService;
+    AdminService userService;
 
-    private Transformer<Admin, AdminDto> transformer = new AdminTransformer();
+    private Transformer<User, UserDTO> transformer = new UserTransformer();
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<User>> get() {
@@ -63,8 +57,10 @@ public class AdminController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<User> createAdmin(@RequestBody AdminDto admin){
-        User savedUser = this.userService.save((User)transformer.toModel(admin));
+    public ResponseEntity<User> createAdmin(@RequestBody UserDTO user) {
+        User tempUser = transformer.toModel(user);
+        User savedUser = this.userService.save(tempUser);
+        savedUser.setRole("admin");
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
 }
