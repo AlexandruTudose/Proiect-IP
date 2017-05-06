@@ -1,7 +1,11 @@
 package com.fiivirtualcatalog.modules.user.controllers;
 
+import com.fiivirtualcatalog.modules.DTOs.UserDTO;
+import com.fiivirtualcatalog.modules.transformers.Transformer;
+import com.fiivirtualcatalog.modules.transformers.UserTransformer;
 import com.fiivirtualcatalog.modules.user.models.User;
 import com.fiivirtualcatalog.modules.user.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +22,8 @@ public class UserController {
 
     @Autowired
     private UserService service;
+    
+    private Transformer<User, UserDTO> transformer = new UserTransformer();
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<User>> get() {
@@ -30,8 +36,8 @@ public class UserController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<User> addPerson(@RequestBody User user) {
-        User savedUser = this.service.save(user);
+    public ResponseEntity<User> addPerson(@RequestBody UserDTO user) {
+        User savedUser = this.service.save(transformer.toModel(user));
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
 }
