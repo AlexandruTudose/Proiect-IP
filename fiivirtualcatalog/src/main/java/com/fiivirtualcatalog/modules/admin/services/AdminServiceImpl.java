@@ -1,14 +1,14 @@
 package com.fiivirtualcatalog.modules.admin.services;
 
-import com.fiivirtualcatalog.modules.admin.repositories.AdminUserRepository;
+import com.fiivirtualcatalog.modules.admin.repositories.AdminRepository;
 import com.fiivirtualcatalog.modules.user.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class AdminUserServiceImpl implements AdminUserService {
+public class AdminServiceImpl implements AdminService {
     @Autowired
-    private AdminUserRepository repository;
+    private AdminRepository repository;
 
     @Override
     public List<User> getAll() { return this.repository.findAll(); }
