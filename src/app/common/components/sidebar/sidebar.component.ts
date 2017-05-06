@@ -1,0 +1,22 @@
+import {Component, OnInit, Input} from '@angular/core';
+
+@Component({
+  selector: 'ip-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
+})
+export class SidebarComponent implements OnInit {
+
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  ngOnChanges() {
+  }
+
+  changeHome() {
+  }
+
+}
