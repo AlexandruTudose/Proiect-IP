@@ -1,0 +1,26 @@
+03.05.2017
+
+Ce a fost bine? 
+-Crearea bazei de date
+-am realizat ca nu avem nimic => mobilizare
+
+Ce a fost rau?
+-totul se face pe ultima suta de metri
+-conexiunea la baza de date si proiectul nu au mers (cel putin la unii)
+-organizarea
+-comunicarea
+-lipsa de implicare
+
+Ce poate fi îmbunătățit? 
+-sa invete fiecare membru sa foloseasca git
+-organizarea timpului astfel incat membrii echipei sa fie disponibili
+-mai mult interes, macar > 0
+-e foarte greu sa te apuci de facut ceva ce stii ca nu stii sa faci
+
+Starea fiecăruia in iteratie: sad, happy, neutral, etc.
+*Toti*: confuzi
+-Ovidiu: sad -> mad
+-Andrei Rusu: :smiley:
+-Andrei Daneliuc: :facepalm:
+-Eduard Clatinici: 50% frustrare, 50% debusoalare
+-Alex Dochitoiu: iritat, confuz
