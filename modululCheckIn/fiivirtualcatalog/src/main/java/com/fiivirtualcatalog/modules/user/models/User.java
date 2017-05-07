@@ -2,14 +2,12 @@ package com.fiivirtualcatalog.modules.user.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
-	private static final long serialVersionUID = -5607554818203808048L;
+public class User {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 

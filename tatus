@@ -1,0 +1,39 @@
+[33mcommit 985dd7203a989e227949a068c67752477f8d1fc1[m
+Author: AlexandraFolvaiter <folvaiter.alexandra@gmail.com>
+Date:   Sun May 7 12:56:40 2017 +0300
+
+    Added test for user class
+
+[33mcommit af05d970967b5cf6cd6d51a4b8d213fd78144e7c[m
+Author: simionescudarius <simionescudarius23@gmail.com>
+Date:   Sun May 7 01:57:31 2017 +0300
+
+    v1.0
+    
+    Html pages created.
+
+[33mcommit 901f986e1bc14d0c8bad6039a19e58308a518de4[m
+Author: simionescudarius <simionescudarius23@gmail.com>
+Date:   Sat May 6 23:13:14 2017 +0300
+
+    v1
+    
+    DTOs added
+
+[33mcommit 22496424156abe52acb34a073e86836ada3c4cd8[m
+Author: AlexandraFolvaiter <folvaiter.alexandra@gmail.com>
+Date:   Wed May 3 17:20:41 2017 +0300
+
+    Basic checkIn API implementation
+
+[33mcommit 1a118ec2d5938a6dfe4372d52c9b5affe88bcd5b[m
+Author: Alexandru Tudose <alexandru.tudose@info.uaic.ro>
+Date:   Wed Apr 5 09:13:39 2017 +0300
+
+    Added description!
+
+[33mcommit c36935f4a64b3e169c61d2b6eaa952ec9734dabf[m
+Author: Alexandru Tudose <alexandru.tudose@info.uaic.ro>
+Date:   Wed Apr 5 09:12:00 2017 +0300
+
+    Initial commit!

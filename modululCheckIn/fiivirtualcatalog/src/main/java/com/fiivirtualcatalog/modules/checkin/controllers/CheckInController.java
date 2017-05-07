@@ -1,57 +1,81 @@
 package com.fiivirtualcatalog.modules.checkin.controllers;
 
-import com.fiivirtualcatalog.modules.DTOs.CheckInDTO;
+import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetDTO;
+import com.fiivirtualcatalog.modules.checkin.dtos.CheckInPostDTO;
+import com.fiivirtualcatalog.modules.checkin.dtos.CheckInTransformer;
 import com.fiivirtualcatalog.modules.checkin.models.CheckIn;
 import com.fiivirtualcatalog.modules.checkin.services.CheckInService;
-import com.fiivirtualcatalog.modules.transformers.CheckInTransformer;
-import com.fiivirtualcatalog.modules.transformers.Transformer;
+import com.fiivirtualcatalog.modules.user.models.User;
 import com.fiivirtualcatalog.modules.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/check_ins")
+@RequestMapping("/v1/checkins")
 public class CheckInController {
 
-	@Autowired
-	CheckInService checkInService;
-	@Autowired
-	UserService userService;
+    @Autowired
+    CheckInService checkInService;
+    @Autowired
+    UserService userService;
 
-	private Transformer<CheckIn, CheckInDTO> transformer = new CheckInTransformer();
+    private CheckInTransformer transformer = new CheckInTransformer();
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<CheckIn>> get() {
-		List<CheckIn> checkIns = this.checkInService.getAll();
-		if (checkIns.isEmpty()) {
-			return new ResponseEntity<List<CheckIn>>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<List<CheckIn>>(checkIns, HttpStatus.OK);
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CheckInGetDTO>> get() {
+        List<CheckIn> checkIns = this.checkInService.getAll();
+        if (checkIns.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        List<CheckInGetDTO> checkInGetDTO = new ArrayList<>();
+        for (CheckIn checkIn : checkIns) {
+            checkInGetDTO.add(transformer.toDTO(checkIn));
+        }
+        return new ResponseEntity<>(checkInGetDTO, HttpStatus.OK);
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<CheckIn> createCheckIn(@RequestBody CheckInDTO checkIn) {
-		CheckIn savedCheckIn = this.checkInService.save(transformer.toModel(checkIn));
-		return new ResponseEntity<CheckIn>(savedCheckIn, HttpStatus.CREATED);
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity createCheckIn(@RequestBody CheckInPostDTO checkInPost) {
+        CheckIn checkIn = transformer.toModel(checkInPost);
+        User user = userService.getById(checkInPost.getUserId());
+        checkIn.setUser(user);
+        this.checkInService.save(checkIn);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
 
-	@RequestMapping(value = "/{checkInID}/{userId}", method = RequestMethod.POST)
-	public ResponseEntity<CheckIn> registerCheckIn(@PathVariable("checkInID") Long checkInId,
-			@PathVariable("userId") Long userId) {
-		CheckIn searchCheckIn = this.checkInService.getById(checkInId);
-		if (searchCheckIn == null)
-			return new ResponseEntity<CheckIn>(HttpStatus.NOT_FOUND);
-		searchCheckIn.addToCheckedInUsers(userService.getById(userId));
-		this.checkInService.save(searchCheckIn);
-		return new ResponseEntity<CheckIn>(searchCheckIn, HttpStatus.CREATED);
-	}
+    @RequestMapping(value = "/register/{userId}", method = RequestMethod.POST)
+    public ResponseEntity registerCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
+        CheckIn searchCheckIn = this.checkInService.getById(checkInId);
+        if (searchCheckIn == null)
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        if (searchCheckIn.getFinishingFlag()) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        if (searchCheckIn.getCheckedInUsers().contains(userService.getById(userId))) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        searchCheckIn.addToCheckedInUsers(userService.getById(userId));
+        this.checkInService.save(searchCheckIn);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/end/{userId}", method = RequestMethod.POST)
+    public ResponseEntity endCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
+        CheckIn searchCheckIn = this.checkInService.getById(checkInId);
+        if (searchCheckIn == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        if (searchCheckIn.getUser().getId() != userId) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        searchCheckIn.setFinishingFlag(true);
+        this.checkInService.save(searchCheckIn);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
 
 }

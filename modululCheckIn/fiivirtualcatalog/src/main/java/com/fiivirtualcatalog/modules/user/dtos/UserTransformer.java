@@ -1,8 +1,8 @@
-package com.fiivirtualcatalog.modules.transformers;
+package com.fiivirtualcatalog.modules.user.dtos;
 
+import com.fiivirtualcatalog.transformers.Transformer;
 import org.springframework.stereotype.Component;
 
-import com.fiivirtualcatalog.modules.DTOs.UserDTO;
 import com.fiivirtualcatalog.modules.user.models.User;
 
 @Component

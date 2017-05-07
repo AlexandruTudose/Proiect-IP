@@ -1,4 +1,4 @@
-package com.fiivirtualcatalog.modules.DTOs;
+package com.fiivirtualcatalog.modules.user.dtos;
 
 public class UserDTO {
 	private String name;
