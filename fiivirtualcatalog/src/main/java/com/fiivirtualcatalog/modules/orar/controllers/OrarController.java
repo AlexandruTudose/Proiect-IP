@@ -1,6 +1,7 @@
 package com.fiivirtualcatalog.modules.orar.controllers;
 
 import com.fiivirtualcatalog.modules.DTOs.OrarDTO;
+import com.fiivirtualcatalog.modules.orar.repositories.OrarRepository;
 import com.fiivirtualcatalog.modules.orar.services.OrarService;
 import com.fiivirtualcatalog.modules.transformers.Transformer;
 import com.fiivirtualcatalog.modules.transformers.OrarTransformer;
@@ -30,6 +31,7 @@ public class OrarController {
         return new ResponseEntity<List<Orar>>(orar, HttpStatus.OK);
     }
 
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Orar> addEntry(@RequestBody OrarDTO orar) {
         Orar savedOrar = this.service.save(transformer.toModel(orar));
@@ -37,7 +39,7 @@ public class OrarController {
     }
 
     @RequestMapping(value = "/{deleteId}",method = RequestMethod.DELETE)
-    public ResponseEntity<List<Orar>> deleteEntry(@PathVariable("deleteId") Long deleteId){
+    public ResponseEntity<List<Orar>> deleteById(@PathVariable("deleteId") Long deleteId){
 
         Orar orar = this.service.getById(deleteId);
         if (orar == null) {
@@ -47,5 +49,27 @@ public class OrarController {
         this.service.delete(deleteId);
         List<Orar> del = this.service.getAll();
         return new ResponseEntity<List<Orar>>(del, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value="/{updateId}", method=RequestMethod.PUT)
+    public ResponseEntity<Orar> updateById(@PathVariable("updateId") Long updateId, @RequestBody OrarDTO update) {
+        Orar orar = this.service.getById(updateId);
+        Orar orarUntouched=orar;
+        if (orar == null) {
+            return new ResponseEntity<Orar>(HttpStatus.NO_CONTENT);
+        }
+        Orar orarUpdate=transformer.toModel(update);
+
+        orar.setZi(orarUpdate.getZi());
+        orar.setOraInceput(orarUpdate.getOraInceput());
+        orar.setOraSfarsit(orarUpdate.getOraSfarsit());
+        orar.setIdDisciplina(orarUpdate.getIdDisciplina());
+        orar.setIdProf(orarUpdate.getIdProf());
+        orar.setSala(orarUpdate.getSala());
+        orar.setTip(orarUpdate.getTip());
+        orar.setGrupa(orarUpdate.getGrupa());
+        Orar orarSaved=this.service.save(orar);
+        return new ResponseEntity<Orar>(orarSaved, HttpStatus.OK);
     }
 }

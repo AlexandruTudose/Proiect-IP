@@ -18,6 +18,7 @@ public class OrarServiceImpl implements OrarService {
         return this.repository.save(entity);
     }
 
+
     @Override
     public List<Orar> getAll() {
         return this.repository.findAll();
@@ -32,4 +33,6 @@ public class OrarServiceImpl implements OrarService {
     public void delete(Long id) {
         this.repository.delete(id);
     }
+
+
 }
