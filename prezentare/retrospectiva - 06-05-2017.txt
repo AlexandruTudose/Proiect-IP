@@ -1,0 +1,27 @@
+06.05.2017
+--------------------------------------------------
+Ce a fost bine? 
+-Am invatat toti Git
+-Am inceput sa invatam cum functioneaza Spring si Angular
+-Ne-am organizat destul de bine
+-Am planificat destul de bine timpul
+-Am reusit sa incepem proiectul (modulele noastre)
+-Am reusit sa adunam o buna parte din echipa in acelasi loc
+--------------------------------------------------
+Ce a fost rau?
+-limita de useri conectati la baza de date remote a creat probleme la pornirea serverului
+-modulul admin s-a implementat greu
+-repository-ul (din cod) pentru admin a facut multe figuri
+-GET si POST nu au mers simultan pentru Admin
+--------------------------------------------------
+Ce poate fi îmbunătățit? 
+-Organizarea
+-Comunicarea
+-coding skills - Spring MVC
+--------------------------------------------------
+Starea fiecăruia in iteratie: sad, happy, neutral, etc.
+-Andrei Daneliuc : :(
+-Robert : :(
+-Andrei Rusu : :)
+-Ovidiu : :)
+-Alexandru Dochitoiu: :)
