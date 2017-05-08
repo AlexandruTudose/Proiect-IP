@@ -29,6 +29,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void delete(Long id) { this.repository.delete(id); }
 
+    @Override
     public List<Admin> getAllAdmins(){
         List<Admin> users = new ArrayList<>();
         for (User user : getAll())
@@ -37,6 +38,7 @@ public class AdminServiceImpl implements AdminService {
         return users;
     }
 
+    @Override
     public List<Admin> getAllByName(String name){
         Pattern pattern = Pattern.compile("*" + name + "*");
         Matcher matcher;

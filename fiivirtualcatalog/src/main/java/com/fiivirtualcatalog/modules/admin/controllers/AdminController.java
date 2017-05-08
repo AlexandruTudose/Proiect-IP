@@ -20,7 +20,7 @@ import java.util.List;
 
 public class AdminController {
     @Autowired
-    AdminService userService;
+    UserService userService;
 
     private Transformer<User, UserDTO> transformer = new UserTransformer();
 
@@ -59,8 +59,8 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<User> createAdmin(@RequestBody UserDTO user) {
         User tempUser = transformer.toModel(user);
+        tempUser.setRole("admin");
         User savedUser = this.userService.save(tempUser);
-        savedUser.setRole("admin");
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
 }
