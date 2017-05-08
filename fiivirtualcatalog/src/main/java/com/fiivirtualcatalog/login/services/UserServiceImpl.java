@@ -5,17 +5,21 @@ import com.fiivirtualcatalog.login.models.User;
 import com.fiivirtualcatalog.login.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     @Override
     public User findByEmail(String email) {
@@ -34,9 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-       return userRepository.save(user);
+        return userRepository.save(user);
     }
-
-
 
 }

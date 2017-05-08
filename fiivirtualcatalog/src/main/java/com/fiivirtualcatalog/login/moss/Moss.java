@@ -38,17 +38,13 @@ public class Moss {
 
         //limbajul de programare dupa care comparam
         socketClient.setLanguage(language);
-
         socketClient.run();
-
         for (File f : baseFiles) {
             socketClient.uploadBaseFile(f);
         }
-
         for (File f : files) {
             socketClient.uploadFile(f);
         }
-
         //verific fisierele
         socketClient.sendQuery();
 
