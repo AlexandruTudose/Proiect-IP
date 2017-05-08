@@ -1,14 +1,13 @@
-package com.fiivirtualcatalog.modules.user.dtos;
+package com.fiivirtualcatalog.transformers;
 
-import com.fiivirtualcatalog.transformers.Transformer;
 import org.springframework.stereotype.Component;
 
+import com.fiivirtualcatalog.modules.user.dtos.UserDTO;
 import com.fiivirtualcatalog.modules.user.models.User;
 
 @Component
-public class UserTransformer implements Transformer<User, UserDTO> {
+public class UserTransformer{
 
-	@Override
 	public User toModel(UserDTO object) {
 		User user = new User ();
 		user.setName(object.getName());
@@ -16,7 +15,6 @@ public class UserTransformer implements Transformer<User, UserDTO> {
 	return user;
 	}
 
-	@Override
 	public UserDTO toDTO(User object) {
 		return (new UserDTO(object.getName(), object.getRole()));
 	}

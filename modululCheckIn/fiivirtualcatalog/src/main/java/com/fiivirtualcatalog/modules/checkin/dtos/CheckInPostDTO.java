@@ -1,9 +1,11 @@
 package com.fiivirtualcatalog.modules.checkin.dtos;
 
+import com.fiivirtualcatalog.modules.checkin.enums.ClassType;
+
 public class CheckInPostDTO {
     private long userId;
     private String subject;
-    private String classType;
+    private ClassType classType;
 
     public CheckInPostDTO() {
     }
@@ -24,11 +26,11 @@ public class CheckInPostDTO {
         this.subject = subject;
     }
 
-    public String getClassType() {
+    public ClassType getClassType() {
         return classType;
     }
 
-    public void setClassType(String classType) {
+    public void setClassType(ClassType classType) {
         this.classType = classType;
     }
 
@@ -38,10 +40,10 @@ public class CheckInPostDTO {
         this.setClassType(builder.classType);
     }
 
-    public class Builder {
+    public static class Builder {
         private long userId;
         private String subject;
-        private String classType;
+        private ClassType classType;
 
         public Builder() {
         }
@@ -56,7 +58,7 @@ public class CheckInPostDTO {
             return this;
         }
 
-        public CheckInPostDTO.Builder classType(String classType) {
+        public CheckInPostDTO.Builder classType(ClassType classType) {
             this.classType = classType;
             return this;
         }

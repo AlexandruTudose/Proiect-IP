@@ -3,12 +3,14 @@ package com.fiivirtualcatalog.modules.checkin.dtos;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.fiivirtualcatalog.modules.checkin.enums.ClassType;
+
 public class CheckInGetDTO {
     private static final SimpleDateFormat dateFormat
             = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     private String subject;
-    private String classType;
+    private ClassType classType;
     private String createDate;
     private long numberOfCheckedInUsers;
     private boolean finishingFlag;
@@ -20,7 +22,7 @@ public class CheckInGetDTO {
         return subject;
     }
 
-    public String getClassType() {
+    public ClassType getClassType() {
         return classType;
     }
 
@@ -44,7 +46,7 @@ public class CheckInGetDTO {
         this.subject = subject;
     }
 
-    public void setClassType(String classType) {
+    public void setClassType(ClassType classType) {
         this.classType = classType;
     }
 
@@ -64,9 +66,9 @@ public class CheckInGetDTO {
         this.setCreateDate(builder.createDate);
     }
 
-    public class Builder {
+    public static class Builder {
         private String subject;
-        private String classType;
+        private ClassType classType;
         private long numberOfCheckedInUsers;
         private boolean finishingFlag;
         private Date createDate;
@@ -79,7 +81,7 @@ public class CheckInGetDTO {
             return this;
         }
 
-        public Builder classType(String classType) {
+        public Builder classType(ClassType classType) {
             this.classType = classType;
             return this;
         }

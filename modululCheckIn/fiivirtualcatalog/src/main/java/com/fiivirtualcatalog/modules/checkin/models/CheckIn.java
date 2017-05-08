@@ -132,7 +132,7 @@ public class CheckIn {
         this.setCheckedInUsers(new ArrayList<>());
     }
 
-    public class Builder {
+    public static class Builder {
         private User user;
         private String subject;
         private String classType;

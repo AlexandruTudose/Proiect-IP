@@ -2,11 +2,12 @@ package com.fiivirtualcatalog.modules.checkin.controllers;
 
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetDTO;
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInPostDTO;
-import com.fiivirtualcatalog.modules.checkin.dtos.CheckInTransformer;
 import com.fiivirtualcatalog.modules.checkin.models.CheckIn;
 import com.fiivirtualcatalog.modules.checkin.services.CheckInService;
 import com.fiivirtualcatalog.modules.user.models.User;
 import com.fiivirtualcatalog.modules.user.services.UserService;
+import com.fiivirtualcatalog.transformers.CheckInTransformer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@SuppressWarnings("rawtypes")
 @RequestMapping("/v1/checkins")
 public class CheckInController {
 
@@ -23,8 +25,9 @@ public class CheckInController {
     CheckInService checkInService;
     @Autowired
     UserService userService;
-
-    private CheckInTransformer transformer = new CheckInTransformer();
+    @Autowired
+    CheckInTransformer transformer;
+ 
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<CheckInGetDTO>> get() {
@@ -39,8 +42,13 @@ public class CheckInController {
         return new ResponseEntity<>(checkInGetDTO, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
     public ResponseEntity createCheckIn(@RequestBody CheckInPostDTO checkInPost) {
+		try{
+		checkInService.validText(checkInPost.getSubject());
+		}catch (IllegalArgumentException e){
+			return new ResponseEntity(HttpStatus.FORBIDDEN);
+		}
         CheckIn checkIn = transformer.toModel(checkInPost);
         User user = userService.getById(checkInPost.getUserId());
         checkIn.setUser(user);
@@ -50,8 +58,10 @@ public class CheckInController {
 
     @RequestMapping(value = "/register/{userId}", method = RequestMethod.POST)
     public ResponseEntity registerCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
-        CheckIn searchCheckIn = this.checkInService.getById(checkInId);
-        if (searchCheckIn == null)
+    	
+    	CheckIn searchCheckIn = this.checkInService.getById(checkInId);
+        
+    	if (searchCheckIn == null)
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         if (searchCheckIn.getFinishingFlag()) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
