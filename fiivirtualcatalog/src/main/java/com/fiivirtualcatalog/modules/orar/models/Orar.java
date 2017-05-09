@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orar")
@@ -11,7 +13,7 @@ public class Orar implements Serializable {
     private static final long serialVersionUID = -5607554818203808048L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
@@ -115,4 +117,7 @@ public class Orar implements Serializable {
     public void setGrupa(String grupa) {
         this.grupa = grupa;
     }
+
+
+
 }

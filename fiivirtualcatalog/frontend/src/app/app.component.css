@@ -1,0 +1,8 @@
+.background {
+	background: repeating-linear-gradient(
+            45deg,
+            #e2e2e2,
+            #f3f3f3 5px,
+            #cecece 3px
+    );
+}
