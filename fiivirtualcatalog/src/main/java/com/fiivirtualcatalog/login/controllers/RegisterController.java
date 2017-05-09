@@ -20,6 +20,12 @@ import javax.mail.MessagingException;
 public class RegisterController {
 
 
+    private UserService service;
+
+    public RegisterController(UserService service){
+        this.service = service;
+    }
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -59,14 +65,13 @@ public class RegisterController {
         ConfirmEmail confirmEmail=new ConfirmEmail();
         confirmEmail=confirmEmailService.findEmail(email);
         if(confirmEmail!=null && confirmEmail.getCode().compareTo(code)==0) {
-                User user=userService.findByEmail(email);
-                user.setActive(true);
-                userService.save(user);
-                return new ResponseEntity<String>(HttpStatus.OK);
-            }
-            else
-                return  new ResponseEntity<String>(email,HttpStatus.valueOf("Wrong code"));
+            User user=userService.findByEmail(email);
+            user.setActive(true);
+            userService.save(user);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }
+        else
+            return  new ResponseEntity<String>(email,HttpStatus.valueOf("Wrong code"));
     }
-
 
 }
