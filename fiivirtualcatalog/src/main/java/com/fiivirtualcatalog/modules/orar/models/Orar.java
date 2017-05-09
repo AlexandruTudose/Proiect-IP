@@ -1,6 +1,7 @@
 package com.fiivirtualcatalog.modules.orar.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Time;
 
@@ -13,21 +14,27 @@ public class Orar implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
     @Column(name = "zi")
     private String zi;
 
+    @NotNull
     @Column(name = "ora_inceput")
-    private java.sql.Time oraInceput;
+    private Time oraInceput;
 
+    @NotNull
     @Column(name = "ora_sfarsit")
-    private java.sql.Time oraSfarsit;
+    private Time oraSfarsit;
 
+    @NotNull
     @Column(name = "id_disciplina")
     private int idDisciplina;
 
+    @NotNull
     @Column(name = "id_prof")
     private int idProf;
 
+    @NotNull
     @Column(name = "sala")
     private int sala;
 
