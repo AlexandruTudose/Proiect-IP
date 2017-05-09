@@ -1,0 +1,62 @@
+h2 {
+	width:100%;
+	text-align: center;
+	border-radius: 5pt;
+	color: #e6f0ff;
+	font-size: 250%;
+	font-weight: bold;
+	background-color: rgba(0, 0, 0, 0.65);
+}
+
+.box-admin-menu {
+	position: relative;
+	border-radius: 5pt;
+	top: -6pt;
+	padding-bottom: 25pt;
+	background-color: rgba(0, 0, 0, 0.65);
+}
+
+.center-align {
+	margin: auto;
+
+}
+
+.btn-costum {
+	position: fixed;
+	background-color: #0052cc;
+	border-color: #0052cc;
+	width: 16%;
+	margin-top: -50pt;
+	border-radius: 10pt;
+	color: #ffffff;
+	font-size: 150%;
+	text-decoration: none;
+}
+
+.align-content {
+	position: relative;
+	margin-top: 5%;
+	margin-left: 24%;
+}
+
+.btn-new {
+	margin-bottom: 20pt;
+	margin-left: 25%;
+	background-color: #0052cc;
+	border-color: #0052cc;
+	width: 50%;
+	border-radius: 10pt;
+	color: #ffffff;
+	font-size: 150%;
+	text-decoration: none;
+}
+
+.active {
+	background-color: #994d00;
+	border-color: #994d00;
+}
+
+.btn-costum:hover {
+	background-color: #994d00;
+	border-color: #994d00;
+}
