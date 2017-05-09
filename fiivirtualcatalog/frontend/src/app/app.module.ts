@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { UtilizatoriComponent } from './admin/utilizatori/utilizatori.component';
 import { AdminiComponent } from './admin/admini/admini.component';
-import { OrarComponent } from './admin/orar/orar.component';
+import { OrarComponent } from './orar/orar.component';
 import { CheckInsComponent } from './admin/check-ins/check-ins.component';
 import { CereriInregistrareComponent } from './admin/cereri-inregistrare/cereri-inregistrare.component';
 import { CereriModificareOrarComponent } from './admin/cereri-modificare-orar/cereri-modificare-orar.component';
+import { AfisComponent } from './orar/afis/afis.component';
+import { AdminOrarComponent } from './admin/admin-orar/admin-orar.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CereriModificareOrarComponent } from './admin/cereri-modificare-orar/ce
     CheckInsComponent,
     CereriInregistrareComponent,
     CereriModificareOrarComponent,
+    AfisComponent,
+    AdminOrarComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,7 @@ import { CereriModificareOrarComponent } from './admin/cereri-modificare-orar/ce
       },
       {
         path: 'admin/orar',
-        component: OrarComponent
+        component: AdminOrarComponent
       },
       {
         path: 'admin/check-ins',
@@ -56,6 +60,14 @@ import { CereriModificareOrarComponent } from './admin/cereri-modificare-orar/ce
       {
         path: 'admin/schedule-request',
         component: CereriModificareOrarComponent
+      },
+      {
+        path: 'orar',
+        component: OrarComponent
+      },
+      {
+        path: 'orar/afis',
+        component: AfisComponent
       }
     ])
   ],
