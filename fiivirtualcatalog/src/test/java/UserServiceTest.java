@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import java.util.Arrays;
 import java.util.List;
 
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -82,6 +83,24 @@ public class UserServiceTest {
         assertEquals("123123",testing2.getPassword());
         assertEquals(User.Role.student,testing2.getRole());
         assertEquals("test2@gmail.com",testing2.getEmail());
+
+    }
+
+    @Test
+    public void testFindEmail(){
+        String email = "test1@gmail.com";
+
+        User testing3=mockedUserService.findByEmail(email);
+
+        assertNotNull(testing3);
+        assertEquals(5,testing3.getId());
+        assertEquals(true,testing3.getActive());
+        assertEquals("Test1",testing3.getLastName());
+        assertEquals("Test1",testing3.getName());
+        assertEquals("123123",testing3.getPassword());
+        assertEquals(User.Role.student,testing3.getRole());
+        assertEquals("test1@gmail.com",testing3.getEmail());
+
 
     }
 }
