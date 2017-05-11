@@ -23,12 +23,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Long id) {
+    public User getById(Long id){
         return this.repository.findOne(id);
     }
 
     @Override
     public void delete(Long id) {
         this.repository.delete(id);
+    }
+    
+    public void existsUser (Long id) throws IllegalArgumentException{
+    	User user = getById(id);
+    		if (user == null) {
+    			throw new IllegalArgumentException("User not found");
+    		}
+    	
     }
 }

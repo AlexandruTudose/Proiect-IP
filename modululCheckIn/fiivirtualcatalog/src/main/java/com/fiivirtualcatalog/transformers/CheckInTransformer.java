@@ -19,6 +19,7 @@ public class CheckInTransformer {
 
     public CheckInGetDTO toDTO(CheckIn object) {
         return new CheckInGetDTO.Builder()
+        		.id(object.getId())
                 .subject(object.getSubject())
                 .classType(ClassType.toEnum(object.getClassType()))
                 .finishingFlag(object.getFinishingFlag())

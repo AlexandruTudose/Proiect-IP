@@ -41,6 +41,9 @@ public class CheckIn {
 
     @Column(name = "finishing_flag")
     private boolean finishingFlag;
+    
+    @Column(name = "code")
+    private String code;
 
     @ManyToMany
     @JoinTable(name = "users_check_ins", joinColumns = {@JoinColumn(name = "check_in_id")}, inverseJoinColumns = {

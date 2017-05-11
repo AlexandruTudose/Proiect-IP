@@ -1,0 +1,46 @@
+.modal-dialo .form-horizontal{
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10px;
+	position: relative;
+	padding-top: 1%;
+	background-color: red;
+	margin-left: 25%;
+	width: 50%;
+}
+
+.card-container{
+	height: 560px !important;
+	width: 97% !important;
+	background-color: #F7F7F7;
+    margin-top: 50px;
+    margin-left: 20px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+	border-radius: 5px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding-left: 5px;
+	padding-top: 5px;
+	margin-left: 1px;
+	margin-top: 10px;
+	height: 18%;
+	width: 100%;
+}
+
+.aCard .info{
+	background-color: red;
+	position: relative;
+	margin-left: 28%;
+	width: 50%;
+	height: 50%;
+}
+
+.profile-img-card {
+    width: 76px;
+    height: 82px;
+    border-radius: 50%;
+	background: url("..//images/avatar.png");
+}

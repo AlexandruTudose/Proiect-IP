@@ -8,7 +8,7 @@ import com.fiivirtualcatalog.modules.checkin.enums.ClassType;
 public class CheckInGetDTO {
     private static final SimpleDateFormat dateFormat
             = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
+    private long id;
     private String subject;
     private ClassType classType;
     private String createDate;
@@ -58,7 +58,16 @@ public class CheckInGetDTO {
         this.finishingFlag = finishingFlag;
     }
 
+    public long getId() {
+ 		return id;
+ 	}
+
+ 	public void setId(long id) {
+ 		this.id = id;
+ 	}
+    
     private CheckInGetDTO(Builder builder) {
+    	this.setId(builder.id);
         this.setSubject(builder.subject);
         this.setClassType(builder.classType);
         this.setNumberOfCheckedInUsers(builder.numberOfCheckedInUsers);
@@ -66,7 +75,8 @@ public class CheckInGetDTO {
         this.setCreateDate(builder.createDate);
     }
 
-    public static class Builder {
+	public static class Builder {
+		private long id;
         private String subject;
         private ClassType classType;
         private long numberOfCheckedInUsers;
@@ -76,6 +86,11 @@ public class CheckInGetDTO {
         public Builder() {
         }
 
+        public Builder id(long id){
+        	this.id = id;
+        	return this;
+        }
+        
         public Builder subject(String subject) {
             this.subject = subject;
             return this;
