@@ -1,0 +1,15 @@
+input {
+  width: 15%;
+}
+label,button {
+  font-weight: bold;
+}
+
+.container {
+  text-align: center;
+}
+
+button {
+  width: 35%;
+  height: 15%;
+}
