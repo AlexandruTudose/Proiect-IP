@@ -22,76 +22,74 @@ import java.util.List;
 @RequestMapping("/v1/checkins")
 public class CheckInController {
 
-	@Autowired
-	CheckInService checkInService;
-	@Autowired
-	UserService userService;
-	@Autowired
-	CheckInTransformer transformer;
+    @Autowired
+    CheckInService checkInService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    CheckInTransformer transformer;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<CheckInGetDTO>> get() {
-		List<CheckIn> checkIns = this.checkInService.getAll();
-		if (checkIns.isEmpty()) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		List<CheckInGetDTO> checkInGetDTO = new ArrayList<>();
-		for (CheckIn checkIn : checkIns) {
-			checkInGetDTO.add(transformer.toDTO(checkIn));
-		}
-		return new ResponseEntity<>(checkInGetDTO, HttpStatus.OK);
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CheckInGetDTO>> get() {
+        List<CheckIn> checkIns = this.checkInService.getAll();
+        if (checkIns.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        List<CheckInGetDTO> checkInGetDTO = new ArrayList<>();
+        for (CheckIn checkIn : checkIns) {
+            checkInGetDTO.add(transformer.toDTO(checkIn));
+        }
+        return new ResponseEntity<>(checkInGetDTO, HttpStatus.OK);
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity createCheckIn(@RequestBody CheckInPostDTO checkInPost) {
-		try {
-			checkInService.validText(checkInPost.getSubject());
-		} catch (IllegalArgumentException e) {
-			return new ResponseEntity(HttpStatus.FORBIDDEN);
-		}
-		CheckIn checkIn = transformer.toModel(checkInPost);
-		User user = userService.getById(checkInPost.getUserId());
-		checkIn.setUser(user);
-		this.checkInService.save(checkIn);
-		return new ResponseEntity(HttpStatus.CREATED);
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity createCheckIn(@RequestBody CheckInPostDTO checkInPost) {
+        if (!checkInPost.getSubject().matches("[a-zA-Z]+")) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        CheckIn checkIn = transformer.toModel(checkInPost);
+        User user = userService.getById(checkInPost.getUserId());
+        checkIn.setUser(user);
+        this.checkInService.save(checkIn);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
 
-	@RequestMapping(value = "/register/{userId}", method = RequestMethod.POST)
-	public ResponseEntity registerCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
+    @RequestMapping(value = "/register/{userId}", method = RequestMethod.POST)
+    public ResponseEntity registerCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
 
-		CheckIn searchCheckIn = this.checkInService.getById(checkInId);
+        CheckIn searchCheckIn = this.checkInService.getById(checkInId);
 
-		if (searchCheckIn == null)
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
-		if (searchCheckIn.getFinishingFlag()) {
-			return new ResponseEntity(HttpStatus.FORBIDDEN);
-		}
-		try {
-			userService.existsUser(userId);
-		} catch (IllegalArgumentException e) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
-		}
-		if (searchCheckIn.getCheckedInUsers().contains(userService.getById(userId))) {
-			return new ResponseEntity(HttpStatus.FORBIDDEN);
-		}
-		
-		searchCheckIn.addToCheckedInUsers(userService.getById(userId));
-		this.checkInService.save(searchCheckIn);
-		return new ResponseEntity(HttpStatus.CREATED);
-	}
+        if (searchCheckIn == null)
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        if (searchCheckIn.getFinishingFlag()) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        try {
+            userService.existsUser(userId);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        if (searchCheckIn.getCheckedInUsers().contains(userService.getById(userId))) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
 
-	@RequestMapping(value = "/end/{userId}", method = RequestMethod.POST)
-	public ResponseEntity endCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
-		CheckIn searchCheckIn = this.checkInService.getById(checkInId);
-		if (searchCheckIn == null) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
-		}
-		if (searchCheckIn.getUser().getId() != userId) {
-			return new ResponseEntity(HttpStatus.FORBIDDEN);
-		}
-		searchCheckIn.setFinishingFlag(true);
-		this.checkInService.save(searchCheckIn);
-		return new ResponseEntity(HttpStatus.CREATED);
-	}
+        searchCheckIn.addToCheckedInUsers(userService.getById(userId));
+        this.checkInService.save(searchCheckIn);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/end/{userId}", method = RequestMethod.POST)
+    public ResponseEntity endCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
+        CheckIn searchCheckIn = this.checkInService.getById(checkInId);
+        if (searchCheckIn == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        if (searchCheckIn.getUser().getId() != userId) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        searchCheckIn.setFinishingFlag(true);
+        this.checkInService.save(searchCheckIn);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
 
 }

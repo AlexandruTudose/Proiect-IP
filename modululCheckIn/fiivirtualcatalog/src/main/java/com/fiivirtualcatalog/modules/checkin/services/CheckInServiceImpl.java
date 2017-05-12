@@ -9,32 +9,26 @@ import java.util.List;
 
 @Service
 public class CheckInServiceImpl implements CheckInService {
-	@Autowired
-	private CheckInRepository repository;
+    @Autowired
+    private CheckInRepository repository;
 
-	@Override
-	public CheckIn save(CheckIn entity) {
-		return this.repository.save(entity);
-	}
+    @Override
+    public CheckIn save(CheckIn entity) {
+        return this.repository.save(entity);
+    }
 
-	@Override
-	public List<CheckIn> getAll() {
-		return this.repository.findAll();
-	}
+    @Override
+    public List<CheckIn> getAll() {
+        return this.repository.findAll();
+    }
 
-	@Override
-	public CheckIn getById(Long id) {
-		return this.repository.findOne(id);
-	}
+    @Override
+    public CheckIn getById(Long id) {
+        return this.repository.findOne(id);
+    }
 
-	@Override
-	public void delete(Long id) {
-		this.repository.delete(id);
-	}
-
-	public void validText(String text) throws IllegalArgumentException {
-		if (!text.matches("[a-zA-z]+")) {
-			throw new IllegalArgumentException();
-		}
-	}
+    @Override
+    public void delete(Long id) {
+        this.repository.delete(id);
+    }
 }
