@@ -14,11 +14,12 @@ public enum ClassType {
 	
 	@Override
 	public String toString(){
-		switch(this){
-		case Seminar: return "Seminar";
-		case Laboratory: return "Laboratory";
-		case Course: return "Course";
-		default: throw new IllegalArgumentException();
+		if(this == Seminar){
+			return "Seminar";
 		}
+		if(this == Laboratory){
+			return "Laboratory";
+		}
+		return "Course";
 	}
 }
