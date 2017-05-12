@@ -16,16 +16,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
-
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FiiVirtualCatalogApplication.class)
@@ -95,7 +91,7 @@ public class CheckInControllerTest {
 
         User logedUser = userRepository.save(newUser);
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.NOT_FOUND);
-        ResponseEntity responseEntity = checkInController.registerCheckIn(logedUser.getId(),(long) 2);
+        ResponseEntity responseEntity = checkInController.registerCheckIn(logedUser.getId(), (long) 2);
 
         assertEquals(responseEntity, actualResponse);
     }
@@ -124,13 +120,13 @@ public class CheckInControllerTest {
         CheckIn checkInSaved = checkInRepository.save(checkIn);
 
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.FORBIDDEN);
-        ResponseEntity responseEntity = checkInController.registerCheckIn(userSaved.getId(),checkInSaved.getId());
+        ResponseEntity responseEntity = checkInController.registerCheckIn(userSaved.getId(), checkInSaved.getId());
 
         assertEquals(responseEntity, actualResponse);
     }
 
     @Test
-    public void forCallingRegisterCheckInMethodWithAnWrongUserIdShouldReturnsNotFound(){
+    public void forCallingRegisterCheckInMethodWithAnWrongUserIdShouldReturnsNotFound() {
         CheckIn checkIn = new CheckIn();
         checkIn.setId(23);
 
@@ -154,9 +150,9 @@ public class CheckInControllerTest {
 
         List<User> listOfUsers = userRepository.findAll();
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.NOT_FOUND);
-        ResponseEntity responseEntity = checkInController.registerCheckIn(listOfUsers.get(listOfUsers.size() - 1).getId() + 10,checkInSaved.getId());
+        ResponseEntity responseEntity = checkInController.registerCheckIn(listOfUsers.get(listOfUsers.size() - 1).getId() + 10, checkInSaved.getId());
 
-        assertEquals(responseEntity,actualResponse);
+        assertEquals(responseEntity, actualResponse);
     }
 
     @Test
@@ -183,7 +179,7 @@ public class CheckInControllerTest {
 
         List<User> listUsers = checkInSaved.getCheckedInUsers();
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.FORBIDDEN);
-        ResponseEntity responseEntity = checkInController.registerCheckIn(listUsers.get(listUsers.size() - 1).getId(),checkInSaved.getId());
+        ResponseEntity responseEntity = checkInController.registerCheckIn(listUsers.get(listUsers.size() - 1).getId(), checkInSaved.getId());
 
         assertEquals(responseEntity, actualResponse);
     }
@@ -212,13 +208,13 @@ public class CheckInControllerTest {
 
         List<User> listUsers = checkInSaved.getCheckedInUsers();
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.CREATED);
-        ResponseEntity responseEntity = checkInController.registerCheckIn(userSaved.getId(),checkInSaved.getId());
+        ResponseEntity responseEntity = checkInController.registerCheckIn(userSaved.getId(), checkInSaved.getId());
 
         assertEquals(responseEntity, actualResponse);
     }
 
     @Test
-    public void forCallingEndCheckInWithAWrongCheckInIdShouldReturnNotFound(){
+    public void forCallingEndCheckInWithAWrongCheckInIdShouldReturnNotFound() {
         checkInRepository.deleteAll();
 
         User newUser = new User();
@@ -227,12 +223,13 @@ public class CheckInControllerTest {
 
         User logedUser = userRepository.save(newUser);
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.NOT_FOUND);
-        ResponseEntity responseEntity = checkInController.endCheckIn(logedUser.getId(),(long) 2);
+        ResponseEntity responseEntity = checkInController.endCheckIn(logedUser.getId(), (long) 2);
 
         assertEquals(responseEntity, actualResponse);
     }
+
     @Test
-    public void forCallingEndCheckInWithAUserIdNotEqualWithUserFromCheckInShouldReturnForbidden(){
+    public void forCallingEndCheckInWithAUserIdNotEqualWithUserFromCheckInShouldReturnForbidden() {
         CheckIn checkIn = new CheckIn();
         checkIn.setId(23);
 
@@ -259,12 +256,13 @@ public class CheckInControllerTest {
         CheckIn checkInSaved = checkInRepository.save(checkIn);
 
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.FORBIDDEN);
-        ResponseEntity responseEntity = checkInController.endCheckIn(userSaved.getId(),checkInSaved.getId());
+        ResponseEntity responseEntity = checkInController.endCheckIn(userSaved.getId(), checkInSaved.getId());
 
-        assertEquals(responseEntity,actualResponse);
+        assertEquals(responseEntity, actualResponse);
     }
+
     @Test
-    public void forCallingEndCheckInWithAUserIdEqualWithUserFromCheckInShouldReturnCreated(){
+    public void forCallingEndCheckInWithAUserIdEqualWithUserFromCheckInShouldReturnCreated() {
         CheckIn checkIn = new CheckIn();
         checkIn.setId(23);
 
@@ -287,8 +285,8 @@ public class CheckInControllerTest {
         CheckIn checkInSaved = checkInRepository.save(checkIn);
 
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.CREATED);
-        ResponseEntity responseEntity = checkInController.endCheckIn(userSaved.getId(),checkInSaved.getId());
+        ResponseEntity responseEntity = checkInController.endCheckIn(userSaved.getId(), checkInSaved.getId());
 
-        assertEquals(responseEntity,actualResponse);
+        assertEquals(responseEntity, actualResponse);
     }
 }

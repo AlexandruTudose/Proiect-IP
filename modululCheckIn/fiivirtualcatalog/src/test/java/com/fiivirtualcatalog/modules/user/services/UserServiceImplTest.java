@@ -7,12 +7,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import javax.transaction.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FiiVirtualCatalogApplication.class)
@@ -29,13 +30,13 @@ public class UserServiceImplTest {
         user.setRole("Student");
         User newUser = userService.save(user);
 
-        assertEquals(user.getId(),newUser.getId());
-        assertEquals(user.getName(),newUser.getName());
-        assertEquals(user.getRole(),newUser.getRole());
+        assertEquals(user.getId(), newUser.getId());
+        assertEquals(user.getName(), newUser.getName());
+        assertEquals(user.getRole(), newUser.getRole());
     }
 
     @Test
-    public void forAListOfUsersShouldReturnSameListOfUsers(){
+    public void forAListOfUsersShouldReturnSameListOfUsers() {
         User user1 = new User();
         user1.setName("Ana");
         user1.setRole("Profesor");
@@ -53,11 +54,11 @@ public class UserServiceImplTest {
 
         List<User> returnedList = userService.getAll();
 
-        assertEquals(list.getClass(),returnedList.getClass());
+        assertEquals(list.getClass(), returnedList.getClass());
     }
 
     @Test
-    public void forAnIdShouldReturnTheUserWithThatId(){
+    public void forAnIdShouldReturnTheUserWithThatId() {
         User user = new User();
         user.setId(1);
         user.setName("Bogdan");
@@ -66,13 +67,13 @@ public class UserServiceImplTest {
 
         User newUser = userService.getById((long) 1);
 
-        assertEquals(user.getId(),newUser.getId());
-        assertEquals(user.getName(),newUser.getName());
-        assertEquals(user.getRole(),newUser.getRole());
+        assertEquals(user.getId(), newUser.getId());
+        assertEquals(user.getName(), newUser.getName());
+        assertEquals(user.getRole(), newUser.getRole());
     }
 
     @Test
-    public void forAnIdShouldDeleteTheUser(){
+    public void forAnIdShouldDeleteTheUser() {
         User user1 = new User();
         user1.setId(1);
         user1.setName("Ana");

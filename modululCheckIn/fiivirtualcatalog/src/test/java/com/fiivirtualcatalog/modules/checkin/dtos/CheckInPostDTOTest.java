@@ -4,12 +4,9 @@ import com.fiivirtualcatalog.modules.checkin.enums.ClassType;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CheckInPostDTOTest {
     private CheckInPostDTO checkInPostDTO;
@@ -26,9 +23,9 @@ public class CheckInPostDTOTest {
         checkInPostDTO.setSubject("Subject");
         checkInPostDTO.setClassType(ClassType.Course);
 
-        assertEquals(checkInPostDTO.getUserId(),1);
-        assertEquals(checkInPostDTO.getSubject(),"Subject");
-        assertEquals(checkInPostDTO.getClassType(),ClassType.Course);
+        assertEquals(checkInPostDTO.getUserId(), 1);
+        assertEquals(checkInPostDTO.getSubject(), "Subject");
+        assertEquals(checkInPostDTO.getClassType(), ClassType.Course);
     }
 
     @Test
@@ -42,9 +39,9 @@ public class CheckInPostDTOTest {
 
         CheckInPostDTO newCheckIn = builder.create();
 
-        assertEquals(newCheckIn.getUserId(),1);
-        assertEquals(newCheckIn.getSubject(),"Subject");
-        assertEquals(newCheckIn.getClassType(),ClassType.Course);
+        assertEquals(newCheckIn.getUserId(), 1);
+        assertEquals(newCheckIn.getSubject(), "Subject");
+        assertEquals(newCheckIn.getClassType(), ClassType.Course);
     }
 
 }

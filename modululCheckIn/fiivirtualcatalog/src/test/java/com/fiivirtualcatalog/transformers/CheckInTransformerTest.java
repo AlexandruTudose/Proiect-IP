@@ -12,17 +12,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CheckInTransformerTest {
     private CheckInTransformer checkInTransformer;
+
     @Before
     public void setUp() throws Exception {
         checkInTransformer = new CheckInTransformer();
     }
 
     @Test
-    public void whenICallCheckInTransformerToModelShouldReturnACheckInWithSameCharacteristics(){
+    public void whenICallCheckInTransformerToModelShouldReturnACheckInWithSameCharacteristics() {
         CheckInPostDTO checkInPostDTO = new CheckInPostDTO();
         checkInPostDTO.setUserId(1);
         checkInPostDTO.setSubject("Subject");
@@ -30,12 +31,12 @@ public class CheckInTransformerTest {
 
         CheckIn checkIn = checkInTransformer.toModel(checkInPostDTO);
 
-        assertEquals(checkIn.getSubject(),checkInPostDTO.getSubject());
-        assertEquals(checkIn.getClassType(),"Course");
+        assertEquals(checkIn.getSubject(), checkInPostDTO.getSubject());
+        assertEquals(checkIn.getClassType(), "Course");
     }
 
     @Test
-    public void whenICallCheckInTransformerToDTOShouldReturnACheckInWithSameCharacteristics(){
+    public void whenICallCheckInTransformerToDTOShouldReturnACheckInWithSameCharacteristics() {
         CheckIn checkIn = new CheckIn();
         checkIn.setId(23);
 

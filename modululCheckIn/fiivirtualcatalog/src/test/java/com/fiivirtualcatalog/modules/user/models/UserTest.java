@@ -1,35 +1,35 @@
 package com.fiivirtualcatalog.modules.user.models;
 
-import com.fiivirtualcatalog.modules.user.models.User;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UserTest {
     private User user;
 
     @Before
     public void setUp() throws Exception {
-        user= new User();
+        user = new User();
     }
 
     @Test
-    public void forUserWithId32ShouldReturn32(){
+    public void forUserWithId32ShouldReturn32() {
         user.setId(32);
-        assertEquals(user.getId(),32);
+        assertEquals(user.getId(), 32);
     }
 
 
     @Test
-    public void forUserWithNameMAriaShouldReturnMaria(){
+    public void forUserWithNameMAriaShouldReturnMaria() {
         user.setName("Maria");
-        assertEquals(user.getName(),"Maria");
+        assertEquals(user.getName(), "Maria");
     }
 
     @Test
-    public void forUserWithRoleStudentShouldReturnStudent(){
+    public void forUserWithRoleStudentShouldReturnStudent() {
         user.setRole("Student");
-        assertEquals(user.getRole(),"Student");
+        assertEquals(user.getRole(), "Student");
     }
 
 }

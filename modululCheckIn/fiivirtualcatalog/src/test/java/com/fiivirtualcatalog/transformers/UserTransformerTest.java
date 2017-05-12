@@ -19,24 +19,24 @@ public class UserTransformerTest {
     }
 
     @Test
-    public void whenICallToModelShouldReceiveAUserWithSameCharacteristics(){
+    public void whenICallToModelShouldReceiveAUserWithSameCharacteristics() {
         PostUserDTO postUserDTO = new PostUserDTO();
         postUserDTO.setName("Name");
         postUserDTO.setRole("Student");
         User user = userTransformer.toModel(postUserDTO);
-        assertEquals(user.getName(),postUserDTO.getName());
-        assertEquals(user.getRole(),postUserDTO.getRole());
+        assertEquals(user.getName(), postUserDTO.getName());
+        assertEquals(user.getRole(), postUserDTO.getRole());
     }
 
     @Test
-    public void whenICallToDTOShouldReceiveAUserWithSameCharacteristics(){
+    public void whenICallToDTOShouldReceiveAUserWithSameCharacteristics() {
         User user = new User();
         user.setId(12);
         user.setName("Name");
         user.setRole("Student");
         GetUserDTO getUserDTO = userTransformer.toDTO(user);
-        assertEquals(user.getId(),getUserDTO.getId());
-        assertEquals(user.getName(),getUserDTO.getName());
-        assertEquals(user.getRole(),getUserDTO.getRole());
+        assertEquals(user.getId(), getUserDTO.getId());
+        assertEquals(user.getName(), getUserDTO.getName());
+        assertEquals(user.getRole(), getUserDTO.getRole());
     }
 }

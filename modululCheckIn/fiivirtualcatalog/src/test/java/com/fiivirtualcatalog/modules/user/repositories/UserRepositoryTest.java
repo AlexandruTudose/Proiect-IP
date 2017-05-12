@@ -10,7 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FiiVirtualCatalogApplication.class)
 @Transactional
@@ -20,14 +21,14 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    public void ifItIsWorking(){
+    public void ifItIsWorking() {
         User user = new User();
         user.setId(11);
         user.setName("Ana");
         user.setRole("Student");
         User newUser = userRepository.save(user);
 
-        assertEquals(user.getClass(),newUser.getClass());
+        assertEquals(user.getClass(), newUser.getClass());
     }
 
 }

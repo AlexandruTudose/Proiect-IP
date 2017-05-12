@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = FiiVirtualCatalogApplication.class)
@@ -31,7 +31,7 @@ public class CheckInServiceImplTest {
     public void forSavingANewCheckInShouldReturnTheSameCheckIn() throws ParseException {
         CheckIn checkIn = new CheckIn();
 
-        String dDate="2011-11-11 12:16";
+        String dDate = "2011-11-11 12:16";
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = formatter.parse(dDate);
 
@@ -63,63 +63,21 @@ public class CheckInServiceImplTest {
 
         CheckIn newCheckIn = checkInService.save(checkIn);
 
-        assertEquals(newCheckIn.getCreateDate(),checkIn.getCreateDate());
-        assertEquals(newCheckIn.getUser().getName(),user.getName());
-        assertEquals(newCheckIn.getUser().getRole(),user.getRole());
-        assertEquals(newCheckIn.getSubject(),checkIn.getSubject());
-        assertEquals(newCheckIn.getClassType(),checkIn.getClassType());
-        assertEquals(newCheckIn.getNumberOfCheckedInUsers(),checkIn.getNumberOfCheckedInUsers());
-        assertEquals(newCheckIn.getFinishingFlag(),checkIn.getFinishingFlag());
-        assertEquals(newCheckIn.getClass(),checkIn.getClass());
+        assertEquals(newCheckIn.getCreateDate(), checkIn.getCreateDate());
+        assertEquals(newCheckIn.getUser().getName(), user.getName());
+        assertEquals(newCheckIn.getUser().getRole(), user.getRole());
+        assertEquals(newCheckIn.getSubject(), checkIn.getSubject());
+        assertEquals(newCheckIn.getClassType(), checkIn.getClassType());
+        assertEquals(newCheckIn.getNumberOfCheckedInUsers(), checkIn.getNumberOfCheckedInUsers());
+        assertEquals(newCheckIn.getFinishingFlag(), checkIn.getFinishingFlag());
+        assertEquals(newCheckIn.getClass(), checkIn.getClass());
     }
 
     @Test
     public void forGettingAllCheckInsShouldReturnAListOfCheckIns() throws ParseException {
         CheckIn checkIn = new CheckIn();
 
-        String dDate="2011-11-11 12:16";
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date date = formatter.parse(dDate);
-
-         checkIn.setCreateDate(date);
-
-        User user = new User();
-        user.setId(1);
-        user.setName("Maria");
-        user.setRole("Profesor");
-        checkIn.setUser(user);
-
-        checkIn.setSubject("Subject");
-
-        checkIn.setClassType("class-type");
-
-        checkIn.setNumberOfCheckedInUsers(33);
-
-        checkIn.setFinishingFlag(true);
-
-        User user1 = new User();
-        user1.setName("Ana");
-        user1.setRole("Student");
-        User user2 = new User();
-        user2.setName("Andrei");
-        user2.setRole("Student");
-        List<User> list = new ArrayList<>();
-
-        checkIn.setCheckedInUsers(list);
-
-        checkInService.save(checkIn);
-        List<CheckIn> listOfCheckins = checkInService.getAll();
-
-        //assertTrue(listOfCheckins.contains(checkIn));
-        assertEquals(listOfCheckins.get(listOfCheckins.size()-1), checkIn);
-    }
-
-
-    @Test
-    public void forGettingByIdAnCheckInShouldReturnThatCheckIn() throws ParseException {
-        CheckIn checkIn = new CheckIn();
-
-        String dDate="2011-11-11 12:16";
+        String dDate = "2011-11-11 12:16";
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = formatter.parse(dDate);
 
@@ -152,16 +110,58 @@ public class CheckInServiceImplTest {
         checkInService.save(checkIn);
         List<CheckIn> listOfCheckins = checkInService.getAll();
 
-        CheckIn newCheckIn = checkInService.getById(listOfCheckins.get(listOfCheckins.size()-1).getId());
+        //assertTrue(listOfCheckins.contains(checkIn));
+        assertEquals(listOfCheckins.get(listOfCheckins.size() - 1), checkIn);
+    }
 
-        assertEquals(newCheckIn,checkIn);
+
+    @Test
+    public void forGettingByIdAnCheckInShouldReturnThatCheckIn() throws ParseException {
+        CheckIn checkIn = new CheckIn();
+
+        String dDate = "2011-11-11 12:16";
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = formatter.parse(dDate);
+
+        checkIn.setCreateDate(date);
+
+        User user = new User();
+        user.setId(1);
+        user.setName("Maria");
+        user.setRole("Profesor");
+        checkIn.setUser(user);
+
+        checkIn.setSubject("Subject");
+
+        checkIn.setClassType("class-type");
+
+        checkIn.setNumberOfCheckedInUsers(33);
+
+        checkIn.setFinishingFlag(true);
+
+        User user1 = new User();
+        user1.setName("Ana");
+        user1.setRole("Student");
+        User user2 = new User();
+        user2.setName("Andrei");
+        user2.setRole("Student");
+        List<User> list = new ArrayList<>();
+
+        checkIn.setCheckedInUsers(list);
+
+        checkInService.save(checkIn);
+        List<CheckIn> listOfCheckins = checkInService.getAll();
+
+        CheckIn newCheckIn = checkInService.getById(listOfCheckins.get(listOfCheckins.size() - 1).getId());
+
+        assertEquals(newCheckIn, checkIn);
     }
 
     @Test
     public void forDeletingACheckInShouldDeleteIt() throws ParseException {
         CheckIn checkIn = new CheckIn();
         checkIn.setId(12);
-        String dDate="2011-11-11 12:16";
+        String dDate = "2011-11-11 12:16";
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = formatter.parse(dDate);
 
@@ -194,7 +194,7 @@ public class CheckInServiceImplTest {
         checkInService.save(checkIn);
         List<CheckIn> listOfCheckins = checkInService.getAll();
         long id = listOfCheckins.get(listOfCheckins.size() - 1).getId();
-        checkInService.delete((long)listOfCheckins.size() - 1);
+        checkInService.delete((long) listOfCheckins.size() - 1);
         listOfCheckins = checkInService.getAll();
 
         assertTrue(true);

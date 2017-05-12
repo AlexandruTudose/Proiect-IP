@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CheckInTest {
     private CheckIn checkIn;
@@ -71,7 +71,7 @@ public class CheckInTest {
     }
 
     @Test
-    public void forCreatingACheckInShouldReturnTheSameInformation(){
+    public void forCreatingACheckInShouldReturnTheSameInformation() {
         User user = new User();
         user.setName("Maria");
         user.setRole("Prof");
@@ -81,11 +81,11 @@ public class CheckInTest {
 
         CheckIn newCheckIn = builder.create();
 
-        assertEquals(newCheckIn.getUser(),user);
-        assertEquals(newCheckIn.getSubject(),"Subject");
-        assertEquals(newCheckIn.getClassType(),"Laboratory");
-        assertEquals(newCheckIn.getNumberOfCheckedInUsers(),0);
-        assertEquals(newCheckIn.getFinishingFlag(),false);
+        assertEquals(newCheckIn.getUser(), user);
+        assertEquals(newCheckIn.getSubject(), "Subject");
+        assertEquals(newCheckIn.getClassType(), "Laboratory");
+        assertEquals(newCheckIn.getNumberOfCheckedInUsers(), 0);
+        assertEquals(newCheckIn.getFinishingFlag(), false);
         assertEquals(newCheckIn.getCheckedInUsers(), Collections.emptyList());
     }
 
