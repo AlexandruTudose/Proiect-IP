@@ -24,27 +24,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-    @Value("${spring.queries.users-query}")
-    private String usersQuery;
-
-    @Value("${spring.queries.roles-query}")
-    private String rolesQuery;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.
-                jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(dataSource);
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("select email, password, active from user where email=?")
+                .authoritiesByUsernameQuery("select email,role from user where email=?");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.
-                csrf() .disable();
+        http.authorizeRequests().antMatchers("/", "/home").permitAll();
+                //.antMatchers("/admin").hasRole("ADMIN")
+                //.anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
+                //.permitAll();
+        http.exceptionHandling().accessDeniedPage("/403");
     }
 
     @Override

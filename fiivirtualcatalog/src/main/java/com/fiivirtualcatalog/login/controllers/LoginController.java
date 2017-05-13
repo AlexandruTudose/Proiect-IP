@@ -35,40 +35,43 @@ public class LoginController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @RequestMapping(value="/login/password",method = RequestMethod.POST)
-    public ResponseEntity<User> sendPassword(@RequestBody String email) {
+    @CrossOrigin(origins = "http://localhost:9669")
+    @RequestMapping(value={"/login/password"},method = RequestMethod.POST)
+    public ResponseEntity<String> sendPassword(@RequestBody String email) {
         User userExists = userService.findByEmail(email);
         userExists.setPassword(confirmEmailService.generateCode());
         if (userExists == null) {
-            return new ResponseEntity<User>(HttpStatus.valueOf("This email is not registered"));
+            return new ResponseEntity<String>("Email not found",HttpStatus.NOT_FOUND);
         }
         else {
             try {
                 smtpMailSender.send(email,"Password recover!","The password for your account is: "+userExists.getPassword());
                 userService.save(userExists);
-                return new ResponseEntity<User>(HttpStatus.valueOf("Please check your email"));
+                return new ResponseEntity<String>("Check email",HttpStatus.OK);
             } catch (MessagingException e) {
                 e.printStackTrace();
-                return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<String>("Internal server error",HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
     }
 
+
+    @CrossOrigin(origins = "http://localhost:9669")
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public ResponseEntity<User>login(String email, String password){
+    public ResponseEntity<String> login(String email, String password){
         User userExists = userService.findByEmail(email);
         if (userExists == null) {
-            return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<String>("No user found",HttpStatus.NO_CONTENT);
         }
         else
             if(password.compareTo(userExists.getPassword())!=0){
-                return new ResponseEntity<User>(HttpStatus.valueOf("Wrong password"));
+                return new ResponseEntity<String> ("Wrong password",HttpStatus.NOT_FOUND);
         }
         else
             if(userExists.getActive()==false)
-                return new ResponseEntity<User>(HttpStatus.valueOf("Account not validate"));
+                return new ResponseEntity<String>("Account not validated",HttpStatus.FORBIDDEN);
         else
-            return new ResponseEntity<User>(HttpStatus.OK);
+            return new ResponseEntity<String> ("Logged in",HttpStatus.OK);
     }
 
 }

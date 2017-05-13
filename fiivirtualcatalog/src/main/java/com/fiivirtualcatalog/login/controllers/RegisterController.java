@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 
@@ -33,11 +30,12 @@ public class RegisterController {
     @Autowired
     private ConfirmEmailServiceImpl confirmEmailService;
 
-    @RequestMapping(value="/register",method = RequestMethod.POST)
-    public ResponseEntity<User> register(@RequestBody User user) {
+    @CrossOrigin(origins = "http://localhost:9669")
+    @RequestMapping(value={"/register"},method = RequestMethod.POST)
+    public ResponseEntity<String> register(@RequestBody User user) {
         User userExists = userService.findByEmail(user.getEmail());
         if (userExists != null) {
-            return new ResponseEntity<User>(HttpStatus.valueOf("User already exists"));
+            return new ResponseEntity<String>("/register",HttpStatus.valueOf("User already exists"));
         } else {
 
             try {
@@ -50,17 +48,18 @@ public class RegisterController {
                 smtpMailSender.send(user.getEmail(),"Email confirmation!",confirmEmail.getCode());
                 confirmEmailService.delete(user.getEmail());
                 confirmEmailService.save(confirmEmail);
-                return new ResponseEntity<User>(HttpStatus.OK);
+                return new ResponseEntity<String>("Validate email",HttpStatus.OK);
 
             } catch (MessagingException e) {
                 e.printStackTrace();
-                return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<String>("Internal server error",HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
     }
 
 
-    @RequestMapping(value="/register/validate",method = RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:9669")
+    @RequestMapping(value={"/register/validate"},method = RequestMethod.GET)
     public ResponseEntity<String> checkEmailCode(String email,String code) {
         ConfirmEmail confirmEmail=new ConfirmEmail();
         confirmEmail=confirmEmailService.findEmail(email);
@@ -68,10 +67,10 @@ public class RegisterController {
             User user=userService.findByEmail(email);
             user.setActive(true);
             userService.save(user);
-            return new ResponseEntity<String>(HttpStatus.OK);
+            return new ResponseEntity<String>("Validation completed",HttpStatus.OK);
         }
         else
-            return  new ResponseEntity<String>(email,HttpStatus.valueOf("Wrong code"));
+            return  new ResponseEntity<String>("Wrong code",HttpStatus.NOT_FOUND);
     }
 
 }
