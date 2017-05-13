@@ -11,5 +11,6 @@ public interface UserService{
     public void delete(String email);
     public List<User> getAll();
     public User save(User user);
+    public User update(User user);
 }
 

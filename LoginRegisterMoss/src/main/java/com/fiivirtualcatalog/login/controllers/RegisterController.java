@@ -38,12 +38,11 @@ public class RegisterController {
     public ResponseEntity<String> register(@RequestBody User user) {
         User userExists = userService.findByEmail(user.getEmail());
         if (userExists != null) {
-            return new ResponseEntity<String>("/register", HttpStatus.valueOf("User already exists"));
+            return new ResponseEntity<String>("User already exists", HttpStatus.CONFLICT);
         } else {
 
             try {
                 user.setActive(false);
-                System.out.println(user.getPassword());
                 userService.save(user);
                 ConfirmEmail confirmEmail = new ConfirmEmail();
                 confirmEmail.setEmail(user.getEmail());
@@ -69,7 +68,7 @@ public class RegisterController {
         if (confirmEmail != null && confirmEmail.getCode().compareTo(code) == 0) {
             User user = userService.findByEmail(email);
             user.setActive(true);
-            userService.save(user);
+            userService.update(user);
             return new ResponseEntity<String>("Validation completed", HttpStatus.OK);
         } else
             return new ResponseEntity<String>("Wrong code", HttpStatus.NOT_FOUND);

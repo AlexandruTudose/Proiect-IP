@@ -3,6 +3,7 @@ package com.fiivirtualcatalog.login.controllers;
 
 import com.fiivirtualcatalog.login.email.SmtpMailSender;
 import com.fiivirtualcatalog.login.models.User;
+import com.fiivirtualcatalog.login.password.PasswordEncrypt;
 import com.fiivirtualcatalog.login.services.ConfirmEmailService;
 import com.fiivirtualcatalog.login.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class LoginController {
     private ConfirmEmailService confirmEmailService;
     @Autowired
     private SmtpMailSender smtpMailSender;
+    @Autowired
+    private PasswordEncrypt passwordEncrypt;
+
 
     // @CrossOrigin(origins = "http://localhost:9669")
     @RequestMapping(value={"/login/password"},method = RequestMethod.POST)
@@ -47,15 +51,17 @@ public class LoginController {
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ResponseEntity<String> login(String email, String password){
         User userExists = userService.findByEmail(email);
+        passwordEncrypt.setPassword(password);
+        passwordEncrypt.setPassword(passwordEncrypt.encryptPassword());
         if (userExists == null) {
             return new ResponseEntity<String>("No user found",HttpStatus.NO_CONTENT);
         }
         else
-        if(password.compareTo(userExists.getPassword())!=0){
+        if(!passwordEncrypt.compare(userExists.getPassword())){
             return new ResponseEntity<String> ("Wrong password",HttpStatus.NOT_FOUND);
         }
         else
-        if(userExists.getActive()==false)
+        if(!userExists.getActive())
             return new ResponseEntity<String>("Account not validated",HttpStatus.FORBIDDEN);
         else
             return new ResponseEntity<String> ("Logged in",HttpStatus.OK);
