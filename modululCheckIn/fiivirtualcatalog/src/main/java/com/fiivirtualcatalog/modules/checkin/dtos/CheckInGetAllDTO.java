@@ -1,11 +1,11 @@
 package com.fiivirtualcatalog.modules.checkin.dtos;
 
+import com.fiivirtualcatalog.modules.checkin.enums.ClassType;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.fiivirtualcatalog.modules.checkin.enums.ClassType;
-
-public class CheckInGetDTO {
+public class CheckInGetAllDTO {
     private static final SimpleDateFormat dateFormat
             = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private long id;
@@ -15,7 +15,7 @@ public class CheckInGetDTO {
     private long numberOfCheckedInUsers;
     private boolean finishingFlag;
 
-    public CheckInGetDTO() {
+    public CheckInGetAllDTO() {
     }
 
     public String getSubject() {
@@ -59,15 +59,15 @@ public class CheckInGetDTO {
     }
 
     public long getId() {
- 		return id;
- 	}
+        return id;
+    }
 
- 	public void setId(long id) {
- 		this.id = id;
- 	}
-    
-    private CheckInGetDTO(Builder builder) {
-    	this.setId(builder.id);
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private CheckInGetAllDTO(Builder builder) {
+        this.setId(builder.id);
         this.setSubject(builder.subject);
         this.setClassType(builder.classType);
         this.setNumberOfCheckedInUsers(builder.numberOfCheckedInUsers);
@@ -75,22 +75,22 @@ public class CheckInGetDTO {
         this.setCreateDate(builder.createDate);
     }
 
-	public static class Builder {
-		private long id;
-        private String subject;
-        private ClassType classType;
-        private long numberOfCheckedInUsers;
-        private boolean finishingFlag;
-        private Date createDate;
+    public static class Builder {
+        long id;
+        String subject;
+        ClassType classType;
+        long numberOfCheckedInUsers;
+        boolean finishingFlag;
+        Date createDate;
 
         public Builder() {
         }
 
-        public Builder id(long id){
-        	this.id = id;
-        	return this;
+        public Builder id(long id) {
+            this.id = id;
+            return this;
         }
-        
+
         public Builder subject(String subject) {
             this.subject = subject;
             return this;
@@ -116,8 +116,8 @@ public class CheckInGetDTO {
             return this;
         }
 
-        public CheckInGetDTO create() {
-            return new CheckInGetDTO(this);
+        public CheckInGetAllDTO create() {
+            return new CheckInGetAllDTO(this);
         }
     }
 }

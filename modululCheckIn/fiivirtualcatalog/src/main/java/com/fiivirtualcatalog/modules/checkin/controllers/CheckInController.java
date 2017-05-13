@@ -1,6 +1,7 @@
 package com.fiivirtualcatalog.modules.checkin.controllers;
 
-import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetDTO;
+import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetAllDTO;
+import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetByIdDTO;
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInPostDTO;
 import com.fiivirtualcatalog.modules.checkin.models.CheckIn;
 import com.fiivirtualcatalog.modules.checkin.services.CheckInService;
@@ -30,16 +31,38 @@ public class CheckInController {
     CheckInTransformer transformer;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<CheckInGetDTO>> get() {
+    public ResponseEntity<List<CheckInGetAllDTO>> get() {
         List<CheckIn> checkIns = this.checkInService.getAll();
         if (checkIns.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        List<CheckInGetDTO> checkInGetDTO = new ArrayList<>();
+        List<CheckInGetAllDTO> checkInGetAllDTOS = new ArrayList<>();
         for (CheckIn checkIn : checkIns) {
-            checkInGetDTO.add(transformer.toDTO(checkIn));
+            checkInGetAllDTOS.add(transformer.toGetAllDTO(checkIn));
         }
-        return new ResponseEntity<>(checkInGetDTO, HttpStatus.OK);
+        return new ResponseEntity<>(checkInGetAllDTOS, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{checkInId}", method = RequestMethod.GET)
+    public ResponseEntity<CheckInGetByIdDTO> getById(@PathVariable("checkInId") Long checkInId) {
+        CheckIn checkIn = this.checkInService.getById(checkInId);
+        if (checkIn == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(transformer.toGetByIdDTO(checkIn), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{checkInId}/{checkedInUserId}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteUser(@PathVariable("checkInId") Long checkInId, @PathVariable("checkedInUserId") Long userId) {
+        CheckIn checkIn = this.checkInService.getById(checkInId);
+        if (checkIn == null)
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        if (checkIn.getFinishingFlag()) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        checkIn.removeFromCheckedInUsers(userService.getById(userId));
+        this.checkInService.save(checkIn);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -78,8 +101,8 @@ public class CheckInController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/end/{userId}", method = RequestMethod.POST)
-    public ResponseEntity endCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
+    @RequestMapping(value = "/{checkInId}/end/{userId}", method = RequestMethod.POST)
+    public ResponseEntity endCheckIn(@PathVariable("userId") Long userId, @PathVariable("checkInId") Long checkInId) {
         CheckIn searchCheckIn = this.checkInService.getById(checkInId);
         if (searchCheckIn == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -91,5 +114,6 @@ public class CheckInController {
         this.checkInService.save(searchCheckIn);
         return new ResponseEntity(HttpStatus.CREATED);
     }
+
 
 }

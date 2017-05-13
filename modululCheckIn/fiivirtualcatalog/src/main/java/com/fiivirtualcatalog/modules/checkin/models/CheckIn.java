@@ -41,7 +41,7 @@ public class CheckIn {
 
     @Column(name = "finishing_flag")
     private boolean finishingFlag;
-    
+
     @Column(name = "code")
     private String code;
 
@@ -123,6 +123,11 @@ public class CheckIn {
 
     public void addToCheckedInUsers(User user) {
         this.checkedInUsers.add(user);
+        this.setNumberOfCheckedInUsers(this.getCheckedInUsers().size());
+    }
+
+    public void removeFromCheckedInUsers(User user) {
+        this.checkedInUsers.remove(user);
         this.setNumberOfCheckedInUsers(this.getCheckedInUsers().size());
     }
 

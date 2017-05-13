@@ -1,6 +1,6 @@
 package com.fiivirtualcatalog.transformers;
 
-import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetDTO;
+import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetAllDTO;
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInPostDTO;
 import com.fiivirtualcatalog.modules.checkin.enums.ClassType;
 import com.fiivirtualcatalog.modules.checkin.models.CheckIn;
@@ -56,12 +56,12 @@ public class CheckInTransformerTest {
         checkIn.setCheckedInUsers(list);
 
 
-        CheckInGetDTO checkInGetDTO = checkInTransformer.toDTO(checkIn);
+        CheckInGetAllDTO checkInGetAllDTO = checkInTransformer.toGetAllDTO(checkIn);
 
-        assertEquals(checkInGetDTO.getId(), checkIn.getId());
-        assertEquals(checkInGetDTO.getSubject(), checkIn.getSubject());
-        assertEquals(checkInGetDTO.getClassType(), ClassType.Course);
-        assertEquals(checkInGetDTO.getNumberOfCheckedInUsers(), checkIn.getNumberOfCheckedInUsers());
-        assertEquals(checkInGetDTO.getFinishingFlag(), checkIn.getFinishingFlag());
+        assertEquals(checkInGetAllDTO.getId(), checkIn.getId());
+        assertEquals(checkInGetAllDTO.getSubject(), checkIn.getSubject());
+        assertEquals(checkInGetAllDTO.getClassType(), ClassType.Course);
+        assertEquals(checkInGetAllDTO.getNumberOfCheckedInUsers(), checkIn.getNumberOfCheckedInUsers());
+        assertEquals(checkInGetAllDTO.getFinishingFlag(), checkIn.getFinishingFlag());
     }
 }

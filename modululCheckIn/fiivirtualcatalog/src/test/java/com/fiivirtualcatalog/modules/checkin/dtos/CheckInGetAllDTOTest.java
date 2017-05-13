@@ -11,12 +11,12 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
-public class CheckInGetDTOTest {
-    private CheckInGetDTO checkInGetDTO;
+public class CheckInGetAllDTOTest {
+    private CheckInGetAllDTO checkInGetAllDTO;
 
     @Before
     public void setUp() throws Exception {
-        checkInGetDTO = new CheckInGetDTO();
+        checkInGetAllDTO = new CheckInGetAllDTO();
     }
 
     @Test
@@ -25,19 +25,19 @@ public class CheckInGetDTOTest {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = formatter.parse(dDate);
         String createDate = formatter.format(date);
-        checkInGetDTO.setId(12);
-        checkInGetDTO.setSubject("Subject");
-        checkInGetDTO.setClassType(ClassType.Course);
-        checkInGetDTO.setCreateDate(date);
-        checkInGetDTO.setNumberOfCheckedInUsers(32);
-        checkInGetDTO.setFinishingFlag(false);
+        checkInGetAllDTO.setId(12);
+        checkInGetAllDTO.setSubject("Subject");
+        checkInGetAllDTO.setClassType(ClassType.Course);
+        checkInGetAllDTO.setCreateDate(date);
+        checkInGetAllDTO.setNumberOfCheckedInUsers(32);
+        checkInGetAllDTO.setFinishingFlag(false);
 
-        assertEquals(checkInGetDTO.getId(), 12);
-        assertEquals(checkInGetDTO.getSubject(), "Subject");
-        assertEquals(checkInGetDTO.getClassType(), ClassType.Course);
-        assertEquals(checkInGetDTO.getCreateDate(), createDate);
-        assertEquals(checkInGetDTO.getNumberOfCheckedInUsers(), 32);
-        assertEquals(checkInGetDTO.getFinishingFlag(), false);
+        assertEquals(checkInGetAllDTO.getId(), 12);
+        assertEquals(checkInGetAllDTO.getSubject(), "Subject");
+        assertEquals(checkInGetAllDTO.getClassType(), ClassType.Course);
+        assertEquals(checkInGetAllDTO.getCreateDate(), createDate);
+        assertEquals(checkInGetAllDTO.getNumberOfCheckedInUsers(), 32);
+        assertEquals(checkInGetAllDTO.getFinishingFlag(), false);
     }
 
     @Test
@@ -46,16 +46,16 @@ public class CheckInGetDTOTest {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = formatter.parse(dDate);
         String createDate = formatter.format(date);
-        checkInGetDTO.setSubject("Subject");
-        checkInGetDTO.setClassType(ClassType.Course);
-        checkInGetDTO.setCreateDate(date);
-        checkInGetDTO.setNumberOfCheckedInUsers(32);
-        checkInGetDTO.setFinishingFlag(false);
+        checkInGetAllDTO.setSubject("Subject");
+        checkInGetAllDTO.setClassType(ClassType.Course);
+        checkInGetAllDTO.setCreateDate(date);
+        checkInGetAllDTO.setNumberOfCheckedInUsers(32);
+        checkInGetAllDTO.setFinishingFlag(false);
 
-        CheckInGetDTO.Builder builder = new CheckInGetDTO.Builder();
+        CheckInGetAllDTO.Builder builder = new CheckInGetAllDTO.Builder();
         builder.subject("Subject").classType(ClassType.Course).createDate(date).numberOfCheckedInUsers(32).finishingFlag(false);
 
-        CheckInGetDTO newCheckIn = builder.create();
+        CheckInGetAllDTO newCheckIn = builder.create();
 
         assertEquals(newCheckIn.getSubject(), "Subject");
         assertEquals(newCheckIn.getClassType(), ClassType.Course);
