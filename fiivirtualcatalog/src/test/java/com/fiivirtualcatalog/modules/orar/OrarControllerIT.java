@@ -40,7 +40,7 @@ public class OrarControllerIT {
 
     @Test
     public void testGetAllWhenEntryExists() throws Exception {
-        mockMvc.perform(get("/v1/orar")).andExpect(status().isOk())
+        mockMvc.perform(get("/v1/orar/crud/read")).andExpect(status().isOk())
                 .andDo(print()
                 );
     }
