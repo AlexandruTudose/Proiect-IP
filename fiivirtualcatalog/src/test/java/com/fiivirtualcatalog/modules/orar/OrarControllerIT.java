@@ -1,13 +1,16 @@
 package com.fiivirtualcatalog.modules.orar;
 
 import com.fiivirtualcatalog.modules.orar.controllers.OrarController;
+import com.fiivirtualcatalog.modules.orar.services.OrarService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,40 +19,43 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@WebMvcTest(controllers = OrarController.class)
 public class OrarControllerIT {
-
-    @Autowired private WebApplicationContext ctx;
-
-    @InjectMocks
-    private OrarController controller;
 
     private MockMvc mockMvc;
 
+    @Autowired
+    private WebApplicationContext ctx;
+
+    @MockBean
+    private OrarService orarServiceMock;
+
     @Before
     public void setup(){
-        MockitoAnnotations.initMocks(this);
 
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
     }
 
     @Test
     public void testGetAllWhenEntryExists() throws Exception {
-        mockMvc.perform(get("/v1/orar")).andExpect(status().isOk())
+        assertThat(this.orarServiceMock).isNotNull();
+        mockMvc.perform(get("/v1/orar/crud/read")).andExpect(status().isOk())
                 .andDo(print()
                 );
     }
 
     @Test
     public void testGetAllWhenNotExists() throws Exception {
-        mockMvc.perform(get("/v1/orar")).andExpect(status().isNoContent())
+        mockMvc.perform(get("/v1/orar/crud/read")).andExpect(status().isNoContent())
                 .andDo(print()
                 );
+
     }
 
     @Test

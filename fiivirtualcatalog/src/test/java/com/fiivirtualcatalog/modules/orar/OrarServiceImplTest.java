@@ -44,6 +44,7 @@ public class OrarServiceImplTest {
         Orar retrievedOrar=orarServiceImpl.getById(5L);
 
         assertThat(retrievedOrar,is(equalTo(orar)));
+
     }
 
     @Test
