@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrarControllerTest {
+public class OrarControllerIT {
 
     @Autowired private WebApplicationContext ctx;
 
