@@ -20,7 +20,7 @@ public class CheckInTest {
     }
 
     @Test
-    public void forANewCheckInShoudBeTheSame() {
+    public void forANewCheckInShouldBeTheSame() {
         checkIn.setId(23);
 
         java.sql.Date currentTimestamp = new java.sql.Date(Calendar.getInstance().getTime().getTime());
@@ -87,6 +87,37 @@ public class CheckInTest {
         assertEquals(newCheckIn.getNumberOfCheckedInUsers(), 0);
         assertEquals(newCheckIn.getFinishingFlag(), false);
         assertEquals(newCheckIn.getCheckedInUsers(), Collections.emptyList());
+    }
+
+    @Test
+    public void forDeletingACheckInShouldReturnTheSameNumberOfCheckedUsersMinusOne(){
+        checkIn.setId(23);
+
+        java.sql.Date currentTimestamp = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        checkIn.setCreateDate(currentTimestamp);
+
+        User user = new User();
+        user.setName("Maria");
+        user.setRole("Profesor");
+        checkIn.setUser(user);
+        checkIn.setSubject("Subject");
+        checkIn.setClassType("class-type");
+        checkIn.setNumberOfCheckedInUsers(2);
+        checkIn.setFinishingFlag(true);
+
+        User user1 = new User();
+        user1.setName("Ana");
+        user1.setRole("Student");
+        User user2 = new User();
+        user2.setName("Andrei");
+        user2.setRole("Student");
+        List<User> list = new ArrayList<>();
+
+        checkIn.setCheckedInUsers(list);
+
+        checkIn.removeFromCheckedInUsers(user1);
+
+        assertEquals(checkIn.getNumberOfCheckedInUsers(),list.size());
     }
 
 }
