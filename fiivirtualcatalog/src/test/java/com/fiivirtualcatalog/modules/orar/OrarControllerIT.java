@@ -3,7 +3,6 @@ package com.fiivirtualcatalog.modules.orar;
 import com.fiivirtualcatalog.modules.orar.controllers.OrarController;
 import com.fiivirtualcatalog.modules.orar.models.Orar;
 import com.fiivirtualcatalog.modules.orar.services.OrarService;
-import net.minidev.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,6 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.sql.Time;
@@ -29,7 +27,6 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import static org.mockito.Mockito.*;
@@ -65,13 +62,37 @@ public class OrarControllerIT {
         orar.setTip("Seminar");
         orar.setZi("Vineri");
 
-        updatedOrar=orar;
-        updatedOrar.setSala(20);
+        updatedOrar=new Orar();
+        updatedOrar.setId(1L);
+        updatedOrar.setGrupa("B4");
+        updatedOrar.setIdDisciplina(3);
+        updatedOrar.setIdProf(4);
+        updatedOrar.setOraInceput(new Time(503000));
+        updatedOrar.setOraSfarsit(new Time(513000));
+        updatedOrar.setTip("Seminar");
+        updatedOrar.setZi("Vineri");
+        updatedOrar.setSala(20); //the only modification from orar
 
-        orar2=orar;
+        orar2=new Orar();
+        orar2.setId(2L); //the only modification from orar just to represent a new "different" entry
+        orar2.setGrupa("B4");
+        orar2.setIdDisciplina(3);
+        orar2.setIdProf(4);
+        orar2.setOraInceput(new Time(503000));
+        orar2.setOraSfarsit(new Time(513000));
+        orar2.setSala(5);
+        orar2.setTip("Seminar");
+        orar2.setZi("Vineri");
         orar2.setId(2L);
     }
 
+    /*private static String createOrarInJson (String , String email, String password) {
+        return "{ \"name\": \"" + name + "\", " +
+                "\"emailAddress\":\"" + email + "\"," +
+                "\"password\":\"" + password + "\"}";
+    }
+
+*/
     @Test
     public void testGetWhenEntryExists() throws Exception {
 
