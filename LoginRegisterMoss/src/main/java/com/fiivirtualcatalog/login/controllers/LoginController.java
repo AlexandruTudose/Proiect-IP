@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 
@@ -26,7 +27,7 @@ public class LoginController {
     private PasswordEncrypt passwordEncrypt;
 
 
-    // @CrossOrigin(origins = "http://localhost:9669")
+     @CrossOrigin(origins = "http://localhost:9669")
     @RequestMapping(value={"/login/password"},method = RequestMethod.POST)
     public ResponseEntity<String> sendPassword(@RequestParam String email) {
         User userExists = userService.findByEmail(email);
@@ -46,13 +47,13 @@ public class LoginController {
         }
     }
 
-
-    // @CrossOrigin(origins = "http://localhost:9669")
+    @CrossOrigin(origins = "http://localhost:9669")
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ResponseEntity<String> login(String email, String password){
         User userExists = userService.findByEmail(email);
         passwordEncrypt.setPassword(password);
         passwordEncrypt.setPassword(passwordEncrypt.encryptPassword());
+        System.out.println(passwordEncrypt.getPassword());
         if (userExists == null) {
             return new ResponseEntity<String>("No user found",HttpStatus.NO_CONTENT);
         }

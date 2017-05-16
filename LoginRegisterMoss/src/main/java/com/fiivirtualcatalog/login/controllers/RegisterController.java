@@ -9,10 +9,8 @@ import com.fiivirtualcatalog.login.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 
@@ -33,7 +31,7 @@ public class RegisterController {
     @Autowired
     private ConfirmEmailServiceImpl confirmEmailService;
 
-    //@CrossOrigin(origins = "http://localhost:9669")
+    @CrossOrigin(origins = "http://localhost:9669")
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
     public ResponseEntity<String> register(@RequestBody User user) {
         User userExists = userService.findByEmail(user.getEmail());
@@ -59,8 +57,7 @@ public class RegisterController {
         }
     }
 
-
-    //@CrossOrigin(origins = "http://localhost:9669")
+    @CrossOrigin(origins = "http://localhost:9669")
     @RequestMapping(value = {"/register/validate"}, method = RequestMethod.GET)
     public ResponseEntity<String> checkEmailCode(String email, String code) {
         ConfirmEmail confirmEmail = new ConfirmEmail();
