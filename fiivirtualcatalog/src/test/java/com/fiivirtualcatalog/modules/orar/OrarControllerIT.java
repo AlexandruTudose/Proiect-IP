@@ -3,6 +3,7 @@ package com.fiivirtualcatalog.modules.orar;
 import com.fiivirtualcatalog.modules.orar.controllers.OrarController;
 import com.fiivirtualcatalog.modules.orar.models.Orar;
 import com.fiivirtualcatalog.modules.orar.services.OrarService;
+import net.minidev.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,6 +48,8 @@ public class OrarControllerIT {
     private OrarService orarServiceMock;
 
     private Orar orar;
+    private Orar updatedOrar;
+    private Orar orar2;
 
     @Before
     public void setup()
@@ -61,6 +64,12 @@ public class OrarControllerIT {
         orar.setSala(5);
         orar.setTip("Seminar");
         orar.setZi("Vineri");
+
+        updatedOrar=orar;
+        updatedOrar.setSala(20);
+
+        orar2=orar;
+        orar2.setId(2L);
     }
 
     @Test
@@ -87,8 +96,6 @@ public class OrarControllerIT {
                 .andDo(print())
 
                 .andReturn();
-
-
 
         MockHttpServletResponse mockResponse=result.getResponse();
         assertThat(mockResponse.getContentType()).isEqualTo("application/json;charset=UTF-8");
@@ -129,35 +136,98 @@ public class OrarControllerIT {
     }
 
     @Test
-    public void testDeleteEntry() throws Exception {
+    public void testDeleteEntryWhenExists() throws Exception {
         assertThat(this.orarServiceMock).isNotNull();
-        mockMvc.perform(delete("/v1/orar/delete/12")).andExpect(status().isOk())
+
+        //list without first orar to be returned after removal
+        List<Orar> orarList=Arrays.asList(orar2);
+
+        when (orarServiceMock.getById(1L)).thenReturn(orar);
+        when (orarServiceMock.getAll()).thenReturn(orarList);
+
+        MvcResult result = mockMvc.perform(delete("/v1/orar/crud/delete/{deleteId}",1L))
+                .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn();
 
+        MockHttpServletResponse mockResponse=result.getResponse();
+        assertThat(mockResponse.getContentType()).isEqualTo("application/json;charset=UTF-8");
+
+        Collection<String> responseHeaders=mockResponse.getHeaderNames();
+
+        assertNotNull(responseHeaders);
+        assertEquals(1, responseHeaders.size());
+        assertEquals("Check for Content-Type header", "Content-Type", responseHeaders.iterator().next());
+
+        String responseAsString=mockResponse.getContentAsString();
+        /*responseAsString.contains(result)
+
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.
+        jsonObject.toJSONString();
+*/
+        verify(orarServiceMock, times(1)).getById(1L);
+        verify(orarServiceMock, times(1)).delete(1L);
+        verify(orarServiceMock, times(1)).getAll();
+        verifyNoMoreInteractions(orarServiceMock);
+
     }
 
     @Test
-    public void testRootPost() throws Exception {
+    public void testDeleteEntryWhenNotExists() throws Exception {
         assertThat(this.orarServiceMock).isNotNull();
-        mockMvc.perform(post("/v1/orar")).andExpect(status().isOk())
-                .andDo(print()
-                );
+
+        when (orarServiceMock.getById(1L)).thenReturn(null);
+
+        MvcResult result = mockMvc.perform(delete("/v1/orar/crud/delete/{deleteId}",1L))
+                .andExpect(status().isNoContent())
+                .andDo(print())
+                .andReturn();
+
+        MockHttpServletResponse mockResponse=result.getResponse();
+        assertThat(mockResponse.getContentType()).isNull();
+
+        Collection<String> responseHeaders=mockResponse.getHeaderNames();
+
+        assertNotNull(responseHeaders);
+        assertEquals(0, responseHeaders.size());
+
+        verify(orarServiceMock, times(1)).getById(1L);
+        verifyNoMoreInteractions(orarServiceMock);
+
+    }
+
+
+    @Test
+    public void testUpdateEntryWhenExists() throws Exception {
+        assertThat(this.orarServiceMock).isNotNull();
+
+
+        mockMvc.perform(put("/v1/orar/crud/update/{update_id}").param("update_id","12"))
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 
     @Test
-    public void testUpdateEntry() throws Exception {
+    public void testUpdateEntryWhenNotExists() throws Exception {
         assertThat(this.orarServiceMock).isNotNull();
-        mockMvc.perform(put("/v1/orar/15")).andExpect(status().isOk())
-                .andDo(print()
-                );
-    }
 
-    @Test
-    public void testGetAll() throws Exception {
-        assertThat(this.orarServiceMock).isNotNull();
-        mockMvc.perform(get("/v1/orar")).andExpect(status().isOk())
-                .andDo(print()
-                );
+        when (orarServiceMock.getById(1L)).thenReturn(null);
+
+        MvcResult result = mockMvc.perform(put("/v1/orar/crud/update/{updateId}",1L))
+                .andExpect(status().isNoContent())
+                .andDo(print())
+                .andReturn();
+
+        MockHttpServletResponse mockResponse=result.getResponse();
+        assertThat(mockResponse.getContentType()).isNull();
+
+        Collection<String> responseHeaders=mockResponse.getHeaderNames();
+
+        assertNotNull(responseHeaders);
+        assertEquals(0, responseHeaders.size());
+
+        verify(orarServiceMock, times(1)).getById(1L);
+        verifyNoMoreInteractions(orarServiceMock);
     }
 }
