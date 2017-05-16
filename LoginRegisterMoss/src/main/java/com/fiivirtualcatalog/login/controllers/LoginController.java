@@ -3,12 +3,12 @@ package com.fiivirtualcatalog.login.controllers;
 
 import com.fiivirtualcatalog.login.email.SmtpMailSender;
 import com.fiivirtualcatalog.login.models.User;
-import com.fiivirtualcatalog.login.password.PasswordEncrypt;
 import com.fiivirtualcatalog.login.services.ConfirmEmailService;
 import com.fiivirtualcatalog.login.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +24,7 @@ public class LoginController {
     @Autowired
     private SmtpMailSender smtpMailSender;
     @Autowired
-    private PasswordEncrypt passwordEncrypt;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
      @CrossOrigin(origins = "http://localhost:9669")
@@ -51,14 +51,11 @@ public class LoginController {
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ResponseEntity<String> login(String email, String password){
         User userExists = userService.findByEmail(email);
-        passwordEncrypt.setPassword(password);
-        passwordEncrypt.setPassword(passwordEncrypt.encryptPassword());
-        System.out.println(passwordEncrypt.getPassword());
         if (userExists == null) {
             return new ResponseEntity<String>("No user found",HttpStatus.NO_CONTENT);
         }
         else
-        if(!passwordEncrypt.compare(userExists.getPassword())){
+        if(!bCryptPasswordEncoder.matches(password,userExists.getPassword())){
             return new ResponseEntity<String> ("Wrong password",HttpStatus.NOT_FOUND);
         }
         else
