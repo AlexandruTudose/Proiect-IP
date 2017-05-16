@@ -65,6 +65,7 @@ public class OrarControllerIT {
 
     @Test
     public void testGetWhenEntryExists() throws Exception {
+
         assertThat(this.orarServiceMock).isNotNull();
 
         List<Orar> listTest= Arrays.asList(orar);
@@ -87,7 +88,7 @@ public class OrarControllerIT {
 
                 .andReturn();
 
-        String content = result.getResponse().getContentAsString();
+
 
         MockHttpServletResponse mockResponse=result.getResponse();
         assertThat(mockResponse.getContentType()).isEqualTo("application/json;charset=UTF-8");
@@ -107,18 +108,33 @@ public class OrarControllerIT {
     public void testGetWhenNotExists() throws Exception {
         assertThat(this.orarServiceMock).isNotNull();
 
-        mockMvc.perform(get("/v1/orar/crud/read")).andExpect(status().isNoContent())
-                .andDo(print()
-                );
+        List<Orar> listTest= Arrays.asList();
+        when (orarServiceMock.getAll()).thenReturn(listTest);
 
+        MvcResult result = mockMvc.perform(get("/v1/orar/crud/read"))
+                .andExpect(status().isNoContent())
+                .andDo(print())
+                .andReturn();
+
+        MockHttpServletResponse mockResponse=result.getResponse();
+        assertThat(mockResponse.getContentType()).isNull();
+
+        Collection<String> responseHeaders=mockResponse.getHeaderNames();
+
+        assertNotNull(responseHeaders);
+        assertEquals(0, responseHeaders.size());
+
+        verify(orarServiceMock, times(1)).getAll();
+        verifyNoMoreInteractions(orarServiceMock);
     }
 
     @Test
     public void testDeleteEntry() throws Exception {
         assertThat(this.orarServiceMock).isNotNull();
         mockMvc.perform(delete("/v1/orar/delete/12")).andExpect(status().isOk())
-                .andDo(print()
-                );
+                .andDo(print())
+                .andReturn();
+
     }
 
     @Test
