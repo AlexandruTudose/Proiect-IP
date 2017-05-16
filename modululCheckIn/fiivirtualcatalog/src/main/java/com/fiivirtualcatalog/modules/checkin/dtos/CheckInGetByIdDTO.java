@@ -17,10 +17,12 @@ public class CheckInGetByIdDTO extends CheckInGetAllDTO {
     }
 
 
-    public static class SimpleUser {
-        long id;
-        String userName;
+    public CheckInGetByIdDTO(){
 
+    }
+    public static class SimpleUser {
+        private long id;
+        private String userName;
         public SimpleUser(long id, String userName) {
             this.id = id;
             this.userName = userName;
