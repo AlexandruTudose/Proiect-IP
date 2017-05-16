@@ -88,11 +88,24 @@ public class OrarControllerIT {
 
     private static String createOrarInJson (long id, String zi, Time oraInceput, Time oraSfarsit, int idDisciplina,int idProf, int sala, String tip, String grupa) {
         return "{\"id\":" + Long.toString(id) + "," +
+            "\"zi\":\"" + zi + "\"," +
+            "\"oraInceput\":\"" + oraInceput .toString()+ "\"," +
+            "\"oraSfarsit\":\"" + oraSfarsit.toString() + "\"," +
+            "\"idDisciplina\":" + Integer.toString(idDisciplina) + "," +
+            "\"idProf\":" + Integer.toString(idProf) + "," +
+            "\"sala\":" + Integer.toString(sala) + "," +
+            "\"tip\":\"" + tip + "\"," +
+            "\"grupa\":\"" + grupa + "\"}";
+}
+
+    private static String createOrarInJsonForUpdate( String zi, Time oraInceput, Time oraSfarsit, int idDisciplina,int idProf, int sala, String tip, String grupa)
+    {
+        return "{" +
                 "\"zi\":\"" + zi + "\"," +
-                "\"oraInceput\":\"" + oraInceput .toString()+ "\"," +
-                "\"oraSfarsit\":\"" + oraSfarsit.toString() + "\"," +
-                "\"idDisciplina\":" + Integer.toString(idDisciplina) + "," +
-                "\"idProf\":" + Integer.toString(idProf) + "," +
+                "\"ora_inceput\":\"" + oraInceput .toString()+ "\"," +
+                "\"ora_sfarsit\":\"" + oraSfarsit.toString() + "\"," +
+                "\"id_disciplina\":" + Integer.toString(idDisciplina) + "," +
+                "\"id_prof\":" + Integer.toString(idProf) + "," +
                 "\"sala\":" + Integer.toString(sala) + "," +
                 "\"tip\":\"" + tip + "\"," +
                 "\"grupa\":\"" + grupa + "\"}";
@@ -222,24 +235,53 @@ public class OrarControllerIT {
 
     }
 
-
     @Test
     public void testUpdateEntryWhenExists() throws Exception {
         assertThat(this.orarServiceMock).isNotNull();
 
+        when (orarServiceMock.getById(orar.getId())).thenReturn(orar);
+        when (orarServiceMock.save(orar)).thenReturn(updatedOrar);
 
-        mockMvc.perform(put("/v1/orar/crud/update/{update_id}").param("update_id","12"))
+        String updatedOrarJson=createOrarInJsonForUpdate(updatedOrar.getZi(),updatedOrar.getOraInceput()
+                ,updatedOrar.getOraSfarsit(),updatedOrar.getIdDisciplina(),updatedOrar.getIdProf(),updatedOrar.getSala(),updatedOrar.getTip(),updatedOrar.getGrupa());
+
+        MvcResult result=mockMvc.perform(put("/v1/orar/crud/update/{updateId}", orar.getId()).contentType(MediaType.APPLICATION_JSON).
+                content(updatedOrarJson))
                 .andExpect(status().isOk())
-                .andDo(print());
+                .andDo(print())
+                .andReturn();
+
+        MockHttpServletResponse mockResponse=result.getResponse();
+        assertThat(mockResponse.getContentType()).isEqualTo("application/json;charset=UTF-8");
+
+        Collection<String> responseHeaders=mockResponse.getHeaderNames();
+
+        assertNotNull(responseHeaders);
+        assertEquals(1, responseHeaders.size());
+        assertEquals("Check for Content-Type header", "Content-Type", responseHeaders.iterator().next());
+
+        String responseAsString=mockResponse.getContentAsString();
+        String orarJson=createOrarInJson(updatedOrar.getId(),updatedOrar.getZi(),updatedOrar.getOraInceput()
+                ,updatedOrar.getOraSfarsit(),updatedOrar.getIdDisciplina(),updatedOrar.getIdProf(),updatedOrar.getSala(),updatedOrar.getTip(),updatedOrar.getGrupa());
+
+        assertTrue(responseAsString.equals(orarJson));
+
+        verify(orarServiceMock, times(1)).getById(orar.getId());
+        verify(orarServiceMock, times(1)).save(orar);
+        verifyNoMoreInteractions(orarServiceMock);
     }
 
     @Test
     public void testUpdateEntryWhenNotExists() throws Exception {
         assertThat(this.orarServiceMock).isNotNull();
 
-        when (orarServiceMock.getById(1L)).thenReturn(null);
+        when (orarServiceMock.getById(orar.getId())).thenReturn(null);
 
-        MvcResult result = mockMvc.perform(put("/v1/orar/crud/update/{updateId}",1L))
+        String updatedOrarJson=createOrarInJsonForUpdate(updatedOrar.getZi(),updatedOrar.getOraInceput()
+                ,updatedOrar.getOraSfarsit(),updatedOrar.getIdDisciplina(),updatedOrar.getIdProf(),updatedOrar.getSala(),updatedOrar.getTip(),updatedOrar.getGrupa());
+
+        MvcResult result = mockMvc.perform(put("/v1/orar/crud/update/{updateId}",orar.getId()).contentType(MediaType.APPLICATION_JSON).
+                content(updatedOrarJson))
                 .andExpect(status().isNoContent())
                 .andDo(print())
                 .andReturn();
@@ -252,7 +294,7 @@ public class OrarControllerIT {
         assertNotNull(responseHeaders);
         assertEquals(0, responseHeaders.size());
 
-        verify(orarServiceMock, times(1)).getById(1L);
+        verify(orarServiceMock, times(1)).getById(orar.getId());
         verifyNoMoreInteractions(orarServiceMock);
     }
 }
