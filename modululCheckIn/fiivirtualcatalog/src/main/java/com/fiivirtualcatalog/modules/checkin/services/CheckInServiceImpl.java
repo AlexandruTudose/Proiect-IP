@@ -31,4 +31,9 @@ public class CheckInServiceImpl implements CheckInService {
     public void delete(Long id) {
         this.repository.delete(id);
     }
+
+	@Override
+	public void deleteAll() {
+		this.repository.deleteAll();
+	}
 }

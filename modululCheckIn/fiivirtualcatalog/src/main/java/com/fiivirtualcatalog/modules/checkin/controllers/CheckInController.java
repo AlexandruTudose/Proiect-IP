@@ -8,12 +8,10 @@ import com.fiivirtualcatalog.modules.checkin.services.CheckInService;
 import com.fiivirtualcatalog.modules.user.models.User;
 import com.fiivirtualcatalog.modules.user.services.UserService;
 import com.fiivirtualcatalog.transformers.CheckInTransformer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +112,11 @@ public class CheckInController {
         this.checkInService.save(searchCheckIn);
         return new ResponseEntity(HttpStatus.CREATED);
     }
-
-
+    
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity deleteAll() {
+    	this.checkInService.deleteAll();
+    	return new ResponseEntity(HttpStatus.OK);
+    }
+    
 }

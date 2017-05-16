@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="../static/css/bootstrap.css" rel="stylesheet">
+<link href="../static/css/custom.css" rel="stylesheet">
+<script src="../static/js/angular.min.js"></script>
+</head>
+<body ng-app="fiiVirtualCatalog">
+
+	<div class="pannel">
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#checkInFrom">Create checkIn</button>
+		<div class="modal fade" id="checkInFrom" role="" style="width: 50%">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 style="text-align: center;">CheckIn Create</h3>
+					</div>
+
+					<div class="modal-body" style="padding-top: 5%; width: 100%;">
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="textname">Subject</label>
+								<div class="col-md-4">
+									<input ng-model="subject" id="" name="" type="text"
+										placeholder="Subject" class="form-control input-md"
+										required="">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="classSelect">Class
+									type</label>
+								<div class="col-md-4">
+									<select ng-model="classType" id="" name="" class="form-control">
+										<option value="Seminar">Seminar</option>
+										<option value="Laboratory">Laboratory</option>
+										<option value="Course">Course</option>
+									</select>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for=""></label>
+							<div class="col-md-8" ng-controller="checkInController">
+								<button ng-click="checkInCreate()" id="createCheckInBtn"
+									name="createCheckIn" class="btn btn-success">Create
+									checkIn</button>
+								<button id="dismissFormBtn" name="dismissForm"
+									class="btn btn-danger" data-dismiss="modal">Dismiss</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row card-container" ng-controller="checkInController"
+		ng-init="viewCheckIns()">
+		<div class="col-lg-12" style="height: 20%; margin-top: 10px;"
+			ng-repeat="x in checkins">
+			<div class="card">
+				<div class="row">
+					<div class="col-md-3">
+						<div ng-switch="x.finishingFlag">
+							<div ng-switch-when=true>
+								<div class="checkin-end-img-card"></div>
+							</div>
+							<div ng-switch-when=false>
+								<div class="checkin-img-card" ng-click="endCheckin(x.id)"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5" style="margin-top: 3px;">
+						<label class="control-label">Id: {{x.id}} </label><br> <label
+							class="control-label">Subiect: {{x.subject}} </label><br> <label
+							class="control-label">Subiect: {{x.classType}} </label><br>
+						<label class="control-label">Checked in:
+							{{x.numberOfCheckedInUsers}} </label><br>
+					</div>
+					<div class="col-md-4">
+						<div ng-switch="x.finishingFlag">
+							<div ng-switch-when=true>
+								<button id="checkinRegister"
+									style="margin-top: 10%; height: 30px" name="checkinRegister"
+									class="btn btn-success disabled">Check in</button>
+							</div>
+							<div ng-switch-when=false>
+								<button ng-click="checkInRegister(x.id)" id="checkinRegister"
+									style="margin-top: 10%; height: 30px" name="checkinRegister"
+									class="btn btn-success">Check in</button>
+							</div>
+						</div>
+						<button ng-click="" id="viewPresence"
+							style="margin-top: 4%; height: 30px" name="viewPresence"
+							class="btn btn-success" data-toggle="modal"
+							data-target="#checkInPresence{{x.id}}">View presence</button>
+					</div>
+				</div>
+				<div class=" modal fade modal-content" id="checkInPresence{{x.id}}"
+					role="" ng-controller="checkInController">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 style="text-align: center;">CheckIn id: {{x.id}}</h3>
+					</div>
+					<div class="modal-body" style="height: 350px; max-height: 600px; overflow: auto; overflow-x: hidden;">
+						<div class="row card-container" ng-init="viewCheckedUsers(x.id)">
+							<div class="col-lg-12" style="margin-top: 2%"
+								ng-repeat="y in users">
+								<div class="card">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="profile-img-card"></div>
+										</div>
+										<div class="col-md-6" style="margin-top: 3px;">
+											<label class="control-label">Id: {{y.id}} </label><br> <label
+												class="control-label">Name: {{y.userName}} </label><br>
+										</div>
+										<div class="col-md-2">
+											<button ng-click="deleteFromCheckedUsers(y.id, x.id)"
+												id="submitButton" style="margin-top: 2px; height: 30px"
+												name="submitButton" class="btn btn-danger">Delete</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+	<script src="../static/js/app.js"></script>
+	<script src="../static/js/checkInController.js"></script>
+</body>
+</html>
