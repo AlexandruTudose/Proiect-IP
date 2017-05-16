@@ -53,10 +53,11 @@ public class CheckInGetAllDTOTest {
         checkInGetAllDTO.setFinishingFlag(false);
 
         CheckInGetAllDTO.Builder builder = new CheckInGetAllDTO.Builder();
-        builder.subject("Subject").classType(ClassType.Course).createDate(date).numberOfCheckedInUsers(32).finishingFlag(false);
+        builder.id(3).subject("Subject").classType(ClassType.Course).createDate(date).numberOfCheckedInUsers(32).finishingFlag(false);
 
         CheckInGetAllDTO newCheckIn = builder.create();
 
+        assertEquals(newCheckIn.getId(),3);
         assertEquals(newCheckIn.getSubject(), "Subject");
         assertEquals(newCheckIn.getClassType(), ClassType.Course);
         assertEquals(newCheckIn.getNumberOfCheckedInUsers(), 32);
