@@ -86,13 +86,18 @@ public class OrarControllerIT {
         orar2.setId(2L);
     }
 
-    /*private static String createOrarInJson (String , String email, String password) {
-        return "{ \"name\": \"" + name + "\", " +
-                "\"emailAddress\":\"" + email + "\"," +
-                "\"password\":\"" + password + "\"}";
+    private static String createOrarInJson (long id, String zi, Time oraInceput, Time oraSfarsit, int idDisciplina,int idProf, int sala, String tip, String grupa) {
+        return "{\"id\":" + Long.toString(id) + "," +
+                "\"zi\":\"" + zi + "\"," +
+                "\"oraInceput\":\"" + oraInceput .toString()+ "\"," +
+                "\"oraSfarsit\":\"" + oraSfarsit.toString() + "\"," +
+                "\"idDisciplina\":" + Integer.toString(idDisciplina) + "," +
+                "\"idProf\":" + Integer.toString(idProf) + "," +
+                "\"sala\":" + Integer.toString(sala) + "," +
+                "\"tip\":\"" + tip + "\"," +
+                "\"grupa\":\"" + grupa + "\"}";
     }
 
-*/
     @Test
     public void testGetWhenEntryExists() throws Exception {
 
@@ -102,7 +107,6 @@ public class OrarControllerIT {
         when (orarServiceMock.getAll()).thenReturn(listTest);
 
         MvcResult result = mockMvc.perform(get("/v1/orar/crud/read").contentType(MediaType.APPLICATION_JSON) )
-               // .content("{\"userName\":\"testUserDetails\",\"firstName\":\"xxx\",\"lastName\":\"xxx\",\"password\":\"xxx\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[0].grupa", is("B4")))
@@ -180,13 +184,13 @@ public class OrarControllerIT {
         assertEquals(1, responseHeaders.size());
         assertEquals("Check for Content-Type header", "Content-Type", responseHeaders.iterator().next());
 
+        //should not contain the removed entity
         String responseAsString=mockResponse.getContentAsString();
-        /*responseAsString.contains(result)
+        String orarJson=createOrarInJson(orar.getId(),orar.getZi(),orar.getOraInceput()
+                ,orar.getOraSfarsit(),orar.getIdDisciplina(),orar.getIdProf(),orar.getSala(),orar.getTip(),orar.getGrupa());
 
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.
-        jsonObject.toJSONString();
-*/
+        assertFalse(responseAsString.contains(orarJson));
+
         verify(orarServiceMock, times(1)).getById(1L);
         verify(orarServiceMock, times(1)).delete(1L);
         verify(orarServiceMock, times(1)).getAll();
