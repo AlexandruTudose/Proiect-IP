@@ -57,7 +57,7 @@ public class CheckInGetAllDTOTest {
 
         CheckInGetAllDTO newCheckIn = builder.create();
 
-        assertEquals(newCheckIn.getId(),3);
+        assertEquals(newCheckIn.getId(), 3);
         assertEquals(newCheckIn.getSubject(), "Subject");
         assertEquals(newCheckIn.getClassType(), ClassType.Course);
         assertEquals(newCheckIn.getNumberOfCheckedInUsers(), 32);
