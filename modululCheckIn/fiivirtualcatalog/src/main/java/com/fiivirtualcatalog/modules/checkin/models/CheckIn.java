@@ -121,6 +121,14 @@ public class CheckIn {
         this.checkedInUsers = checkedInUsers;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public void addToCheckedInUsers(User user) {
         this.checkedInUsers.add(user);
         this.setNumberOfCheckedInUsers(this.getCheckedInUsers().size());
