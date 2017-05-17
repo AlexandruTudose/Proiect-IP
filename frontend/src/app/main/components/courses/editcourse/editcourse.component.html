@@ -1,0 +1,28 @@
+<modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Editare curs</h4>
+  </modal-header>
+  <modal-body>
+    <div style="height:240px;">
+      <div class="col-sm-12">
+        Id curs
+        <input type="text" class="form-control" [(ngModel)]="course.id"  value="{{course.id}}">
+      </div>
+      <div class="col-sm-12">
+        Denumire
+        <input type="text" class="form-control" [(ngModel)]="course.denumire" value="{{course.denumire}}">
+      </div>
+      <div class="col-sm-12">
+        An curs
+        <input type="text" class="form-control" [(ngModel)]="course.an_predare" value="{{course.an_predare}}">
+      </div>
+      <div class="col-sm-12">
+        Credite
+        <input type="text" class="form-control" [(ngModel)]="course.credite" *ngIf="!err" value="{{course.credite}}">
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-primary" (click)="addObject()">Salveaza</button>
+  </modal-footer>
+</modal>

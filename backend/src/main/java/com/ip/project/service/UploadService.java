@@ -1,0 +1,12 @@
+package com.ip.project.service;
+
+import org.springframework.web.multipart.MultipartFile;
+
+/**
+ * Created by Daniel on 5/16/2017.
+ */
+public interface UploadService {
+    String getFilePath(long memberId, String section);
+    boolean uploadFile(String filePath, String newFileName, MultipartFile uploadFile);
+    void deleteFile(String filePath, String newFileName);
+}

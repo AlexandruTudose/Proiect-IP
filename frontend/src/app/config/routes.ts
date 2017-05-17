@@ -4,10 +4,18 @@
 import {Routes, RouterModule}  from '@angular/router';
 
 import {StudentsComponent} from "../main/components/students/students.component";
+import {TeachersComponent} from "../main/components/teachers/teachers.component";
+import {CoursesComponent} from "../main/components/courses/courses.component";
+import {CoursedetailComponent} from "../main/components/courses/coursedetail/coursedetail.component";
+import {StudhomeworkComponent} from "../main/components/studhomework/studhomework.component";
 
 export const routes: Routes = [
+  {path: 'teachers', component: TeachersComponent},
   {path: 'students', component: StudentsComponent},
-  {path: '', redirectTo: '/students', pathMatch: 'full'}
+  {path: 'courses', component: CoursesComponent},
+  {path: 'courses/:id', component: CoursedetailComponent},
+  {path: 'homeworkstud', component: StudhomeworkComponent},
+  {path: '', redirectTo: '/courses', pathMatch: 'full'}
   // { path: '**', component: PageNotFoundComponent }
 ];
 

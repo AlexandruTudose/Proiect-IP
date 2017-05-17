@@ -11,7 +11,7 @@ export class MembersService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private search:URLSearchParams;
 
-  private getStudents = "/api/students";
+  private getStudents = "/api/students/";
 
   constructor(private http: Http) {
     this.http = http;
@@ -28,8 +28,8 @@ export class MembersService {
   }
 
 
-  getMember(link, id) {
-    return this.http.get(link + id)
+  getMember(id) {
+    return this.http.get(this.getStudents + id)
       // .map((response: Response) => <JsonObject>response.json());
       .map(res => <any>res.json());
   }

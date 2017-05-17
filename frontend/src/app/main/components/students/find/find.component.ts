@@ -33,7 +33,7 @@ export class FindComponent implements OnInit {
   }
 
   getstudent(url,id) {
-    this.memberService.getMember(url,id).subscribe(
+    this.memberService.getMember(id).subscribe(
       (succes) => {
         this.succes = true;
         this.errorfind = false;
@@ -47,7 +47,7 @@ export class FindComponent implements OnInit {
   }
 
   getstudentDetails(url,id) {
-    this.memberService.getMember(url,id).subscribe(
+    this.memberService.getMember(id).subscribe(
       (response) => {
         this.student = response;
         console.log(this.student);

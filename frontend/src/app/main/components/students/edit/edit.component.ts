@@ -28,7 +28,7 @@ export class EditComponent implements OnInit {
   }
 
   getCourse(url,id) {
-    this.memberService.getMember(url,id).subscribe((response) => {
+    this.memberService.getMember(id).subscribe((response) => {
       this.student = response;
     });
   }

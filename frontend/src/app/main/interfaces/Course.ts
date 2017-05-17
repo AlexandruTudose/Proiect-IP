@@ -3,6 +3,7 @@
  */
 export class Course {
   public id: number;
-  public name: string;
-  public year:string;
+  public denumire: string;
+  public an_predare: number;
+  public credite: number;
 }
