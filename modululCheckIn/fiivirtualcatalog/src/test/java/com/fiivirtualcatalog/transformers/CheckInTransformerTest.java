@@ -1,6 +1,7 @@
 package com.fiivirtualcatalog.transformers;
 
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetAllDTO;
+import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetByIdDTO;
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInPostDTO;
 import com.fiivirtualcatalog.modules.checkin.enums.ClassType;
 import com.fiivirtualcatalog.modules.checkin.models.CheckIn;
@@ -63,5 +64,45 @@ public class CheckInTransformerTest {
         assertEquals(checkInGetAllDTO.getClassType(), ClassType.Course);
         assertEquals(checkInGetAllDTO.getNumberOfCheckedInUsers(), checkIn.getNumberOfCheckedInUsers());
         assertEquals(checkInGetAllDTO.getFinishingFlag(), checkIn.getFinishingFlag());
+    }
+
+    @Test
+    public void forCallingToGetByIdDTOShouldReturnTheCheckInGetByIdDTOofCheckInObject(){
+        CheckIn checkIn = new CheckIn();
+        checkIn.setId(23);
+
+        java.sql.Date currentTimestamp = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        checkIn.setCreateDate(currentTimestamp);
+
+        User user = new User();
+        user.setName("Maria");
+        user.setRole("Profesor");
+        checkIn.setUser(user);
+        checkIn.setSubject("Subject");
+        checkIn.setClassType("Course");
+        checkIn.setNumberOfCheckedInUsers(33);
+        checkIn.setFinishingFlag(true);
+
+        List<User> list = new ArrayList<>();
+        User user1 = new User();
+        user1.setName("Ana");
+        user1.setRole("Student");
+        User user2 = new User();
+        user2.setName("Andrei");
+        user2.setRole("Student");
+        list.add(user1);
+        list.add(user2);
+
+        checkIn.setCheckedInUsers(list);
+
+        CheckInGetByIdDTO checkInGetByIdDTO = checkInTransformer.toGetByIdDTO(checkIn);
+
+        assertEquals(checkInGetByIdDTO.getId(), checkIn.getId());
+        assertEquals(checkInGetByIdDTO.getSubject(), checkIn.getSubject());
+        assertEquals(checkInGetByIdDTO.getClassType(), ClassType.Course);
+        assertEquals(checkInGetByIdDTO.getNumberOfCheckedInUsers(), checkIn.getNumberOfCheckedInUsers());
+        assertEquals(checkInGetByIdDTO.getFinishingFlag(), checkIn.getFinishingFlag());
+
+
     }
 }
