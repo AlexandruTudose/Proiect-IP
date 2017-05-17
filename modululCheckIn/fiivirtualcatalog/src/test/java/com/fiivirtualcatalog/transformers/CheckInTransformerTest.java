@@ -67,7 +67,7 @@ public class CheckInTransformerTest {
     }
 
     @Test
-    public void forCallingToGetByIdDTOShouldReturnTheCheckInGetByIdDTOofCheckInObject(){
+    public void forCallingToGetByIdDTOShouldReturnTheCheckInGetByIdDTOofCheckInObject() {
         CheckIn checkIn = new CheckIn();
         checkIn.setId(23);
 
@@ -102,7 +102,6 @@ public class CheckInTransformerTest {
         assertEquals(checkInGetByIdDTO.getClassType(), ClassType.Course);
         assertEquals(checkInGetByIdDTO.getNumberOfCheckedInUsers(), checkIn.getNumberOfCheckedInUsers());
         assertEquals(checkInGetByIdDTO.getFinishingFlag(), checkIn.getFinishingFlag());
-
 
     }
 }
