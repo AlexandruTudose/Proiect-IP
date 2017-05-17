@@ -1,0 +1,34 @@
+<div id="page-wrapper" class="gray-bg">
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <h2>Fii Virtual Catalog</h2>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Validate email</h5>
+          </div>
+          <div class="ibox-content">
+            <div id="todo-form" class="row">
+              <div class="col-sm-6 col-sm-offset-3 text-center" style="padding:0;">
+                <form name="todoForm" class="todoForm">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span *ngIf="err" class="err">Wrong email or code</span>
+                      <input type="text" [(ngModel)]="email" name="email" *ngIf="!err" value="{{email}}" class="form-control input-text" placeholder="Your email* ..."  autofocus required>
+                      <input type="text" [(ngModel)]="code" name="code" *ngIf="!err" value="{{code}}"  class="form-control input-text" placeholder="The confirmation code*..."  autofocus required>
+                    </div>
+                  </div>
+                  <div class="form-actions">
+                    <a routerLink="/login" ><button  (click)="validateEmail()" type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Validate</button></a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

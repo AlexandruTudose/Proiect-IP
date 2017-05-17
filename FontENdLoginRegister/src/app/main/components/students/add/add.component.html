@@ -1,0 +1,37 @@
+<modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Adaugare student</h4>
+  </modal-header>
+  <modal-body>
+    <div style="height:240px;">
+      <div class="col-sm-12">
+        Nr matricol <span *ngIf="err || errorlength" class="err">*Eroare adaugare nr matricol</span>
+        <input type="text" class="form-control" [(ngModel)]="student.nr_matricol" *ngIf="!err && !errorlength">
+        <input type="text" [(ngModel)]="student.nr_matricol" *ngIf="err || errorlength" class="has-error form-control" >
+      </div>
+      <div class="col-sm-12">
+        Nume <span *ngIf="err" class="err">*Eroare adaugare nume</span>
+        <input type="text" class="form-control" [(ngModel)]="student.nume" *ngIf="!err">
+        <input type="text" [(ngModel)]="student.nume" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        Prenume <span *ngIf="err" class="err">*Eroare adaugare prenume</span>
+        <input type="text" class="form-control" [(ngModel)]="student.prenume" *ngIf="!err">
+        <input type="text" [(ngModel)]="student.prenume" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        Grupa <span *ngIf="err" class="err">*Eroare adaugare grupa</span>
+        <input type="text" class="form-control" [(ngModel)]="student.grupa" *ngIf="!err">
+        <input type="text" [(ngModel)]="student.grupa" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        An <span *ngIf="err" class="err">*Eroare adaugare an</span>
+        <input type="text" class="form-control" [(ngModel)]="student.an" *ngIf="!err">
+        <input type="text" [(ngModel)]="student.an" *ngIf="err" class="has-error form-control">
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-primary" (click)="addObject()">Salveaza</button>
+  </modal-footer>
+</modal>
