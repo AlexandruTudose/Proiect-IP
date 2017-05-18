@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RegisterControllerTest" time="2.425" tests="2" errors="0" skipped="0" failures="1">
+  <properties>
+    <property name="idea.version" value="2016.3.6"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin"/>
+    <property name="java.vm.version" value="25.121-b13"/>
+    <property name="user.country.format" value="RO"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="idea.launcher.port" value="7535"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss"/>
+    <property name="java.runtime.version" value="1.8.0_121-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\Vladd\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 8.1"/>
+    <property name="classworlds.conf" value="C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.3.4\plugins\maven\lib\maven3\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1250"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\OJI\FP\bin\i386-Win32;C:\OJI\FP\bin\i386-Win32;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Users\Vladd\Desktop\FAC 2016\PLP\k\bin;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files (x86)\Skype\Phone\;C:\Windows\;C:\php7;C:\instantclient_12_2;C:\Program Files\Java\jdk1.8.0_121\bin;C:\Program Files\apache-maven-3.3.9\bin;C:\Users\Vladd\Desktop\FAC 2016\PLP\k\bin;C:\php7;C:\instantclient_12_2;C:\Program Files\Java\jdk1.8.0_121\bin;C:\Program Files\apache-maven-3.3.9\bin;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.3"/>
+    <property name="user.home" value="C:\Users\Vladd"/>
+    <property name="user.timezone" value="Europe/Athens"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="idea.launcher.bin.path" value="C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.3.4\bin"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="Vladd"/>
+    <property name="java.class.path" value="C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.3.4\plugins\maven\lib\maven3\boot\plexus-classworlds-2.5.2.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.3.4\lib\idea_rt.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_121\jre"/>
+    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=2016.3.6 test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="user.language.format" value="ro"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_121"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_121\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2016.3.4\plugins\maven\lib\maven3"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="testValidate" classname="RegisterControllerTest" time="2.268"/>
+  <testcase name="testRegister" classname="RegisterControllerTest" time="0.157">
+    <failure message="Status expected:&lt;200&gt; but was:&lt;415&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<200> but was:<415>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:54)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:81)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers$10.match(StatusResultMatchers.java:664)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:171)
+	at RegisterControllerTest.testRegister(RegisterControllerTest.java:117)
+]]></failure>
+    <system-out><![CDATA[20:19:12.858 [main] DEBUG org.springframework.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+20:19:12.858 [main] DEBUG org.springframework.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+20:19:12.858 [main] DEBUG org.springframework.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+20:19:12.858 [main] DEBUG org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Looking for request mappings in application context: org.springframework.test.web.servlet.setup.StubWebApplicationContext@36a5cabc
+20:19:12.858 [main] DEBUG org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - 2 request handler methods found on class com.fiivirtualcatalog.login.controllers.RegisterController: {public org.springframework.http.ResponseEntity com.fiivirtualcatalog.login.controllers.RegisterController.register(com.fiivirtualcatalog.login.models.User)={[/register],methods=[POST]}, public org.springframework.http.ResponseEntity com.fiivirtualcatalog.login.controllers.RegisterController.checkEmailCode(java.lang.String,java.lang.String)={[/register/validate],methods=[GET]}}
+20:19:12.858 [main] INFO org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Mapped "{[/register],methods=[POST]}" onto public org.springframework.http.ResponseEntity<java.lang.String> com.fiivirtualcatalog.login.controllers.RegisterController.register(com.fiivirtualcatalog.login.models.User)
+20:19:12.858 [main] INFO org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Mapped "{[/register/validate],methods=[GET]}" onto public org.springframework.http.ResponseEntity<java.lang.String> com.fiivirtualcatalog.login.controllers.RegisterController.checkEmailCode(java.lang.String,java.lang.String)
+20:19:12.874 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Found javax.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+20:19:12.874 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+20:19:12.874 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+20:19:12.874 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy22
+20:19:12.874 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+20:19:12.874 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+20:19:12.874 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+20:19:12.874 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+20:19:12.874 [main] INFO org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.test.web.servlet.setup.StubWebApplicationContext@36a5cabc
+20:19:12.889 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Looking for exception mappings: org.springframework.test.web.servlet.setup.StubWebApplicationContext@36a5cabc
+20:19:12.889 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Initializing servlet ''
+20:19:12.889 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+20:19:12.889 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment - Adding [servletContextInitParams] PropertySource with lowest search precedence
+20:19:12.889 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+20:19:12.889 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+20:19:12.889 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,systemProperties,systemEnvironment]
+20:19:12.889 [main] INFO org.springframework.mock.web.MockServletContext - Initializing Spring FrameworkServlet ''
+20:19:12.889 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - FrameworkServlet '': initialization started
+20:19:12.889 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Unable to locate MultipartResolver with name 'multipartResolver': no multipart request handling provided
+20:19:12.889 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Using LocaleResolver [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@6bc407fd]
+20:19:12.889 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Using ThemeResolver [org.springframework.web.servlet.theme.FixedThemeResolver@291f18]
+20:19:12.889 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Using RequestToViewNameTranslator [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@17d88132]
+20:19:12.889 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Using FlashMapManager [org.springframework.web.servlet.support.SessionFlashMapManager@5ddcc487]
+20:19:12.889 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Published WebApplicationContext of servlet '' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.]
+20:19:12.889 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet - FrameworkServlet '': initialization completed in 0 ms
+20:19:12.889 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Servlet '' configured successfully
+20:19:12.921 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - DispatcherServlet with name '' processing POST request for [/register]
+20:19:12.921 [main] DEBUG org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Looking up handler method for path /register
+20:19:12.936 [main] DEBUG org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder$StaticRequestMappingHandlerMapping - Returning handler method [public org.springframework.http.ResponseEntity<java.lang.String> com.fiivirtualcatalog.login.controllers.RegisterController.register(com.fiivirtualcatalog.login.models.User)]
+20:19:12.983 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - Failed to resolve argument 0 of type 'com.fiivirtualcatalog.login.models.User'
+org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/octet-stream' not supported
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:237)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:128)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:158)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:128)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:65)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:167)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:155)
+	at RegisterControllerTest.testRegister(RegisterControllerTest.java:111)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+20:19:12.983 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolving exception from handler [public org.springframework.http.ResponseEntity<java.lang.String> com.fiivirtualcatalog.login.controllers.RegisterController.register(com.fiivirtualcatalog.login.models.User)]: org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/octet-stream' not supported
+20:19:12.983 [main] DEBUG org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver - Resolving exception from handler [public org.springframework.http.ResponseEntity<java.lang.String> com.fiivirtualcatalog.login.controllers.RegisterController.register(com.fiivirtualcatalog.login.models.User)]: org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/octet-stream' not supported
+20:19:12.983 [main] DEBUG org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver - Resolving exception from handler [public org.springframework.http.ResponseEntity<java.lang.String> com.fiivirtualcatalog.login.controllers.RegisterController.register(com.fiivirtualcatalog.login.models.User)]: org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/octet-stream' not supported
+20:19:12.999 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Null ModelAndView returned to DispatcherServlet with name '': assuming HandlerAdapter completed request handling
+20:19:12.999 [main] DEBUG org.springframework.test.web.servlet.TestDispatcherServlet - Successfully completed request
+]]></system-out>
+  </testcase>
+</testsuite>

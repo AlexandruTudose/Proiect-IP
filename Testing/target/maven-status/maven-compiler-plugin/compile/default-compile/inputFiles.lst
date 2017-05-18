@@ -1,0 +1,16 @@
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\repositories\ConfirmEmailRepository.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\controllers\LoginController.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\services\ConfirmEmailService.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\services\UserServiceImpl.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\controllers\MossController.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\email\SmtpMailSender.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\models\User.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\services\ConfirmEmailServiceImpl.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\rsa\RSA.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\password\PasswordEncrypt.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\models\ConfirmEmail.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\FiiVirtualCatalogApplication.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\services\UserService.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\moss\Moss.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\repositories\UserRepository.java
+C:\Users\Vladd\Desktop\Proiect-IP-modulLoginRegister\LoginRegisterMoss\src\main\java\com\fiivirtualcatalog\login\controllers\RegisterController.java
