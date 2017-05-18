@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import {ModalComponent} from "ng2-bs3-modal/components/modal";
-import {MembersService} from "../../../services/members.service";
+import {MembersService} from '../../../services/members.service';
 @Component({
   selector: 'ip-validate',
   templateUrl: './validate.component.html',
