@@ -1,0 +1,98 @@
+.modal-dialo .form-horizontal {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10px;
+	position: relative;
+	padding-top: 1%;
+	margin-left: 25%;
+	width: 50%;
+}
+
+.card-container {
+	position: absolute;
+	width: 40% !important;
+	background-color: #F7F7F7;
+	margin-top: 1px;
+	margin-left: 20%;
+	border-radius: 2px;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+	position: fixed;
+	top: 20px;
+	left: 30%;
+	height: 450px;
+	width: 35%;
+}
+
+.modal .card-container {
+	width: 100% !important;
+	background-color: #F7F7F7;
+	margin-left: 0% !important;
+	border-radius: 2px;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+	position: relative;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+	padding-left: 5px;
+	padding-top: 5px;
+	margin-left: 1px;
+	margin-bottom: 15px;
+	height: 100%;
+	width: 100%;
+}
+
+.aCard .info {
+	position: relative;
+	margin-left: 28%;
+	width: 50%;
+	height: 50%;
+}
+
+.profile-img-card {
+	width: 70px;
+	margin-bottom: 5px;
+	height: 62px;
+	border-radius: 50%;
+	background: url("../images/avatar.png")
+}
+
+.checkin-img-card {
+	width: 70px;
+	margin-bottom: 5px;
+	height: 62px;
+	border-radius: 50%;
+	background: url("../images/checkIn.png")
+}
+
+.checkin-end-img-card {
+	width: 70px;
+	margin-bottom: 5px;
+	height: 62px;
+	border-radius: 50%;
+	background: url("../images/closed.png")
+}
+
+.pannel {
+	position: absolute;
+	width: 200px;
+	height: 500px;
+}
+
+.disabled {
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
+
+#checkInPresence {
+	position: relative;
+	top: 20px;
+	height: 500px;
+	background-color: #F7F7F7;
+	left: 30%;
+	width: 35%;
+}
