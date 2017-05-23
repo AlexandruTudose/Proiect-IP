@@ -13,7 +13,7 @@ public class UserTransformer{
 		User user = new User ();
 		user.setFirstName(object.getFirstName());
 		user.setLastName(object.getLastName());
-		user.setRole(User.Role.toEnum(object.getRole()));
+		user.setRole(object.getRole());
 		user.setPassword(object.getPassword());
 		user.setActive(object.isActive());
 		user.setEmail(object.getEmail());
@@ -23,7 +23,7 @@ public class UserTransformer{
 	public GetUserDTO toDTO(User object) {
 		return (new GetUserDTO(object.getFirstName(),
 				object.getLastName(),
-				object.getRole().toString(),
+				object.getRole(),
 				object.getActive(),
 				object.getId(),
 				object.getEmail()));

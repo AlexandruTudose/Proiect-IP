@@ -43,7 +43,7 @@ public class UserControllerTest {
     public void forANewUserWhenAddItShouldReturnCreatedHttpStatus() {
         PostUserDTO user = new PostUserDTO();
         user.setFirstName("Maria");
-        user.setRole("profesor");
+        user.setRole(User.Role.valueOf("profesor"));
         ResponseEntity responseEntity = userController.addUser(user);
 
         ResponseEntity actualResponse = new ResponseEntity(HttpStatus.CREATED);

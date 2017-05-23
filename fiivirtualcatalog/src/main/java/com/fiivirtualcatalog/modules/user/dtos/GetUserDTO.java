@@ -3,8 +3,9 @@ package com.fiivirtualcatalog.modules.user.dtos;
 import com.fiivirtualcatalog.modules.user.models.User;
 
 public class GetUserDTO {
+
 	private long id;
-	private String role;
+	private User.Role role;
     private String email;
     private String firstName;
     private String lastName;
@@ -53,7 +54,7 @@ public class GetUserDTO {
 		this.id = id;
 	}
 
-	public GetUserDTO(String firstName, String role, long id){
+	public GetUserDTO(String firstName, User.Role role, long id){
         this.firstName = firstName;
         this.role = role;
         this.id = id;
@@ -61,7 +62,7 @@ public class GetUserDTO {
 
 	public GetUserDTO(String firstName,
                       String lastName,
-                      String role,
+                      User.Role role,
                       boolean active,
                       long id,
                       String email) {
@@ -73,11 +74,11 @@ public class GetUserDTO {
 		this.email = email;
 	}
 
-	public String getRole() {
+	public User.Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(User.Role role) {
 		this.role = role;
 	}
 

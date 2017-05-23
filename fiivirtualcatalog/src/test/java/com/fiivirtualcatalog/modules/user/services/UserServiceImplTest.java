@@ -65,7 +65,7 @@ public class UserServiceImplTest {
         user.setRole(User.Role.student);
         userService.save(user);
 
-        User newUser = userService.getById((long) 1);
+        User newUser = userService.findById((long) 1);
 
         assertEquals(user.getId(), newUser.getId());
         assertEquals(user.getFirstName(), newUser.getFirstName());
@@ -73,22 +73,23 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void forAnIdShouldDeleteTheUser() {
+    public void forAnEmailShouldDeleteTheUser() {
         User user1 = new User();
         user1.setId(1);
         user1.setFirstName("Ana");
         user1.setRole(User.Role.profesor);
+        user1.setEmail("user1@user1.com");
 
         User user2 = new User();
         user2.setId(2);
         user2.setFirstName("Marius");
         user2.setRole(User.Role.student);
+        user2.setEmail("user2@user2.com");
 
         userService.save(user1);
         userService.save(user2);
 
-        userService.delete((long) 1);
-
+        userService.delete("user2@user2.com");
         assertTrue(true);
     }
 }

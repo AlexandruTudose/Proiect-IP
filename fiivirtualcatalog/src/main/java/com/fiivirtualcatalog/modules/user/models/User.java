@@ -6,65 +6,33 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "users")
-public class User implements Serializable{
+@Table(name = "user")
+public class User implements Serializable {
 
-    public enum Role{
-        student,profesor,admin;
-
-        public static Role toEnum(String classType){
-            switch(classType.toLowerCase()){
-                case "student": return Role.student;
-                case "profesor": return Role.profesor;
-                case "admin": return Role.admin;
-                default: throw new IllegalArgumentException("Invalid user type");
-            }
-        }
-
-        @Override
-        public String toString(){
-            if(this == student){
-                return "student";
-            }
-            if(this == profesor){
-                return "profesor";
-            }
-            return "admin";
-        }
-    };
+    public enum Role{student,profesor,admin} ;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
-
     @Column(name = "email")
     @NotEmpty(message = "*Please provide an email")
     private String email;
-
-    @NotNull
     @Column(name = "password")
-    @Length(min = 5, max = 1000, message = "*Your password must have at least 5 characters")
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
     private String password;
-
     @Column(name = "first_name")
-    @NotEmpty(message = "*Please provide your first name")
-    private String firstName;
-
+    @NotEmpty(message = "*Please provide your name")
+    private String name;
     @Column(name = "last_name")
     @NotEmpty(message = "*Please provide your last name")
     private String lastName;
-
-    @NotNull
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
-
     @Column(name = "active")
     private boolean active;
 
@@ -93,11 +61,11 @@ public class User implements Serializable{
     }
 
     public String getFirstName() {
-        return firstName;
+        return name;
     }
 
     public void setFirstName(String name) {
-        this.firstName = name;
+        this.name = name;
     }
 
     public String getLastName() {

@@ -22,7 +22,7 @@ public class UserTransformerTest {
     public void whenICallToModelShouldReceiveAUserWithSameCharacteristics() {
         PostUserDTO postUserDTO = new PostUserDTO();
         postUserDTO.setFirstName("Name");
-        postUserDTO.setRole("student");
+        postUserDTO.setRole(User.Role.valueOf("student"));
         User user = userTransformer.toModel(postUserDTO);
         assertEquals(user.getFirstName(), postUserDTO.getFirstName());
         assertEquals(user.getRole(), postUserDTO.getRole());

@@ -1,5 +1,6 @@
 package com.fiivirtualcatalog.modules.user.dtos;
 
+import com.fiivirtualcatalog.modules.user.models.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,9 +16,9 @@ public class PostUserDTOTest {
 
     @Test
     public void forANewInitializedUserShouldBeTheSame() {
-        PostUserDTO newUserDTO = new PostUserDTO("nume nou", "student");
+        PostUserDTO newUserDTO = new PostUserDTO("nume nou", User.Role.valueOf("student"));
         userDTO.setFirstName("nume nou");
-        userDTO.setRole("student");
+        userDTO.setRole(User.Role.valueOf("student"));
         assertEquals(userDTO.getFirstName(), newUserDTO.getFirstName());
         assertEquals(userDTO.getRole(), newUserDTO.getRole());
         assertEquals(userDTO.getClass(), newUserDTO.getClass());

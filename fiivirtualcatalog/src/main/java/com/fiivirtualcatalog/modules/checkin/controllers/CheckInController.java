@@ -60,7 +60,7 @@ public class CheckInController {
         if (checkIn.getFinishingFlag()) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
-        checkIn.removeFromCheckedInUsers(userService.getById(userId));
+        checkIn.removeFromCheckedInUsers(userService.findById(userId));
         this.checkInService.save(checkIn);
         return new ResponseEntity(HttpStatus.CREATED);
     }
@@ -71,7 +71,7 @@ public class CheckInController {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
         CheckIn checkIn = transformer.toModel(checkInPost);
-        User user = userService.getById(checkInPost.getUserId());
+        User user = userService.findById(checkInPost.getUserId());
         checkIn.setUser(user);
         this.checkInService.save(checkIn);
         return new ResponseEntity(HttpStatus.CREATED);
@@ -87,16 +87,15 @@ public class CheckInController {
         if (searchCheckIn.getFinishingFlag()) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
-        try {
-            userService.existsUser(userId);
-        } catch (IllegalArgumentException e) {
+
+        if (userService.findById(userId) == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        if (searchCheckIn.getCheckedInUsers().contains(userService.getById(userId))) {
+        if (searchCheckIn.getCheckedInUsers().contains(userService.findById(userId))) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
 
-        searchCheckIn.addToCheckedInUsers(userService.getById(userId));
+        searchCheckIn.addToCheckedInUsers(userService.findById(userId));
         this.checkInService.save(searchCheckIn);
         return new ResponseEntity(HttpStatus.CREATED);
     }

@@ -29,7 +29,7 @@ public class Moss {
 
         SocketClient socketClient = new SocketClient();
 
-        //User_martinas Id-ul meu
+        //User Id-ul meu
         socketClient.setUserID("70543835");
         //socketClient.setOpt...
 
