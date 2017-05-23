@@ -1,77 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
-import { UtilizatoriComponent } from './admin/utilizatori/utilizatori.component';
-import { AdminiComponent } from './admin/admini/admini.component';
-import { OrarComponent } from './orar/orar.component';
-import { CheckInsComponent } from './admin/check-ins/check-ins.component';
-import { CereriInregistrareComponent } from './admin/cereri-inregistrare/cereri-inregistrare.component';
-import { CereriModificareOrarComponent } from './admin/cereri-modificare-orar/cereri-modificare-orar.component';
-import { AfisComponent } from './orar/afis/afis.component';
-import { AdminOrarComponent } from './admin/admin-orar/admin-orar.component';
+import { SidebarComponent } from './common/components/sidebar/sidebar.component';
+
+import {MembersService} from "./main/services/members.service";
+import { KeysPipe } from './main/pipes/keys.pipe';
+import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { ConfirmationComponent } from './common/components/form/confirmation/confirmation.component';
+import { routing, appRoutingProviders } from './config/routes';
+import {AdminUsersComponent} from "./main/components/admin/admin-users/admin-users.component";
+import {AdminOrarComponent} from "./main/components/admin/admin-orar/admin-orar.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
-    UtilizatoriComponent,
-    AdminiComponent,
-    OrarComponent,
-    CheckInsComponent,
-    CereriInregistrareComponent,
-    CereriModificareOrarComponent,
-    AfisComponent,
-    AdminOrarComponent,
+    SidebarComponent,
+    KeysPipe,
+    ConfirmationComponent,
+    AdminUsersComponent,
+    AdminOrarComponent
   ],
   imports: [
+    Ng2Bs3ModalModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
-      {
-        path: 'admin',
-        component: AdminComponent
-      },
-      {
-        path: 'admin/users',
-        component: UtilizatoriComponent
-      },
-      {
-        path: 'admin/admins',
-        component: AdminiComponent
-      },
-      {
-        path: 'admin/orar',
-        component: AdminOrarComponent
-      },
-      {
-        path: 'admin/check-ins',
-        component: CheckInsComponent
-      },
-      {
-        path: 'admin/register-request',
-        component: CereriInregistrareComponent
-      },
-      {
-        path: 'admin/schedule-request',
-        component: CereriModificareOrarComponent
-      },
-      {
-        path: 'orar',
-        component: OrarComponent
-      },
-      {
-        path: 'orar/afis',
-        component: AfisComponent
-      }
-    ])
+    ReactiveFormsModule,
+    routing
   ],
-  providers: [],
+  providers: [
+    MembersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

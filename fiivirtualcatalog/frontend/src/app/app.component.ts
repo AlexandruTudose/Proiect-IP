@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ip-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Fii Virtual Catalog';
+  constructor() {}
+
+  ngOnInit() {
+  }
+
 }
