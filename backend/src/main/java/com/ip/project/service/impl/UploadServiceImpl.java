@@ -22,7 +22,7 @@ public class UploadServiceImpl implements UploadService{
     private String clientsUploadFolderSep;
 
     @Override
-    public boolean uploadFile(String filePath, String newFileName, MultipartFile uploadFile) {
+    public boolean uploadFile(String newFileName, MultipartFile uploadFile) {
         return transferFile(clientsUploadFolder + clientsUploadFolderSep + newFileName, uploadFile);
     }
 

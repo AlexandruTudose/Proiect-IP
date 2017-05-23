@@ -11,6 +11,7 @@
   border-left:5px white solid;
   padding-top: 60px;
   color: black;
+  font-size: 0.8em;
 }
 
 .boxes-blue {
@@ -22,6 +23,7 @@
   border-left:5px white solid;
   padding-top: 60px;
   color:white;
+  font-size: 0.8em;
 }
 
 .icon-box-orange {
@@ -32,7 +34,7 @@
   border-width: 6px;
   border-style: solid;
   top: -40px;
-  font-size: 30px;
+  font-size: 2em;
   line-height: 80px;
   display: block;
   position: absolute;
@@ -49,7 +51,7 @@
   border-width: 6px;
   border-style: solid;
   top: -40px;
-  font-size: 30px;
+  font-size: 2em;
   line-height: 80px;
   display: block;
   position: absolute;

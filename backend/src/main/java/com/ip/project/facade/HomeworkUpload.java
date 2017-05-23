@@ -7,8 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface HomeworkUpload {
 
-    //boolean uploadProductImg(int id, MultipartFile[] uploadingFiles);
-
-    boolean uploadHomework(int id, MultipartFile[] uploadingFiles);
+    boolean uploadHomework(int id_stud, MultipartFile uploadingFile);
     //void deleteProductImg(int id);
 }

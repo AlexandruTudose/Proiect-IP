@@ -46,8 +46,9 @@ export class StudhomeworkComponent implements OnInit {
   }
 
 
+
   getHomeworks() {
-    this.homeworksService.getList().subscribe((response) => {
+    this.homeworksService.getList(1).subscribe((response) => {
       this.homeworks = response.content;
       this.getCourses();
       this.getStudent();
@@ -60,11 +61,14 @@ export class StudhomeworkComponent implements OnInit {
         (response) => {
           this.succes = true;
           this.homeworks[i].studentName = response.nume + ' ' + response.prenume;
-          this.homeworks[i].mark = Math.floor(Math.random() * 10) + 1;
+        });
+      this.homeworksService.getMark(this.homeworks[i].id_nota).subscribe(
+        (response) => {
+          this.succes = true;
+          this.homeworks[i].mark = response.valoare;
         }
       );
     }
-    console.log(this.homeworks);
   }
 
   getCourses() {

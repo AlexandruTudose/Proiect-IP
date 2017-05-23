@@ -35,6 +35,8 @@ import { StudhomeworkComponent } from './main/components/studhomework/studhomewo
 import {HomeworksService} from "./main/services/homeworks.service";
 import {UploadService} from "./main/services/UploadService";
 import { NewhomeworkComponent } from './main/components/studhomework/newhomework/newhomework.component';
+import { TeacherhomeworkComponent } from './main/components/teacherhomework/teacherhomework.component';
+import { AddmarkComponent } from './main/components/teacherhomework/addmark/addmark.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { NewhomeworkComponent } from './main/components/studhomework/newhomework
     CourseprojectsComponent,
     CoursegradesComponent,
     StudhomeworkComponent,
-    NewhomeworkComponent
+    NewhomeworkComponent,
+    TeacherhomeworkComponent,
+    AddmarkComponent
 
   ],
   imports: [

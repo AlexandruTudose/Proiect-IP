@@ -17,7 +17,8 @@ public interface HomeworkService {
     void updateHomework(Integer id, Homework homework);
     void deleteHomework(Integer id);
 
-    int getLastHomeworkId(int id);
-    void addHomework(HomeworkDTO homeworkDTO);
-    //Page<HomeworkDTO> getHomeworksByStudent(Integer id_stud, Pageable pageable);
+    int getLastHomeworkId();
+    Page<HomeworkDTO> getHomeworksForStudent(Integer id_stud, Pageable pageable);
+    Page<HomeworkDTO> getHomeworksForTeacher(Integer id_prof, Pageable pageable);
+
 }

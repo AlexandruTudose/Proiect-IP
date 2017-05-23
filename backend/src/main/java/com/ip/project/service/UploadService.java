@@ -7,6 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface UploadService {
     String getFilePath(long memberId, String section);
-    boolean uploadFile(String filePath, String newFileName, MultipartFile uploadFile);
+    boolean uploadFile(String newFileName, MultipartFile uploadFile);
     void deleteFile(String filePath, String newFileName);
 }

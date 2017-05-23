@@ -1,6 +1,7 @@
 package com.ip.project.service.impl;
 
 import com.ip.project.DTO.HomeworkDTO;
+import com.ip.project.DTO.MarkDTO;
 import com.ip.project.DTO.transfromer.HomeworkTransformer;
 import com.ip.project.model.Homework;
 import com.ip.project.model.Mark;
@@ -25,10 +26,10 @@ public class HomeworkServiceImpl implements HomeworkService{
     private HomeworkRepository homeworkRepository;
 
     @Autowired
-    private MarkRepository markRepository;
+    private HomeworkTransformer homeworkTransformer;
 
     @Autowired
-    private HomeworkTransformer homeworkTransformer;
+    private MarkRepository markRepository;
 
     //TRANSFORM PAGE(HOMEWORK) TO PAGE(HOMEWORK DTO)
     private Page<HomeworkDTO> convertToDTO(Page<Homework> pageable) {
@@ -59,18 +60,14 @@ public class HomeworkServiceImpl implements HomeworkService{
     //CREATE HOMEWORK
     @Override
     public void createHomework(HomeworkDTO homeworkDTO) {
-        System.out.println(homeworkDTO.getTip_tema());
+
+        homeworkDTO.setFisier(null);
         homeworkDTO.setId_nota(homeworkRepository.getMaxIdMark() + 1);
         homeworkRepository.save(homeworkTransformer.toModel(homeworkDTO));
-//        Mark mark = new Mark();
-//        mark.setId(homeworkRepository.getMaxIdMark() + 1);
-//        markRepository.save(mark);
-    }
 
-    @Override
-    public void addHomework(HomeworkDTO homeworkDTO) {
-        System.out.println(homeworkTransformer.toModel(homeworkDTO));
-        homeworkRepository.save(homeworkTransformer.toModel(homeworkDTO));
+        Mark mark = new Mark();
+        mark.setId(homeworkRepository.getMaxIdMark() + 1);
+        markRepository.save(mark);
     }
 
     //UPDATE HOMEWORK
@@ -93,23 +90,18 @@ public class HomeworkServiceImpl implements HomeworkService{
     }
 
     @Override
-    public int getLastHomeworkId(int id) {
-        return homeworkRepository.getMaxId(id);
+    public int getLastHomeworkId() {
+        return homeworkRepository.getMaxId();
     }
 
+    @Override
+    public Page<HomeworkDTO> getHomeworksForStudent(Integer id_stud, Pageable pageable) {
+        return convertToDTO(homeworkRepository.getHomeworksByStudent(id_stud, pageable));
+    }
 
-
-//    @Override
-//    public Page<HomeworkDTO> getHomeworksByStudent(Integer id_stud, Pageable pageable) {
-//
-//        if (homeworkRepository.findByIdStudent(id_stud, pageable) != null) {
-//            return convertToDTO(homeworkRepository.findByIdStudent(id_stud, pageable));
-//        }
-//        else {
-//            throw new RuntimeException(" Tema cu id-ul "+ id +" nu exista in baza de date ");
-//        }
-//        //return convertToDTO(homeworkRepository.findAll(pageable));
-//    }
-
+    @Override
+    public Page<HomeworkDTO> getHomeworksForTeacher(Integer id_prof, Pageable pageable) {
+        return convertToDTO(homeworkRepository.getHomeworksByTeacher(id_prof, pageable));
+    }
 
 }

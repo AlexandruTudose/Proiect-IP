@@ -45,10 +45,9 @@ export class NewhomeworkComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getStudents();
+
     this.getCourses();
-    this.homework.id_student = 1;
-    this.homework.id_curs = -1;
+    this.homework.id_student = this.id;
     this.buildForm();
   }
 
@@ -144,11 +143,6 @@ export class NewhomeworkComponent implements OnInit {
 
   handleInputChange(e) {
     this.filesUploaded = e.target.files;
-    // var pattern = /image-*/;
-    // var reader = new FileReader();
-    // if (!file.type.match(pattern)) {
-    //   return;
-    // }
     let reader;
     for (let file of this.filesUploaded) {
       reader = new FileReader();
@@ -169,7 +163,8 @@ export class NewhomeworkComponent implements OnInit {
       data => {
         this.uploadStarted = false;
         this.uploadFinished = true;
-        this.location.back();
+        this.modalAddMember.close();
+        this.pageChanged.emit(true);
       },
       error => console.log(error)
     );
@@ -177,7 +172,7 @@ export class NewhomeworkComponent implements OnInit {
     this.uploadService.progress.subscribe((res) => {
       this.progressStatus.nativeElement.style.width = res + "%";
       this.progressText.nativeElement.innerHTML = res + "%";
-    })
+    });
   }
 
 }

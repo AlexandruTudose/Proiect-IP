@@ -52,13 +52,21 @@ public class HomeworkController {
         homeworkService.deleteHomework(id);
     }
 
-    @RequestMapping(value = "/homeworks/upload", method = RequestMethod.POST)
-    public void addHomework(@RequestBody HomeworkDTO homeworkDTO) {
-        homeworkService.addHomework(homeworkDTO);
+
+    @RequestMapping(value = "/homeworks/{id_stud}/upload", method=RequestMethod.POST)
+    public boolean uploadHomeworkZip(@PathVariable("id_stud") int id_stud, @RequestParam("files") MultipartFile uploadingFile) {
+        return homeworkUpload.uploadHomework(id_stud, uploadingFile);
     }
 
-    @RequestMapping(value = "/homeworks/{id}/upload", method=RequestMethod.POST)
-    public boolean uploadCatalogProductImg(@PathVariable("id") int id, @RequestParam("files") MultipartFile[] uploadingFiles) {
-        return homeworkUpload.uploadHomework(id, uploadingFiles);
+    @RequestMapping(value = "/homeworks/student/{id}", method = RequestMethod.GET)
+    public Page<HomeworkDTO> getHomeworksForStudent(@PathVariable("id") Integer id_stud, Pageable pageable) {
+        return homeworkService.getHomeworksForStudent(id_stud,pageable);
     }
+
+    @RequestMapping(value = "/homeworks/teacher/{id}", method = RequestMethod.GET)
+    public Page<HomeworkDTO> getHomeworksForTeacher(@PathVariable("id") Integer id_prof, Pageable pageable) {
+        return homeworkService.getHomeworksForTeacher(id_prof,pageable);
+    }
+
+
 }
