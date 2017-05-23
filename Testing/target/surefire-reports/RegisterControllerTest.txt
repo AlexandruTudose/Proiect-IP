@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: RegisterControllerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.425 sec <<< FAILURE! - in RegisterControllerTest
+testRegister(RegisterControllerTest)  Time elapsed: 0.157 sec  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<415>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:54)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:81)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers$10.match(StatusResultMatchers.java:664)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:171)
+	at RegisterControllerTest.testRegister(RegisterControllerTest.java:117)
+

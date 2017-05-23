@@ -1,0 +1,42 @@
+<div id="page-wrapper" class="gray-bg">
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <h2>Fii Virtual Catalog</h2>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Register</h5>
+          </div>
+          <div class="ibox-content">
+            <div id="todo-form" class="row">
+              <div class="col-sm-6 col-sm-offset-3 text-center" style="padding:0;">
+                <form name="todoForm" class="todoForm">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text"  [(ngModel)]="user.name" name="user.name" value="{{user.name}}" class="form-control input-text" placeholder="First Name* ..."  autofocus required>
+                      <input type="text"  [(ngModel)]="user.lastName" name="user.lastName" value="{{user.lastName}}" class="form-control input-text" placeholder="Last Name* ..."  autofocus required>
+                      <input type="text"  [(ngModel)]="user.email" name="user.email" value="{{user.email}}" class="form-control input-text" placeholder="Email* ..."  autofocus required>
+                      <select  class="form-control" [(ngModel)]="user.role" name="user.role" value="{{user.role}}" id="sel1">
+                        <option value="student">Student</option>
+                        <option value="admin" >Admin</option>
+                        <option value="profesor" >Professor</option>
+                      </select>
+                      <input type="password"  [(ngModel)]="user.password" name="user.password" value="{{user.password}}" class="form-control input-text" placeholder="Password*..."autofocus required>
+                      <input type="password" class="form-control input-text" placeholder="Confirm Password*..."autofocus required>
+                    </div>
+                    <div class="form-actions">
+                      <button (click)="registerUser()" type="submit"  ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Create account</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

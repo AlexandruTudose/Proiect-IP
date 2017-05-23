@@ -1,0 +1,36 @@
+<div id="page-wrapper" class="gray-bg">
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <h2>Fii Virtual Catalog</h2>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Login</h5>
+          </div>
+          <div class="ibox-content">
+            <div id="todo-form" class="row">
+              <div class="col-sm-6 col-sm-offset-3 text-center" style="padding:0;">
+                <form name="todoForm" class="todoForm">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span *ngIf="err" class="err">Wrong username or password</span>
+                      <input type="text" [(ngModel)]="userLog.email" name="userLog.email" *ngIf="!err" value="{{userLog.email}}" class="form-control input-text" placeholder="Email* ..."  autofocus required>
+                      <input type="password" [(ngModel)]="userLog.password" name="userLog.password" *ngIf="!err" value="{{userLog.password}}"  class="form-control input-text" placeholder="Password*..."  autofocus required>
+                    </div>
+                  </div>
+                  <div class="form-actions">
+                    <a routerLink="/register"><button  (click)="loginUser()" type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Login</button></a>
+                  </div>
+                  <a routerLink="/login/reset"><button  type="button"  class="btn btn-info btn-sm">Reset password</button></a>
+                </form>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
