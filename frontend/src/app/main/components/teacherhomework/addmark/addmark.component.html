@@ -1,0 +1,21 @@
+<modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Adauga nota</h4>
+  </modal-header>
+  <modal-body>
+    <div style="height:190px;">
+        <div class="col-sm-12">
+          <label>Valoare</label>
+          <input type="text" class="form-control" [(ngModel)]="mark.valoare" value="{{mark.valoare}}">
+        </div>
+        <div class="col-sm-12">
+          <label>Data notare(yyyy-mm-dd)</label>
+          <input type="text" class="form-control" [(ngModel)]="mark.data_notare" value="{{mark.data_notare}}">
+        </div>
+
+          <div class="col-sm-12 text-center">
+            <button type="button" class="btn btn-primary" (click)="updateMark()">ADAUGA NOTA</button>
+          </div>
+    </div>
+  </modal-body>
+</modal>
