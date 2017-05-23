@@ -1,0 +1,33 @@
+06.05.2017
+--------------------------------------------------
+Ce a fost bine? 
+-Mai multa implicare
+-Mai putin stres
+-Am finalizat PBI-urile din iteratia precedenta
+-Mobilizare buna->impartire de task-uri destul de buna
+-Am prins ideea!
+-Angular-ul e frumos
+-Au inceput sa mearga lucrurile 
+--------------------------------------------------
+Ce a fost rau?
+-Inca nu se stapaneste git-ul
+-Baza de date remote nu ne lasa sa ne conectam
+-Nu stim sa integram Spring de Angular(angular 4)
+-git conflicts
+-baza de date online
+--------------------------------------------------
+Ce poate fi îmbunătățit? 
+-Lucrul cu Git
+-Impartirea de taskuri
+-Baza de date online
+-comunicarea cu restul grupei
+-cunostintele legate de spring si angular
+--------------------------------------------------
+Starea fiecăruia in iteratie: sad, happy, neutral, etc.
+-Ovidiu : :)
+-Alexandru Dochitoiu: :(
+-Eduard Clatinici: :)
+-Robert: :)
+-Andrei Daneliuc: :)
+-Andrei Rusu: :)
+
