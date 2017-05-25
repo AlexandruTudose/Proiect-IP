@@ -59,7 +59,7 @@ public class LoginController {
         else
         if(!bCryptPasswordEncoder.matches(password,userExists.getPassword())){
             System.out.println("Wrong password");
-            return new ResponseEntity<String>("Wrong password", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Wrong email/password", HttpStatus.NOT_FOUND);
         }
         else
         if(!userExists.getActive()) {
@@ -68,7 +68,7 @@ public class LoginController {
         }
         else {
             System.out.println("Logged in");
-            return new ResponseEntity<String>("Logged in", HttpStatus.OK);
+            return new ResponseEntity<String>(Integer.toString((int) userExists.getId()), HttpStatus.OK);
         }
     }
 
