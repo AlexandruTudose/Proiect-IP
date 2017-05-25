@@ -1,0 +1,8 @@
+<div style="background-color: white !important;">
+  <ul class="nav nav-tabs">
+    <li *ngFor="let tab of tabs; let i = index" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+      <a  (click)="tabSelected(tab.tabid,tab.taburl)">{{tab.name}} </a>
+    </li>
+  </ul>
+</div>
+

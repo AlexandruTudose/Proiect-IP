@@ -1,0 +1,27 @@
+<ip-sidebar></ip-sidebar>
+<modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Cauta profesor</h4>
+  </modal-header>
+  <modal-body>
+    <div style="height:240px;">
+      Cautarea se face dupa id-ul profesorului <br/><br/>
+      <div class="col-sm-12">
+        Id profesor <span *ngIf="errorfind" class="err">*Nu exista un profesor cu acest id.</span>
+        <input type="text" class="form-control" [(ngModel)]="searchteacher" *ngIf="!err">
+      </div>
+      <br/><br/>
+      <div class="col-sm-12" *ngIf="succes">
+        Nume profesor
+        <input type="text" class="form-control"  value="{{teacher.nume}} {{teacher.prenume}}" [disabled]="true">
+      </div>
+      <div class="col-sm-12" *ngIf="succes">
+        Id curs
+        <input type="text" class="form-control" value="{{teacher.id_curs}}" [disabled]="true">
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-primary" (click)="addObject()">Salveaza</button>
+  </modal-footer>
+</modal>

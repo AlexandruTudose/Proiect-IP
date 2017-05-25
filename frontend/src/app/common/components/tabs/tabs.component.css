@@ -1,0 +1,23 @@
+ul li.active a{
+  background-color: #F79835 !important;
+}
+
+ul li a {
+  color: white;
+  background-color: #4b4b4d;
+}
+
+ul li a:hover {
+  background-color: #e6e7e8;
+  color: #4b4b4d;
+}
+
+.nav > li.active {
+  border:none;
+  background: #293846;
+}
+
+
+.nav-tabs > li > a {
+  border-radius: 0;
+}

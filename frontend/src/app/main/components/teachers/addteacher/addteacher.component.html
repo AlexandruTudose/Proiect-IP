@@ -1,0 +1,28 @@
+<ip-sidebar></ip-sidebar>
+<modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Adaugare profesor</h4>
+  </modal-header>
+  <modal-body>
+    <div style="height:170px;">
+      <div class="col-sm-12">
+        Id curs <span *ngIf="err" class="err">*Eroare adaugare id curs</span>
+        <input type="text" class="form-control" [(ngModel)]="teacher.id_curs" *ngIf="!err">
+        <input type="text" [(ngModel)]="teacher.id_curs" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        Nume <span *ngIf="err" class="err">*Eroare adaugare nume</span>
+        <input type="text" class="form-control" [(ngModel)]="teacher.nume" *ngIf="!err">
+        <input type="text" [(ngModel)]="teacher.nume" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        Prenume <span *ngIf="err" class="err">*Eroare adaugare prenume</span>
+        <input type="text" class="form-control" [(ngModel)]="teacher.prenume" *ngIf="!err">
+        <input type="text" [(ngModel)]="teacher.prenume" *ngIf="err" class="has-error form-control">
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-primary" (click)="addObject()">Salveaza</button>
+  </modal-footer>
+</modal>

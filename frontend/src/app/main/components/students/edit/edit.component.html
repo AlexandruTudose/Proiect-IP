@@ -1,0 +1,33 @@
+<ip-sidebar></ip-sidebar>
+<modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Editare student</h4>
+  </modal-header>
+  <modal-body>
+    <div style="height:240px;">
+      <div class="col-sm-12">
+        Nr matricol
+        <input type="text" class="form-control" [(ngModel)]="student.nr_matricol" *ngIf="!err" value="{{student.nr_matricol}}">
+      </div>
+      <div class="col-sm-12">
+        Nume
+        <input type="text" class="form-control" [(ngModel)]="student.nume" *ngIf="!err" value="{{student.nume}}">
+      </div>
+      <div class="col-sm-12">
+        Prenume
+        <input type="text" class="form-control" [(ngModel)]="student.prenume" *ngIf="!err" value="{{student.prenume}}">
+      </div>
+      <div class="col-sm-12">
+        Grupa
+        <input type="text" class="form-control" [(ngModel)]="student.grupa" *ngIf="!err" value="{{student.grupa}}">
+      </div>
+      <div class="col-sm-12">
+        Prenume
+        <input type="text" class="form-control" [(ngModel)]="student.an" *ngIf="!err" value="{{student.an}}">
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-primary" (click)="addObject()">Salveaza</button>
+  </modal-footer>
+</modal>
