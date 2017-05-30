@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(String email) {
-        userRepository.delete(userRepository.findByEmail(email));
+    public void delete(Long id) {
+        userRepository.delete(userRepository.findById(id));
     }
 
     @Override
@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        System.out.println(user.getPassword());
         return userRepository.save(user);
     }
 

@@ -26,7 +26,7 @@ public class User implements Serializable {
     private String password;
     @Column(name = "first_name")
     @NotEmpty(message = "*Please provide your name")
-    private String name;
+    private String firstName;
     @Column(name = "last_name")
     @NotEmpty(message = "*Please provide your last name")
     private String lastName;
@@ -35,6 +35,8 @@ public class User implements Serializable {
     private Role role;
     @Column(name = "active")
     private boolean active;
+    @Column(name = "validated")
+    private boolean validated;
 
     public long getId() {
         return id;
@@ -61,11 +63,11 @@ public class User implements Serializable {
     }
 
     public String getFirstName() {
-        return name;
+        return firstName;
     }
 
-    public void setFirstName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -84,7 +86,7 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
@@ -92,4 +94,11 @@ public class User implements Serializable {
         this.active = active;
     }
 
+    public boolean isValidated() {
+        return validated;
+    }
+
+    public void setValidated(boolean validated) {
+        this.validated = validated;
+    }
 }

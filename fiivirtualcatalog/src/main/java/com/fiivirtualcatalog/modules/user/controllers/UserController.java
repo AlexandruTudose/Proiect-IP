@@ -52,9 +52,34 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value="{id}",method = RequestMethod.POST)
+    public ResponseEntity<String> activateUser(@PathVariable("id") Long id) {
+        User userExist = service.findById(id);
+        if (userExist==null) {
+            return new ResponseEntity<String>("No user found",HttpStatus.NO_CONTENT);
+        }
+        else
+        {
+            userExist.setActive(true);
+            service.update(userExist);
+            return new ResponseEntity<String>("User activated", HttpStatus.OK);
+        }
+    }
+
 	@RequestMapping(method = RequestMethod.POST)
     public ResponseEntity addUser(@RequestBody PostUserDTO user) {
         this.service.save(transformer.toModel(user));
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteUser(@RequestParam Long id) {
+        User userExist = service.findById(id);
+        if(userExist==null)
+            return new ResponseEntity<String>("No user found",HttpStatus.NOT_FOUND);
+        else {
+            service.delete(id);
+            return new ResponseEntity<String>("User deleted",HttpStatus.OK);
+        }
     }
 }

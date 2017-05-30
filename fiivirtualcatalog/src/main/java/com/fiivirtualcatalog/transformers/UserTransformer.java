@@ -24,7 +24,7 @@ public class UserTransformer{
 		return (new GetUserDTO(object.getFirstName(),
 				object.getLastName(),
 				object.getRole(),
-				object.getActive(),
+				object.isActive(),
 				object.getId(),
 				object.getEmail()));
 	}

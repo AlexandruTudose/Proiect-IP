@@ -58,13 +58,11 @@ public class LoginController {
         }
         else
         if(!bCryptPasswordEncoder.matches(password,userExists.getPassword())){
-            System.out.println("Wrong password");
-            return new ResponseEntity<String>("Wrong email/password", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Wrong email/password", HttpStatus.UNAUTHORIZED);
         }
         else
-        if(!userExists.getActive()) {
-            System.out.println("Account not validated");
-            return new ResponseEntity<String>("Account not validated", HttpStatus.FORBIDDEN);
+        if(!userExists.isActive()) {
+            return new ResponseEntity<String>("Account not activated", HttpStatus.FORBIDDEN);
         }
         else {
             System.out.println("Logged in");

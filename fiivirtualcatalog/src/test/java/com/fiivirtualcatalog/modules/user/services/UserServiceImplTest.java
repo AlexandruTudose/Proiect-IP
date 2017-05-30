@@ -89,7 +89,7 @@ public class UserServiceImplTest {
         userService.save(user1);
         userService.save(user2);
 
-        userService.delete("user2@user2.com");
+        userService.delete((long) 2);
         assertTrue(true);
     }
 }

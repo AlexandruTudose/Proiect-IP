@@ -64,7 +64,7 @@ public class UserServiceTest {
         assertEquals(2,getUsers.size());
         User testingUser = getUsers.get(0);
         assertEquals(5,testingUser.getId());
-        assertEquals(true,testingUser.getActive());
+        assertEquals(true,testingUser.isActive());
         assertEquals("Test1",testingUser.getLastName());
         assertEquals("Test1",testingUser.getFirstName());
         assertEquals("123123",testingUser.getPassword());
@@ -79,7 +79,7 @@ public class UserServiceTest {
 
         User testing2=mockedUserService.save(user2);
         assertEquals(7,testing2.getId());
-        assertEquals(true,testing2.getActive());
+        assertEquals(true,testing2.isActive());
         assertEquals("Test2",testing2.getLastName());
         assertEquals("Test2",testing2.getFirstName());
         assertEquals("123123",testing2.getPassword());
@@ -96,7 +96,7 @@ public class UserServiceTest {
 
         assertNotNull(testing3);
         assertEquals(5,testing3.getId());
-        assertEquals(true,testing3.getActive());
+        assertEquals(true,testing3.isActive());
         assertEquals("Test1",testing3.getLastName());
         assertEquals("Test1",testing3.getFirstName());
         assertEquals("123123",testing3.getPassword());

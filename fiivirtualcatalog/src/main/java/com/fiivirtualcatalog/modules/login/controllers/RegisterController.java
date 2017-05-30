@@ -33,13 +33,6 @@ public class RegisterController {
     @CrossOrigin(origins = "http://localhost:3100")
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
     public ResponseEntity<String> register(@RequestBody User user) {
-        System.out.println(user.getFirstName());
-        System.out.println(user.getLastName());
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
-        System.out.println(user.getRole());
-        System.out.println(user.getActive());
-        System.out.println(user.getId());
         User userExists = userService.findByEmail(user.getEmail());
         if (userExists != null) {
             return new ResponseEntity<String>("User already exists", HttpStatus.CONFLICT);
@@ -47,6 +40,7 @@ public class RegisterController {
 
             try {
                 user.setActive(false);
+                user.setValidated(false);
                 userService.save(user);
                 ConfirmEmail confirmEmail = new ConfirmEmail();
                 confirmEmail.setEmail(user.getEmail());
@@ -72,7 +66,7 @@ public class RegisterController {
         confirmEmail = confirmEmailService.findEmail(email);
         if (confirmEmail != null && confirmEmail.getCode().compareTo(code) == 0) {
             User user = userService.findByEmail(email);
-            user.setActive(true);
+            user.setValidated(true);
             userService.update(user);
             System.out.println("Validation completed");
             return new ResponseEntity<String>("Validation completed", HttpStatus.OK);
