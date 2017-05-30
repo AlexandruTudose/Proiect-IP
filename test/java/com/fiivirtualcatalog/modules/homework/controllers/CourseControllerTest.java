@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -57,5 +57,35 @@ public class CourseControllerTest {
                 .andExpect(status().isOk());
     }
 
-}
 
+    @Test
+    public void getCourseTest() throws Exception {
+
+        mockMvc.perform(get("/courses/{id}",2))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateCourseTest() throws Exception {
+
+        mockMvc.perform(put("/courses/{id}",1)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\n" +
+                    "  \"id\": 1,\n" +
+                    "  \"denumire\": \"blabla\",\n" +
+                    "  \"an\": 2,\n" +
+                    "  \"credite\": 5\n" +
+                    "}"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteCourseTest() throws Exception {
+
+        mockMvc.perform(delete("/courses/{id}",2))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+}

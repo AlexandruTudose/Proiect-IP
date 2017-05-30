@@ -1,5 +1,6 @@
 package com.fiivirtualcatalog.modules.homework.controllers;
 
+
 import com.fiivirtualcatalog.modules.homework.controller.MarkController;
 import com.fiivirtualcatalog.modules.homework.service.MarkService;
 import org.junit.Before;
@@ -15,6 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 
 public class MarkControllerTest {
@@ -52,6 +54,28 @@ public class MarkControllerTest {
                         "}"))
                 .andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getMarkTest() throws Exception {
+
+        mockMvc.perform(get("/marks/{id}",1))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateMarkTest() throws Exception {
+
+        mockMvc.perform(put("/marks/{id}",1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\" +\n" +
+                        "     \"  \\\"id\\\": 1,\\n\" +\n" +
+                        "  \"  \\\"id_profesor\\\": 2,\\n\" +\n" +
+                        "    \"  \\\"valoare\\\": 10,\\n\" +\n" +
+                        "      \"  \\\"data_notare\\\": \\\"2017-05-29\\\"\\n\" +\n" +
+                        "   \"}"));
     }
 
 }
