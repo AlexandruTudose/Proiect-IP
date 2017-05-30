@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -107,19 +108,6 @@ public class RegisterControllerTest {
 
     }
 
-    @Test
-    public void testRegister() throws Exception {
-
-        mockMvc.perform(post("/register")
-                .content("{\"id\":" +
-                        "5,\"email\":\"test1@gmail.com\", \"pas" +
-                        "sword\":\"123123\", \"name\":\"Test1\",\"la" +
-                        "stName\":\"Test1\",\"role\":\"st" +
-                        "udent\",\"active\":true}"))
-                .andExpect(status().isOk())
-                .andDo(print());
-
-    }
 
     @Test
     public void testValidate() throws Exception {
@@ -127,8 +115,6 @@ public class RegisterControllerTest {
       ConfirmEmail confirmEmail=mockedConfirmEmail.findEmail(email1.getEmail());
 
       assertEquals(confirmEmail.getCode(),email1.getCode());
-
-
 
     }
 }

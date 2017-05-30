@@ -39,16 +39,6 @@ public class UserControllerTest {
     @Autowired
     private UserTransformer transformer;
 
-    @Test
-    public void forANewUserWhenAddItShouldReturnCreatedHttpStatus() {
-        PostUserDTO user = new PostUserDTO();
-        user.setFirstName("Maria");
-        user.setRole(User.Role.valueOf("profesor"));
-        ResponseEntity responseEntity = userController.addUser(user);
-
-        ResponseEntity actualResponse = new ResponseEntity(HttpStatus.CREATED);
-        assertEquals(responseEntity, actualResponse);
-    }
 
     @Test
     public void forGettingAllUsersAndNoUserAreInDBShouldReturnNoContent() {
@@ -60,21 +50,4 @@ public class UserControllerTest {
         assertTrue(true);
     }
 
-    @Test
-    public void forGettingAllUsersAndInDBAreAtLeastAUserShouldReturnOk() {
-        User user = new User();
-        user.setFirstName("Maria");
-        user.setRole(User.Role.profesor);
-        userRepository.save(user);
-        List<User> listOfUsers = userRepository.findAll();
-
-        List<GetUserDTO> listOfUsersDTO = new ArrayList<>();
-        for (User usr : listOfUsers) {
-            listOfUsersDTO.add(transformer.toDTO(usr));
-        }
-
-        ResponseEntity responseEntity = userController.get();
-        ResponseEntity actualResponse = new ResponseEntity(HttpStatus.OK);
-        assertEquals(responseEntity.getStatusCode(), actualResponse.getStatusCode());
-    }
 }

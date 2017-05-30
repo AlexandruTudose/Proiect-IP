@@ -29,7 +29,7 @@ public class UserTest {
     @Test
     public void forUserWithRoleStudentShouldReturnStudent() {
         user.setRole(User.Role.student);
-        assertEquals(user.getRole(), "Student");
+        assertEquals(user.getRole(), User.Role.student);
     }
 
 }
