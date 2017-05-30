@@ -72,7 +72,7 @@ public class UserController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value="{id}",method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteUser(@RequestParam Long id) {
         User userExist = service.findById(id);
         if(userExist==null)

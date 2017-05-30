@@ -17,6 +17,7 @@ public class UserTransformer{
 		user.setPassword(object.getPassword());
 		user.setActive(object.isActive());
 		user.setEmail(object.getEmail());
+		user.setValidated(object.isValidated());
 	    return user;
 	}
 
@@ -26,7 +27,8 @@ public class UserTransformer{
 				object.getRole(),
 				object.isActive(),
 				object.getId(),
-				object.getEmail()));
+				object.getEmail(),
+				object.isValidated()));
 	}
 
 }

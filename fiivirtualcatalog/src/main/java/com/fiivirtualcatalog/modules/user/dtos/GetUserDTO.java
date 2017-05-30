@@ -10,6 +10,15 @@ public class GetUserDTO {
     private String firstName;
     private String lastName;
     private boolean active;
+    private boolean validated;
+
+    public boolean isValidated() {
+        return validated;
+    }
+
+    public void setValidated(boolean validated) {
+        this.validated = validated;
+    }
 
     public String getEmail() {
         return email;
@@ -65,13 +74,15 @@ public class GetUserDTO {
                       User.Role role,
                       boolean active,
                       long id,
-                      String email) {
+                      String email,
+                      boolean validated) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
 		this.id = id;
 		this.active = active;
 		this.email = email;
+		this.validated=validated;
 	}
 
 	public User.Role getRole() {

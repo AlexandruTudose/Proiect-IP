@@ -9,6 +9,15 @@ public class PostUserDTO {
 	private String lastName;
 	private boolean active;
     private String password;
+    private  boolean validated;
+
+    public boolean isValidated() {
+        return validated;
+    }
+
+    public void setValidated(boolean validated) {
+        this.validated = validated;
+    }
 
     public String getEmail() {
         return email;
@@ -62,13 +71,15 @@ public class PostUserDTO {
             String firstName,
             String lastName,
             boolean active,
-            String password) {
+            String password,
+            boolean validated) {
 		this.firstName = firstName;
 		this.role = role;
 		this.email = email;
 		this.lastName = lastName;
 		this.active = active;
 		this.password = password;
+		this.validated=validated;
 	}
 
 	public User.Role getRole() {
