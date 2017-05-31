@@ -4,6 +4,6 @@
 export class Course {
   public id: number;
   public denumire: string;
-  public an_predare: number;
+  public an: number;
   public credite: number;
 }

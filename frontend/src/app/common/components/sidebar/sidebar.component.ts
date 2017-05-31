@@ -7,6 +7,7 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  role = sessionStorage.getItem("role");
 
   constructor() { }
 

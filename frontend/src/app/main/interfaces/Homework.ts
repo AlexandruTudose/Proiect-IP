@@ -4,7 +4,7 @@
 export class Homework {
   public id: number;
   public id_curs: number;
-  public id_student: number;
+  public id_student: string;
   public id_nota: number;
   public tip_tema: string;
   public fisier: string;

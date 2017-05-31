@@ -1,4 +1,3 @@
-<ip-sidebar></ip-sidebar>
 <div id="page-wrapper" class="gray-bg">
   <div class="row wrapper border-bottom white-bg page-heading">
     <h2>Cursuri</h2>
@@ -33,14 +32,14 @@
                       <div class="boxes-orange col-sm-2" *ngIf="course.id % 10 % 2 == 1">
                         <i class="fa fa-pencil icon-box-orange"></i>
                         <span>{{course.denumire}}</span> <br/>
-                        <span>An: {{course.an_predare}}</span> <br/>
+                        <span>An: {{course.an}}</span> <br/>
                         <span>Credite: {{course.credite}}</span>
                       </div>
 
                       <div class="boxes-blue col-sm-2" *ngIf="course.id % 10 % 2 == 0">
                         <i class="fa fa-paperclip icon-box-blue"></i>
                         <span>{{course.denumire}}</span> <br/>
-                        <span>An: {{course.an_predare}}</span> <br/>
+                        <span>An: {{course.an}}</span> <br/>
                         <span>Credite: {{course.credite}}</span>
                       </div>
                     </a>

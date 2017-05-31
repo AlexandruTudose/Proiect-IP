@@ -1,19 +1,17 @@
-<!--<div id="wrapper" *ngIf="logged">-->
-<!--<lp-sidebar></lp-sidebar>-->
-<!--<lp-navbar></lp-navbar>-->
-<!--<router-outlet></router-outlet>-->
-<!--</div>-->
-
-<!--<div *ngIf="!logged">-->
-<!--<lp-login [logged]="logged"></lp-login>-->
-<!--</div>-->
-
-
-<div id="wrapper">
-  <div >
-    <router-outlet></router-outlet>
+<div [hidden]="logged">
+  <lp-login *ngIf="!register && !validate" (isLogged)="loggedIn($event)" (userInfo)="usergetData($event)"
+            (register)="registerClick($event)"></lp-login>
+  <div *ngIf="register && !validate">
+    <ip-register (login)="loginClick($event)" (validate)="checkRegister($event)"></ip-register>
+  </div>
+  <div *ngIf="validate">
+    <ip-validate></ip-validate>
   </div>
 </div>
 
 
-
+<div id="wrapper" [hidden]="!logged">
+  <ip-sidebar></ip-sidebar>
+  <lp-navbar (loggedOut)="logOut($event)"></lp-navbar>
+  <router-outlet></router-outlet>
+</div>

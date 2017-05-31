@@ -1,4 +1,3 @@
-<ip-sidebar2></ip-sidebar2>
 <div id="page-wrapper" class="gray-bg">
   <div class="row wrapper border-bottom white-bg page-heading">
     <h2>Fii Virtual Catalog</h2>
@@ -27,13 +26,10 @@
                             First Name cannot be more than 50 characters long!
                           </div>
                       </div>
-                      <input type="text" required minlength="5" maxlength="50" [(ngModel)]="user.name" name="user.name"  value="{{user.name}}" class="form-control input-text" placeholder="First Name* ..."  #name="ngModel">
+                      <input type="text" required maxlength="50" [(ngModel)]="user.firstName" name="user.name"   class="form-control input-text" placeholder="First Name* ..."  #name="ngModel">
                       <div *ngIf="lastname.errors && (lastname.dirty || lastname.touched)" >
                           <div [hidden]="!lastname.errors.required" class="show-error">
                             Last Name is required!
-                          </div>
-                          <div [hidden]="!lastname.errors.minlength" class="show-error">
-                            Last Name must be at least 5 characters long!
                           </div>
                           <div [hidden]="!lastname.errors.maxlength" class="show-error">
                             Last Name cannot be more than 50 characters long!
@@ -79,6 +75,7 @@
                     <div class="form-actions">
                       <span *ngIf="err" class="err">* This email is already registered!</span>
                       <button (click)="registerUser()" type="submit"  ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Create account</button>
+                      <button (click)="goLogin()" type="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
                   </div>
                 </form>

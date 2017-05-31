@@ -10,10 +10,16 @@ import {SearchParams} from '../interfaces/SearchParams';
 export class UserService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private search: URLSearchParams;
+  private userUrl = "/api/v1/users/";
 
 
   constructor(private http: Http) {
     this.http = http;
+  }
+
+  getMember(id) {
+    return this.http.get(this.userUrl + id)
+      .map(res => <any>res.json());
   }
 
   resetPass(link, email): Observable<any> {

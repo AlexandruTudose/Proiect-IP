@@ -1,4 +1,3 @@
-<ip-sidebar2></ip-sidebar2>
 <div id="page-wrapper" class="gray-bg">
   <div class="row wrapper border-bottom white-bg page-heading">
     <h2>Fii Virtual Catalog</h2>
@@ -34,6 +33,7 @@
                     <span *ngIf="err" class="err">* Wrong email/password! Also your account might not be activated</span>
                     </div>
                      <button  (click)="loginUser()" type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Login</button>
+                  <button (click)="goRegister()" type="submit" class="btn btn-primary btn-block">Register</button>
                   <a routerLink="/login/reset"><button  type="button"  class="btn btn-info btn-sm">Reset password</button></a>
                 </form>
               </div>

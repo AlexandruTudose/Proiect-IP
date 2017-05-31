@@ -30,6 +30,7 @@ export class StudhomeworkComponent implements OnInit {
   private searchParamas: SearchParams = new SearchParams();
   private searchObject: ProductSearch = new ProductSearch();
   deleteId: number;
+  id = sessionStorage.getItem("userId");
 
   homeworks: any;
   courses: any;
@@ -50,7 +51,7 @@ export class StudhomeworkComponent implements OnInit {
 
 
   getHomeworks() {
-    this.homeworksService.getList(1).subscribe((response) => {
+    this.homeworksService.getList(this.id).subscribe((response) => {
       this.homeworks = response.content;
       this.getCourses();
       this.getStudent();
@@ -62,7 +63,7 @@ export class StudhomeworkComponent implements OnInit {
       this.memberService.getMember(this.homeworks[i].id_student).subscribe(
         (response) => {
           this.succes = true;
-          this.homeworks[i].studentName = response.nume + ' ' + response.prenume;
+          this.homeworks[i].studentName = response.firstName + ' ' + response.lastName;
         });
       this.homeworksService.getMark(this.homeworks[i].id_nota).subscribe(
         (response) => {

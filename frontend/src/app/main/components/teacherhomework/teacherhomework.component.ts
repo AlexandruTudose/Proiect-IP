@@ -56,8 +56,9 @@ export class TeacherhomeworkComponent implements OnInit {
     for (let i = 0; i < this.homeworks.length; i++) {
       this.memberService.getMember(this.homeworks[i].id_student).subscribe(
         (response) => {
+          console.log(response);
           this.succes = true;
-          this.homeworks[i].studentName = response.nume + ' ' + response.prenume;
+          this.homeworks[i].studentName = response.firstName + ' ' + response.lastName;
         });
       this.homeworksService.getMark(this.homeworks[i].id_nota).subscribe(
         (response) => {

@@ -1,0 +1,64 @@
+<div id="page-wrapper" class="gray-bg">
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <h2>Orar</h2>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Orar</h5>
+          </div>
+          <div class="ibox-content">
+            <div *ngIf="role == 'admin'">
+              <button type="button" class="btn btn-primary btn-costum" (click)="modalAdd.open()">Adauga Ora</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th width="5%%"><a>Zi</a></th>
+                  <th width="5%"><a >De la</a></th>
+                  <th width="5%"><a >Pana la</a></th>
+                  <th width="10%"><a >Disciplina</a></th>
+                  <th width="5%"><a >Tip</a></th>
+                  <th width="10%"><a >Profesor</a></th>
+                  <th width="5%"><a >Grupa</a></th>
+                  <th width="5%"><a >Sala</a></th>
+                  <th width="1%" *ngIf="role == 'admin'">#</th>
+                  <th width="1%" *ngIf="role == 'admin'">#</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="gradeX" *ngFor="let ora of orar">
+                  <td>{{ora.zi}}</td>
+                  <td>{{ora.oraInceput}}</td>
+                  <td>{{ora.oraSfarsit}}</td>
+                  <td>{{ora.idDisciplina}}</td>
+                  <td>{{ora.tip}}</td>
+                  <td>{{ora.idProf}}</td>
+                  <td>{{ora.grupa}}</td>
+                  <td>{{ora.sala}}</td>
+                  <td *ngIf="role == 'admin'">
+                    <a>
+                      <span class="glyphicon glyphicon-edit" (click)="modalEdit.open(ora.id)"></span>
+                    </a>
+                  </td>
+                  <td *ngIf="role == 'admin'">
+                    <a >
+                      <span class="glyphicon glyphicon-remove" (click)="modalConfirm.open();orarDelete(ora.id)"></span>
+                    </a>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ip-add-orar (pageChanged)="handleAdd($event)"></ip-add-orar>
+<ip-confirm (pageChanged)="handleDelete($event)"></ip-confirm>
+

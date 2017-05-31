@@ -13,7 +13,7 @@ export class ValidateComponent implements OnInit {
   code: string;
   email: string;
   errorlength = false;
-  private validateUrl= 'http://localhost:5991/register/validate';
+  private validateUrl= '/api/register/validate';
   @Output() pageChanged = new EventEmitter();
   err: boolean;
 

@@ -33,7 +33,7 @@ export class NewhomeworkComponent implements OnInit {
   private uploadFinished:boolean = false;
   @ViewChild('progressStatus') private progressStatus:any;
   @ViewChild('progressText') private progressText:any;
-  id = 1;
+  id = sessionStorage.getItem("userId");
 
   constructor(
     private memberService: MembersService,

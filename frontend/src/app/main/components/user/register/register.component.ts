@@ -17,8 +17,11 @@ export class RegisterComponent implements OnInit {
   user: User = new User();
 
   errorlength = false;
-  private registerUrl: string = "http://localhost:5991/register";
+  private registerUrl: string = "/api/register";
   @Output() pageChanged = new EventEmitter();
+  @Output() login = new EventEmitter();
+  @Output() validate = new EventEmitter();
+
   err: boolean;
 
   constructor(private userService: UserService, private router: Router) {
@@ -36,7 +39,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.userService.registerUsr(this.registerUrl, this.user).subscribe(
       (succes) => {
-        this.router.navigateByUrl('/register/validate');
+        this.validate.emit(true);
       },
       (error) => {
         this.err = true;
@@ -44,6 +47,10 @@ export class RegisterComponent implements OnInit {
       () => {
       }
     );
+  }
+
+  goLogin(){
+    this.login.emit(false);
   }
 
 }

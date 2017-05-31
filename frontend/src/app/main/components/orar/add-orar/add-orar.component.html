@@ -1,0 +1,54 @@
+<ip-sidebar></ip-sidebar>
+<modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Adaugare ora</h4>
+  </modal-header>
+  <modal-body>
+    <div style="height:500px;">
+      <div class="col-sm-12">
+        Zi <span *ngIf="err || errorlength" class="err">*Eroare adaugare zi</span>
+        <input type="text" class="form-control" [(ngModel)]="ora.zi" *ngIf="!err && !errorlength">
+        <input type="text" [(ngModel)]="ora.zi" *ngIf="err || errorlength" class="has-error form-control" >
+      </div>
+      <div class="col-sm-12">
+        De la <span *ngIf="err" class="err">*Eroare adaugare ora inceput</span>
+        <input type="text" class="form-control" [(ngModel)]="ora.ora_inceput" *ngIf="!err">
+        <input type="text" [(ngModel)]="ora.ora_inceput" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        Pana la <span *ngIf="err" class="err">*Eroare adaugare ora sfarsit</span>
+        <input type="text" class="form-control" [(ngModel)]="ora.ora_sfarsit" *ngIf="!err">
+        <input type="text" [(ngModel)]="ora.ora_sfarsit" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        ID Disciplina <span *ngIf="err" class="err">*Eroare adaugare disciplina</span>
+        <input type="text" class="form-control" [(ngModel)]="ora.id_disciplina" *ngIf="!err">
+        <input type="text" [(ngModel)]="ora.id_disciplina" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        Tip <span *ngIf="err" class="err">*Eroare adaugare tip</span>
+        <input type="text" class="form-control" [(ngModel)]="ora.tip" *ngIf="!err">
+        <input type="text" [(ngModel)]="ora.tip" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        ID Profesor <span *ngIf="err" class="err">*Eroare adaugare profesor</span>
+        <input type="text" class="form-control" [(ngModel)]="ora.id_prof" *ngIf="!err">
+        <input type="text" [(ngModel)]="ora.id_prof" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        Grupa <span *ngIf="err" class="err">*Eroare adaugare grupa</span>
+        <input type="text" class="form-control" [(ngModel)]="ora.grupa" *ngIf="!err">
+        <input type="text" [(ngModel)]="ora.grupa" *ngIf="err" class="has-error form-control">
+      </div>
+      <div class="col-sm-12">
+        Sala <span *ngIf="err" class="err">*Eroare adaugare sala</span>
+        <input type="text" class="form-control" [(ngModel)]="ora.sala" *ngIf="!err">
+        <input type="text" [(ngModel)]="ora.sala" *ngIf="err" class="has-error form-control">
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-primary" (click)="addObject()">Salveaza</button>
+  </modal-footer>
+</modal>
+

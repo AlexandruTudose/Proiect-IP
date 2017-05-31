@@ -2,10 +2,11 @@
 export class User {
 
   active= true;
-  name: string;
+  firstName: string;
   lastName: string;
   email: string;
   role: string;
   password: string;
-  id= 0;
+  id: any;
+  validated: boolean;
 }
