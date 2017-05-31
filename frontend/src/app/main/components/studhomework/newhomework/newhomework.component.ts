@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HomeworksService} from "../../../services/homeworks.service";
 import { Location } from '@angular/common';
 import {UploadService} from "../../../services/UploadService";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-newhomework',
@@ -32,7 +33,7 @@ export class NewhomeworkComponent implements OnInit {
   private uploadFinished:boolean = false;
   @ViewChild('progressStatus') private progressStatus:any;
   @ViewChild('progressText') private progressText:any;
-  id = 1;
+  id = sessionStorage.getItem("userId");
 
   constructor(
     private memberService: MembersService,
@@ -40,8 +41,10 @@ export class NewhomeworkComponent implements OnInit {
     private homeworksService: HomeworksService,
     private uploadService: UploadService,
     private fb: FormBuilder,
-    private location: Location
+    private location: Location,
+    public router: Router
   ) {
+    this.router = router;
   }
 
   ngOnInit() {

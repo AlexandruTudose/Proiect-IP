@@ -1,0 +1,23 @@
+<ip-sidebar></ip-sidebar>
+<modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Adauga nota</h4>
+  </modal-header>
+  <modal-body>
+    <div style="height:190px;">
+      <div class="col-sm-12">
+        <label>Curs</label>
+        <input type="text" class="form-control" [(ngModel)]="checkin.subject" value="{{checkin.subject}}">
+      </div>
+
+      <div class="col-sm-12">
+        <label>Tip</label>
+        <input type="text" class="form-control" [(ngModel)]="checkin.classType" value="{{checkin.classType}}">
+      </div>
+
+      <div class="col-sm-12 text-center">
+        <button type="button" class="btn btn-primary" (click)="addCheckin()">ADAUGA CHECKIN</button>
+      </div>
+    </div>
+  </modal-body>
+</modal>

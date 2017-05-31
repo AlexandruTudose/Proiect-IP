@@ -9,16 +9,17 @@ import {SearchParams} from "../interfaces/SearchParams";
 @Injectable()
 export class MembersService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private search:URLSearchParams;
+  private headers2 = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+  private search = new URLSearchParams();
 
-  private getStudents = "/api/students/";
+  private getUsers = "/api/v1/users/";
 
   constructor(private http: Http) {
     this.http = http;
   }
 
   getList() : Observable<JsonObject> {
-    return this.http.get(this.getStudents)
+    return this.http.get(this.getUsers)
       .map((response: Response) => <JsonObject>response.json());
   }
 
@@ -29,7 +30,7 @@ export class MembersService {
 
 
   getMember(id) {
-    return this.http.get(this.getStudents + id)
+    return this.http.get(this.getUsers + id)
       // .map((response: Response) => <JsonObject>response.json());
       .map(res => <any>res.json());
   }
@@ -44,8 +45,8 @@ export class MembersService {
       .map((response: Response) => response);
   }
 
-  deleteObject(link,id) : Observable<any> {
-    return this.http.delete(link+"/"+id).map((response: Response) => response);
+  deleteObject(id) : Observable<any> {
+    return this.http.delete(this.getUsers + id).map((response: Response) => response);
   }
 
   loginService(url,username,password) {

@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild, EventEmitter, Output} from '@angular/core'
 import {ModalComponent} from "ng2-bs3-modal/components/modal";
 import {Course} from "../../../interfaces/Course";
 import {CoursesService} from "../../../services/courses.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-editcourse',
@@ -20,7 +21,8 @@ export class EditcourseComponent implements OnInit {
   course: Course = new Course();
   courseid: any;
 
-  constructor(private coursesService: CoursesService) {
+  constructor(private coursesService: CoursesService, public router: Router) {
+    this.router = router;
   }
 
   ngOnInit() {

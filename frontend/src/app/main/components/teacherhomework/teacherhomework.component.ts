@@ -6,6 +6,7 @@ import {HomeworksService} from "../../services/homeworks.service";
 import {CoursesService} from "../../services/courses.service";
 import {MembersService} from "../../services/members.service";
 import {AddmarkComponent} from "./addmark/addmark.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-teacherhomework',
@@ -32,8 +33,9 @@ export class TeacherhomeworkComponent implements OnInit {
   constructor(
     private homeworksService: HomeworksService,
     private coursesService: CoursesService,
-    private memberService: MembersService
-  ) {}
+    private memberService: MembersService,
+    public router: Router
+  ) {this.router = router;}
 
 
   ngOnInit() {
@@ -54,8 +56,9 @@ export class TeacherhomeworkComponent implements OnInit {
     for (let i = 0; i < this.homeworks.length; i++) {
       this.memberService.getMember(this.homeworks[i].id_student).subscribe(
         (response) => {
+          console.log(response);
           this.succes = true;
-          this.homeworks[i].studentName = response.nume + ' ' + response.prenume;
+          this.homeworks[i].studentName = response.firstName + ' ' + response.lastName;
         });
       this.homeworksService.getMark(this.homeworks[i].id_nota).subscribe(
         (response) => {

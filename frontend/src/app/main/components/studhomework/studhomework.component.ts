@@ -7,6 +7,7 @@ import {CoursesService} from "../../services/courses.service";
 import {ConfirmationComponent} from "../../../common/components/form/confirmation/confirmation.component";
 import {NewhomeworkComponent} from "./newhomework/newhomework.component";
 import {MembersService} from "../../services/members.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-studhomework',
@@ -29,6 +30,7 @@ export class StudhomeworkComponent implements OnInit {
   private searchParamas: SearchParams = new SearchParams();
   private searchObject: ProductSearch = new ProductSearch();
   deleteId: number;
+  id = sessionStorage.getItem("userId");
 
   homeworks: any;
   courses: any;
@@ -37,8 +39,9 @@ export class StudhomeworkComponent implements OnInit {
   constructor(
     private homeworksService: HomeworksService,
     private coursesService: CoursesService,
-    private memberService: MembersService
-  ) {}
+    private memberService: MembersService,
+    public router: Router
+  ) {this.router = router;}
 
 
   ngOnInit() {
@@ -48,7 +51,7 @@ export class StudhomeworkComponent implements OnInit {
 
 
   getHomeworks() {
-    this.homeworksService.getList(1).subscribe((response) => {
+    this.homeworksService.getList(this.id).subscribe((response) => {
       this.homeworks = response.content;
       this.getCourses();
       this.getStudent();
@@ -60,7 +63,7 @@ export class StudhomeworkComponent implements OnInit {
       this.memberService.getMember(this.homeworks[i].id_student).subscribe(
         (response) => {
           this.succes = true;
-          this.homeworks[i].studentName = response.nume + ' ' + response.prenume;
+          this.homeworks[i].studentName = response.firstName + ' ' + response.lastName;
         });
       this.homeworksService.getMark(this.homeworks[i].id_nota).subscribe(
         (response) => {

@@ -1,0 +1,90 @@
+<div id="page-wrapper" class="gray-bg">
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <h2>Fii Virtual Catalog</h2>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Register</h5>
+          </div>
+          <div class="ibox-content">
+            <div id="todo-form" class="row">
+              <div class="col-sm-6 col-sm-offset-3 text-center" style="padding:0;">
+                <form name="todoForm" class="todoForm">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div *ngIf="name.errors && (name.dirty || name.touched)" >
+                          <div [hidden]="!name.errors.required" class="show-error">
+                            First Name is required!
+                          </div>
+                          <div [hidden]="!name.errors.minlength" class="show-error">
+                            First Name must be at least 5 characters long!
+                          </div>
+                          <div [hidden]="!name.errors.maxlength" class="show-error">
+                            First Name cannot be more than 50 characters long!
+                          </div>
+                      </div>
+                      <input type="text" required maxlength="50" [(ngModel)]="user.firstName" name="user.name"   class="form-control input-text" placeholder="First Name* ..."  #name="ngModel">
+                      <div *ngIf="lastname.errors && (lastname.dirty || lastname.touched)" >
+                          <div [hidden]="!lastname.errors.required" class="show-error">
+                            Last Name is required!
+                          </div>
+                          <div [hidden]="!lastname.errors.maxlength" class="show-error">
+                            Last Name cannot be more than 50 characters long!
+                          </div>
+                    </div>
+                      <input type="text" required minlength="5" maxlength="50" [(ngModel)]="user.lastName" name="user.lastName" value="{{user.lastName}}" class="form-control input-text" placeholder="Last Name* ..."  #lastname="ngModel" >
+                      <div *ngIf="email.errors && (email.dirty || email.touched)" >
+                          <div [hidden]="!email.errors.required" class="show-error">
+                            E-mail is required!
+                          </div>
+                          <div [hidden]="!email.errors.maxlength" class="show-error"></div>
+                      </div>
+                      <input type="text"  required maxlength="100" [(ngModel)]="user.email" name="user.email" value="{{user.email}}" class="form-control input-text" placeholder="Email* ..." #email="ngModel" >
+                      <div *ngIf="choose.errors && (choose.dirty || choose.touched)" >
+                          <div [hidden]="!choose.errors.required" class="show-error">
+                            You must choose an option!
+                          </div>
+                      </div>
+                      <select  class="form-control" required [(ngModel)]="user.role" name="user.role" value="{{user.role}}" id="sel1" #choose="ngModel">
+                        <option value="student">Student</option>
+                        <option value="admin" >Admin</option>
+                        <option value="profesor" >Professor</option>
+                      </select>
+                      <div *ngIf="pass.errors && (pass.dirty || pass.touched)" >
+                        <div [hidden]="!pass.errors.required" class="show-error">
+                          Password is required!
+                        </div>
+                        <div [hidden]="!pass.errors.minlength" class="show-error">
+                          Password must be at least 8 characters long!
+                        </div>
+                        <div [hidden]="!pass.errors.maxlength" class="show-error">
+                          Password cannot be more than 20 characters long!
+                        </div>
+                      </div>
+                      <input type="password" required minlength="8" maxlength="20"  [(ngModel)]="user.password" name="user.password" value="{{user.password}}" class="form-control input-text" placeholder="Password*..." #pass="ngModel">
+                      <div *ngIf="confPass.errors && (confPass.dirty || confPass.touched)" >
+                        <div [hidden]="!pass.errors.required" class="show-error">
+                          Confirm password is required!
+                        </div>
+                      </div>
+                      <input type="password" required [(ngModel)]="user.cpassword" name="user.cpassword" value="{{user.cpassword}}" class="form-control input-text" placeholder="Confirm Password*..." #confPass="ngModel">
+                    </div>
+                    <div class="form-actions">
+                      <span *ngIf="err" class="err">* This email is already registered!</span>
+                      <button (click)="registerUser()" type="submit"  ng-disabled="form.$invalid || dataLoading" class="btn btn-primary btn-block">Create account</button>
+                      <button (click)="goLogin()" type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

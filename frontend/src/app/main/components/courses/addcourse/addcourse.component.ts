@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core'
 import {ModalComponent} from "ng2-bs3-modal/components/modal";
 import {Course} from "../../../interfaces/Course";
 import {CoursesService} from "../../../services/courses.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-addcourse',
@@ -18,7 +19,8 @@ export class AddcourseComponent implements OnInit {
   @Output() pageChanged = new EventEmitter();
   err: boolean;
 
-  constructor(private coursesService: CoursesService) {
+  constructor(private coursesService: CoursesService, public router: Router) {
+    this.router = router;
   }
 
   ngOnInit() {

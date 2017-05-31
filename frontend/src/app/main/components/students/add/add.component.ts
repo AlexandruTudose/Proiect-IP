@@ -3,6 +3,7 @@ import {ModalComponent} from "ng2-bs3-modal/components/modal";
 import {Course} from "../../../interfaces/Course";
 import {MembersService} from "../../../services/members.service";
 import {Student} from "../../../interfaces/Student";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-add',
@@ -19,8 +20,9 @@ export class AddComponent implements OnInit {
   @Output() pageChanged = new EventEmitter();
   err: boolean;
 
-  constructor(private memberService: MembersService) {
+  constructor(private memberService: MembersService, public router: Router) {
     this.memberService = memberService;
+    this.router = router;
   }
 
   ngOnInit() {

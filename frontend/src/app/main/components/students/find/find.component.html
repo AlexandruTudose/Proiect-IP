@@ -1,26 +1,35 @@
+<ip-sidebar></ip-sidebar>
 <modal>
   <modal-header [show-close]="true">
     <h4 class="modal-title">Cauta student</h4>
   </modal-header>
   <modal-body>
-    <div style="height:240px;">
+    <div style="height:350px;">
       Cautarea se face dupa nr mnatricol. <br/><br/>
       <div class="col-sm-12">
-       Nr matricol <span *ngIf="errorfind" class="err">*Nu exista un student cu acest nr matricol.</span>
+       Id user <span *ngIf="errorfind" class="err">*Nu exista un student cu acest nr matricol.</span>
         <input type="text" class="form-control" [(ngModel)]="searchstudent" *ngIf="!err">
       </div>
       <br/><br/>
       <div class="col-sm-12" *ngIf="succes">
-        Nume student
-        <input type="text" class="form-control"  value="{{student.nume}} {{student.prenume}}" [disabled]="true">
+        Nume user
+        <input type="text" class="form-control"  value="{{user.lastName}} {{user.firstName}}" [disabled]="true">
       </div>
       <div class="col-sm-12" *ngIf="succes">
-        Grupa
-        <input type="text" class="form-control" value="{{student.grupa}}" [disabled]="true">
+        Email user
+        <input type="text" class="form-control" value="{{user.email}}" [disabled]="true">
       </div>
       <div class="col-sm-12" *ngIf="succes">
-        An
-        <input type="text" class="form-control" value="{{student.an}}" [disabled]="true">
+        Rol user
+        <input type="text" class="form-control" value="{{user.role}}" [disabled]="true">
+      </div>
+      <div class="col-sm-12" *ngIf="succes">
+        Activ user
+        <input type="text" class="form-control" value="{{user.active}}" [disabled]="true">
+      </div>
+      <div class="col-sm-12" *ngIf="succes">
+        Valid user
+        <input type="text" class="form-control" value="{{user.validated}}" [disabled]="true">
       </div>
     </div>
   </modal-body>

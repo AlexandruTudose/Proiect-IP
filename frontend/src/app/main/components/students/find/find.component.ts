@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild, EventEmitter, Output} from '@angular/core'
 import {ModalComponent} from "ng2-bs3-modal/components/modal";
 import {MembersService} from "../../../services/members.service";
 import {Student} from "../../../interfaces/Student";
+import {Router} from "@angular/router";
+import {User} from "../../../interfaces/User";
 
 @Component({
   selector: 'ip-find',
@@ -21,12 +23,13 @@ export class FindComponent implements OnInit {
   errorfind = false;
   succes = false;
 
-  student: Student = new Student();
+  user: User = new User();
   searchstudent: any;
   studentid: any;
 
-  constructor(private memberService: MembersService) {
+  constructor(private memberService: MembersService, public router: Router) {
     this.memberService = memberService;
+    this.router = router;
   }
 
   ngOnInit() {
@@ -49,8 +52,7 @@ export class FindComponent implements OnInit {
   getstudentDetails(url,id) {
     this.memberService.getMember(id).subscribe(
       (response) => {
-        this.student = response;
-        console.log(this.student);
+        this.user = response;
       }
     );
   }
@@ -67,19 +69,5 @@ export class FindComponent implements OnInit {
 
   addObject() {
     this.getstudent(this.getUrl,this.searchstudent);
-  }
-
-  addMember() {
-    this.memberService.updateObject(this.getUrl, this.student).subscribe(
-      (succes) => {
-        this.modalFind.close();
-        this.pageChanged.emit(true);
-      },
-      (error) => {
-        this.err = true;
-      },
-      () => {
-      }
-    );
   }
 }

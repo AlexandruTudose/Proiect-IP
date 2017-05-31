@@ -7,6 +7,7 @@ import {AddcourseComponent} from "./addcourse/addcourse.component";
 import {EditcourseComponent} from "./editcourse/editcourse.component";
 import {ConfirmationComponent} from "../../../common/components/form/confirmation/confirmation.component";
 import {FindcourseComponent} from "./findcourse/findcourse.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-courses',
@@ -31,7 +32,8 @@ export class CoursesComponent implements OnInit {
 
   courses: any;
 
-  constructor(private coursesService: CoursesService) {
+  constructor(private coursesService: CoursesService, public router: Router) {
+    this.router = router;
   }
 
 

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Project} from "../../../../interfaces/Project";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-courseprojects',
@@ -18,7 +19,9 @@ export class CourseprojectsComponent implements OnInit {
 
   @Input() courseId: any;
 
-  constructor() { }
+  constructor(public router: Router) {
+    this.router = router;
+  }
 
   ngOnInit() {
   }

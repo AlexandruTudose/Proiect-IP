@@ -1,3 +1,4 @@
+<ip-sidebar></ip-sidebar>
 <div id="page-wrapper">
   <div class="row wrapper border-bottom white-bg page-heading">
     <h2><a routerLink="/courses">Cursuri</a> -> <a>Vizualizare curs</a></h2>
@@ -16,9 +17,6 @@
               </div>
               <div class="col-lg-12">
                 <ip-courseprojects *ngIf="selectedTab.select == 1" [courseId]="courseSelected"></ip-courseprojects>
-              </div>
-              <div class="col-lg-12">
-                <ip-coursegrades *ngIf="selectedTab.select == 2"></ip-coursegrades>
               </div>
 
               <br/><br/>

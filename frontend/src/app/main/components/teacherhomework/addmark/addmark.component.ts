@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import {ModalComponent} from "ng2-bs3-modal/components/modal";
-import {HomeworksService} from "../../../services/homeworks.service";
-import {Mark} from "../../../interfaces/Mark";
+import {ModalComponent} from 'ng2-bs3-modal/components/modal';
+import {HomeworksService} from '../../../services/homeworks.service';
+import {Mark} from '../../../interfaces/Mark';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ip-addmark',
@@ -17,7 +18,8 @@ export class AddmarkComponent implements OnInit {
   markID: number;
   mark: Mark = new Mark();
 
-  constructor(private homeworksService: HomeworksService) {
+  constructor(private homeworksService: HomeworksService, public router: Router) {
+    this.router = router;
   }
 
   ngOnInit() {
@@ -37,16 +39,16 @@ export class AddmarkComponent implements OnInit {
   getMark(id) {
     this.homeworksService.getMark(this.markID).subscribe((response) => {
       this.mark = response;
-    })
+    });
   }
 
   updateMark() {
-    this.homeworksService.updateMark(this.markID,this.mark).subscribe(
+    this.homeworksService.updateMark(this.markID, this.mark).subscribe(
       (succes) => {
         this.pageChanged.emit(true);
         this.modalAddMark.close();
       }
-    )
+    );
   }
 
 }
