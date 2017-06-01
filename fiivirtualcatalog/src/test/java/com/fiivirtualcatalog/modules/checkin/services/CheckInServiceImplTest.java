@@ -160,7 +160,7 @@ public class CheckInServiceImplTest {
     @Test
     public void forDeletingACheckInShouldDeleteIt() throws ParseException {
         CheckIn checkIn = new CheckIn();
-        checkIn.setId(12);
+        checkIn.setId(1);
         String dDate = "2011-11-11 12:16";
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = formatter.parse(dDate);
