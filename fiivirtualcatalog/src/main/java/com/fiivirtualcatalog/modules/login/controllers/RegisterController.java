@@ -35,6 +35,7 @@ public class RegisterController {
     public ResponseEntity<String> register(@RequestBody User user) {
         User userExists = userService.findByEmail(user.getEmail());
         if (userExists != null) {
+            System.out.println(userExists.getEmail()+" "+userExists.getLastName()+" "+userExists.getFirstName());
             return new ResponseEntity<String>("User already exists", HttpStatus.CONFLICT);
         } else {
 
@@ -45,7 +46,12 @@ public class RegisterController {
                 ConfirmEmail confirmEmail = new ConfirmEmail();
                 confirmEmail.setEmail(user.getEmail());
                 confirmEmail.setCode(confirmEmailService.generateCode());
-                smtpMailSender.send(user.getEmail(), "Email confirmation!", confirmEmail.getCode());
+                String link="http://localhost:3100/register/validate/?email="+user.getEmail()+
+                        "&code="+confirmEmail.getCode();
+                String message="  &#160&#160  You are receiving this email because someone attempted to register on our website.<br>" +
+                                "If that's you, please click on the link below to confirm your email address!<br>"+
+                                "<a href=\""+link+"\">"+link+"</a>";
+                smtpMailSender.send(user.getEmail(), "Email confirmation!",message);
                 confirmEmailService.delete(user.getEmail());
                 confirmEmailService.save(confirmEmail);
                 System.out.println("Validate email");
@@ -61,13 +67,14 @@ public class RegisterController {
 
     @CrossOrigin(origins = "http://localhost:3100")
     @RequestMapping(value = {"/register/validate"}, method = RequestMethod.POST)
-    public ResponseEntity<String> checkEmailCode(String email, String code) {
+    public ResponseEntity<String> checkEmailCode(@RequestParam(value = "email") String email,@RequestParam(value = "code") String code) {
         ConfirmEmail confirmEmail = new ConfirmEmail();
         confirmEmail = confirmEmailService.findEmail(email);
         if (confirmEmail != null && confirmEmail.getCode().compareTo(code) == 0) {
             User user = userService.findByEmail(email);
             user.setValidated(true);
             userService.update(user);
+            confirmEmailService.delete(user.getEmail());
             System.out.println("Validation completed");
             return new ResponseEntity<String>("Validation completed", HttpStatus.OK);
         } else {
