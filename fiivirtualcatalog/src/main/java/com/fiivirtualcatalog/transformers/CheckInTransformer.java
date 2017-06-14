@@ -35,7 +35,7 @@ public class CheckInTransformer {
     public CheckInGetByIdDTO toGetByIdDTO(CheckIn object) {
         List<CheckInGetByIdDTO.SimpleUser> simpleUsers = new ArrayList<>();
         for (User user : object.getCheckedInUsers()) {
-            simpleUsers.add(new CheckInGetByIdDTO.SimpleUser(user.getId(), user.getFirstName()));
+            simpleUsers.add(new CheckInGetByIdDTO.SimpleUser(user.getId(), user.getFirstName(), user.getLastName()));
         }
         return new CheckInGetByIdDTO.NewBuilder()
                 .id(object.getId())

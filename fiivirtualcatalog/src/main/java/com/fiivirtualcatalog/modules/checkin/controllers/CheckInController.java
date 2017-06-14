@@ -3,6 +3,7 @@ package com.fiivirtualcatalog.modules.checkin.controllers;
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetAllDTO;
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInGetByIdDTO;
 import com.fiivirtualcatalog.modules.checkin.dtos.CheckInPostDTO;
+import com.fiivirtualcatalog.modules.checkin.dtos.CheckInRegisterPostDTO;
 import com.fiivirtualcatalog.modules.checkin.models.CheckIn;
 import com.fiivirtualcatalog.modules.checkin.services.CheckInService;
 import com.fiivirtualcatalog.modules.user.models.User;
@@ -77,10 +78,10 @@ public class CheckInController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/register/{userId}", method = RequestMethod.POST)
-    public ResponseEntity registerCheckIn(@PathVariable("userId") Long userId, @RequestBody Long checkInId) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity registerCheckIn(@RequestBody CheckInRegisterPostDTO checkInRegisterPostDTO) {
 
-        CheckIn searchCheckIn = this.checkInService.getById(checkInId);
+        CheckIn searchCheckIn = this.checkInService.getById(checkInRegisterPostDTO.getCheckInId());
 
         if (searchCheckIn == null)
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -88,31 +89,30 @@ public class CheckInController {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
 
-        if (userService.findById(userId) == null) {
+        if (userService.findById(checkInRegisterPostDTO.getUserId()) == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        if (searchCheckIn.getCheckedInUsers().contains(userService.findById(userId))) {
+        if (searchCheckIn.getCheckedInUsers().contains(userService.findById(checkInRegisterPostDTO.getUserId()))) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
 
-        searchCheckIn.addToCheckedInUsers(userService.findById(userId));
+        searchCheckIn.addToCheckedInUsers(userService.findById(checkInRegisterPostDTO.getUserId()));
         this.checkInService.save(searchCheckIn);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{checkInId}/end/{userId}", method = RequestMethod.POST)
-    public ResponseEntity endCheckIn(@PathVariable("userId") Long userId, @PathVariable("checkInId") Long checkInId) {
-        CheckIn searchCheckIn = this.checkInService.getById(checkInId);
+    @RequestMapping(value = "/end", method = RequestMethod.POST)
+    public ResponseEntity endCheckIn(@RequestBody CheckInRegisterPostDTO checkInRegisterPostDTO) {
+        CheckIn searchCheckIn = this.checkInService.getById(checkInRegisterPostDTO.getCheckInId());
         if (searchCheckIn == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        if (searchCheckIn.getUser().getId() != userId) {
+        if (searchCheckIn.getUser().getId() != checkInRegisterPostDTO.getUserId()) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
         searchCheckIn.setFinishingFlag(true);
         this.checkInService.save(searchCheckIn);
         return new ResponseEntity(HttpStatus.CREATED);
     }
-
 
 }

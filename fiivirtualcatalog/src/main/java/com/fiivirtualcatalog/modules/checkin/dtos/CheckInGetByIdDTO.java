@@ -19,11 +19,13 @@ public class CheckInGetByIdDTO extends CheckInGetAllDTO {
 
     public static class SimpleUser {
         long id;
-        String userName;
+        String firstName;
+        String lastName;
 
-        public SimpleUser(long id, String userName) {
+        public SimpleUser(long id, String firstName, String lastName) {
             this.id = id;
-            this.userName = userName;
+            this.firstName = firstName;
+            this.lastName = lastName;
         }
 
         public long getId() {
@@ -34,12 +36,20 @@ public class CheckInGetByIdDTO extends CheckInGetAllDTO {
             this.id = id;
         }
 
-        public String getUserName() {
-            return userName;
+        public String getFirstName() {
+            return firstName;
         }
 
-        public void setUserName(String userName) {
-            this.userName = userName;
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
+
+        public String getLastName() {
+            return lastName;
+        }
+
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
         }
     }
 
