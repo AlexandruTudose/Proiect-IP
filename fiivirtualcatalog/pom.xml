@@ -126,6 +126,14 @@
 			<version>4.2.2.RELEASE</version>
 		</dependency>
 
+		<dependency>
+			<groupId>it.zielke</groupId>
+			<artifactId>moji</artifactId>
+			<version>1.0.1</version>
+			<scope>homework-test</scope>
+		</dependency>
+
+
 	</dependencies>
 
 
